@@ -23,3 +23,6 @@ brew install chezmoi
 
 # github
 brew install gh
+
+# fswatch
+brew install fswatch

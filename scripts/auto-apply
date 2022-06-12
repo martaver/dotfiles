@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+fswatch -0 home | while read -d "" path
+  do
+    echo Applying: $path
+    chezmoi apply
+  done
