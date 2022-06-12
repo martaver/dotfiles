@@ -3,8 +3,6 @@
 GITHUB_USERNAME=martaver
 EDITOR=code
 
-echo envfoo
-
 get_sha1() {
     sha1sum "$1" | head -c 40
 }
