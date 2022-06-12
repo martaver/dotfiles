@@ -1,0 +1,7 @@
+my_space:
+  apps:
+    f: foo
+    b: bar
+  layout:
+    - [ f, f, b ]
+    - [ f, f, b ]

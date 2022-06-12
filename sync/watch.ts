@@ -4,7 +4,7 @@ import path from 'path';
 import fs from 'fs';
 
 const home = os.homedir();
-const dev = `${__dirname}/../~`;
+const dev = `${__dirname}/../home`;
 
 function getPathTo(pathFrom: string) {
   const subDir = path.relative(dev, pathFrom);
