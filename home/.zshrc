@@ -107,3 +107,5 @@ fi
 
 # Initialize modules.
 source ${ZIM_HOME}/init.zsh
+
+echo foo
