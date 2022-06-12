@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-export GITHUB_USERNAME=martaver
-export EDITOR=code
+GITHUB_USERNAME=martaver
+EDITOR=code
 
 get_sha1() {
     sha1sum "$1" | head -c 40
