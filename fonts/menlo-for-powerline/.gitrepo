@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/abertsch/Menlo-for-Powerline.git
+	branch = master
+	commit = 07e91f66786b3755d99dcfe52b436cf1c2355f38
+	parent = 99584298b67584f8d2084b939ef960d4ce185675
+	method = merge
+	cmdver = 0.4.3

@@ -1,0 +1,8 @@
+{
+    "watch": [
+        "./~/.zshrc",
+        "./sync/set.sh"
+    ],
+    "ext": "*",
+    "exec": "./sync/set.sh"
+}
