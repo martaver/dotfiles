@@ -1,4 +1,4 @@
-_ENV=~/Projects/env
+_ENV="$(chezmoi source-path)"
 
 #
 # IMPORTANT: Create a backup of ~/.zshrc so that if I fuck it up, I can restore from last usage
