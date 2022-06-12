@@ -16,6 +16,6 @@ zmodule zsh-users/zsh-completions
 zmodule jscutlery/nx-completion
 zmodule g-plane/zsh-yarn-autocompletions
 
-complete -o nospace -C /usr/local/bin/terraform terraform
 yq shell-completion zsh > "${fpath[1]}/_yq"
+complete -o nospace -C /usr/local/bin/terraform terraform
 zmodule completion

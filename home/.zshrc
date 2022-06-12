@@ -9,10 +9,10 @@ _ENV="$(chezmoi source-path)"
 # Also, we get an extra backup for free.
 cp ~/.zshrc ~/.zshrc.backup
 SHA_HOME=$(get_sha1 ~/.zshrc.backup)
-SHA_DEV=$(get_sha1 $_ENV/~/.zshrc)
+SHA_DEV=$(get_sha1 $_ENV/.zshrc)
 if [ $SHA_HOME != $SHA_DEV ] ; then
-    echo "Backing up .zshrc to $_ENV/~/.zshrc"
-    cat ~/.zshrc.backup > "$_ENV/~/.zshrc"
+    echo "Backing up .zshrc to $_ENV/.zshrc"
+    cat ~/.zshrc.backup > "$_ENV/.zshrc"
 fi
 
 
@@ -107,3 +107,5 @@ fi
 
 # Initialize modules.
 source ${ZIM_HOME}/init.zsh
+
+echo foo
