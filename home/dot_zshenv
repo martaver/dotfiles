@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-GITHUB_USERNAME=martaver
-EDITOR=code
+export GITHUB_USERNAME=martaver
+export EDITOR="code --wait"
 
 get_sha1() {
     sha1sum "$1" | head -c 40
@@ -63,7 +63,7 @@ kitty_quake() {
 
     if [ $window = "null" ]; then
         yabai -m rule --add app='kitty' title="$title" manage=off sticky=on grid=1:4:0:0:1:1
-        kitty --instance-group "$title" --single-instance --title "$title" -d ~ --session ~/.config/kitty/$title.session
+        kitty --instance-group "$title" -1 --title "$title" -d ~ --session ~/.config/kitty/$title.session
         window=$(get_window $title)
     else
 

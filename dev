@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+chezmoi apply
+
 fswatch -0 home | while read -d "" path
   do
     echo Applying: $path
