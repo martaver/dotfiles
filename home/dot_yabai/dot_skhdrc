@@ -8,10 +8,10 @@ alt - k : yb_focus north
 alt - l : yb_focus east
 
 # change focus, using arrow keys
-alt - left  : yb_focus west
-alt - down  : yb_focus south
-alt - up    : yb_focus north
-alt - right : yb_focus east
+# alt - left  : yb_focus west
+# alt - down  : yb_focus south
+# alt - up    : yb_focus north
+# alt - right : yb_focus east
 
 
 # move window in current workspace, using vim bindings
@@ -21,10 +21,10 @@ alt + shift - k : yb_move north
 alt + shift - l : yb_move east
 
 # move window in current workspace, using arrow keys
-alt + shift - left : yb_move west
-alt + shift - down : yb_move south
-alt + shift - up : yb_move north
-alt + shift - right : yb_move east
+# alt + shift - left : yb_move west
+# alt + shift - down : yb_move south
+# alt + shift - up : yb_move north
+# alt + shift - right : yb_move east
 
 
 # set insertion point in focused container, using vim bindings
@@ -34,10 +34,10 @@ alt + ctrl - k : yb_insert north
 alt + ctrl - l : yb_insert east
 
 # set insertion point in focused container, using arrow keys
-alt + ctrl - left  : yb_insert west
-alt + ctrl - down  : yb_insert south
-alt + ctrl - up    : yb_insert north
-alt + ctrl - right : yb_insert east
+# alt + ctrl - left  : yb_insert west
+# alt + ctrl - down  : yb_insert south
+# alt + ctrl - up    : yb_insert north
+# alt + ctrl - right : yb_insert east
 
 
 # go back to previous workspace (kind of like back_and_forth in i3)
@@ -62,7 +62,7 @@ alt + shift - 6 : yabai -m window --space 6
 alt + shift - 7 : yabai -m window --space 7
 alt + shift - 8 : yabai -m window --space 8
 alt + shift - 9 : yabai -m window --space 9
-#alt + shift - 0 : yabai -m window --space 10
+alt + shift - 0 : yabai -m window --space 10
 
 # # mirror tree y-axis
 alt + shift - y : yabai -m space --mirror y-axis
@@ -71,7 +71,7 @@ alt + shift - y : yabai -m space --mirror y-axis
 alt + shift - x : yabai -m space --mirror x-axis
 
 # balance size of windows
-alt + shift - 0 : yabai -m space --balance
+alt + shift - q : yabai -m space --balance
 
 # increase window size
 alt + shift - a : yb_grow left
@@ -133,10 +133,10 @@ alt - w : yabai -m window --close
 alt + ctrl - s : yabai -m window --toggle sticky
 
 # enter fullscreen mode for the focused container
-# alt - f : yabai -m window --toggle zoom-fullscreen
+alt - f : yabai -m window --toggle zoom-fullscreen
 
 # toggle window native fullscreen
-# alt + shift - f : yabai -m window --toggle native-fullscreen
+alt + shift - f : yabai -m window --toggle native-fullscreen
 
 # focus monitor
 alt + ctrl - x  : yabai -m display --focus recent

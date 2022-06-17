@@ -7,15 +7,5 @@ zmodule laggardkernel/zsh-thefuck
 zmodule git-info
 zmodule duration-info
 
-zmodule zsh-users/zsh-syntax-highlighting
-zmodule zsh-users/zsh-autosuggestions
 
-zmodule marlonrichert/zsh-autocomplete
-
-zmodule zsh-users/zsh-completions
-zmodule jscutlery/nx-completion
-zmodule g-plane/zsh-yarn-autocompletions
-
-yq shell-completion zsh > "${fpath[1]}/_yq"
-complete -o nospace -C /usr/local/bin/terraform terraform
 zmodule completion

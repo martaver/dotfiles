@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+kitty_quake() {
+
+    title="$1"    
+    
+    window=$(get_window $title)
+
+    if [ $window = "null" ]; then
+        yabai -m rule --add app='kitty' title="$title" manage=off sticky=on grid=1:4:0:0:1:1
+        kitty --instance-group "$title" -1 --title "$title" -d ~ --session ~/.config/kitty/sessions/$title
+        window=$(get_window $title)
+    else
+
+        hasFocus=$(echo $window | yq '.has-focus')
+
+        if [ $hasFocus = "true" ]; then
+            yabai -m window --minimize
+            yb_focus_last
+        else
+            id="$(echo $window | yq '.id')"
+            yabai -m window --focus $id
+        fi
+    fi
+}

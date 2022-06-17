@@ -1,3 +1,10 @@
+#
+# To profile zsh startup time:
+# 1. Uncomment the zmodload line, start a shell, then 
+# 2. run: zprof in ther terminal to get the profiling information
+#
+zmodload zsh/zprof
+
 _ENV="$(chezmoi source-path)"
 
 #
@@ -17,10 +24,43 @@ fi
 
 
 
+
+# Download Znap, if it's not there yet.
+[[ -f ~/Git/zsh-snap/znap.zsh ]] ||
+    git clone --depth 1 -- \
+        https://github.com/marlonrichert/zsh-snap.git ~/Git/zsh-snap
+
+source ~/Git/zsh-snap/znap.zsh  # Start Znap
+
+
+
+# `znap prompt` makes your prompt visible in just 15-40ms!
+znap prompt zimfw/eriner
+# znap prompt robbyrussell
+# znap prompt sindresorhus/pure
+
+yq shell-completion zsh > "${fpath[1]}/_yq"
+complete -o nospace -C /usr/local/bin/terraform terraform
+
+# `znap source` automatically downloads and starts your plugins.
+znap source jscutlery/nx-completion
+znap source zsh-users/zsh-completions
+znap source marlonrichert/zsh-autocomplete
+znap source zsh-users/zsh-autosuggestions
+znap source zsh-users/zsh-syntax-highlighting
+
+
+znap source ohmyzsh/ohmyzsh lib/{git,theme-and-appearance}
+
+
 # Disable annoying beep in shell
 unsetopt BEEP
 
 export LANG=en_US.UTF-8
+
+# Disable 'zsh: do you wish to see all 923 possibilities (462 lines)?'
+# zstyle ':completion:*' list-prompt   ''
+# zstyle ':completion:*' select-prompt ''
 
 
 #
@@ -92,24 +132,3 @@ source ~/git/git-subrepo/.rc
 # chezmoi
 #
 alias -g cm="chezmoi"
-
-
-#
-# Zim
-#
-
-ZIM_HOME=~/.zim
-
-# Download zimfw plugin manager if missing.
-if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
-  curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
-      https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
-fi
-
-# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
-if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
-  source ${ZIM_HOME}/zimfw.zsh init -q
-fi
-
-# Initialize modules.
-source ${ZIM_HOME}/init.zsh

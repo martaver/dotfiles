@@ -15,4 +15,4 @@ alt + shift - r : \
 #  "Kitty"
 # ]
 
-.load ".skhdrc.yabai"
+.load ".yabai/.skhdrc"
