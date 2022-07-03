@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+yabai -m query --windows --window &> /dev/null || \
+yabai -m window --focus recent || \
+yabai -m window --focus first

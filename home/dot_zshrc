@@ -174,3 +174,11 @@ source ~/git/git-subrepo/.rc
 # chezmoi
 #
 alias -g cm="chezmoi"
+
+
+
+#
+# yabai executable functions
+#
+
+PATH="${PATH}:/Users/martaver/.yabai/bin"

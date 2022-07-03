@@ -50,7 +50,3 @@ yb_shrink() {
 get_window() {
     yabai -m query --windows | title="$1" yq 'map(select(.title == env(title))).0'
 }
-
-yb_focus_last() {
-    yabai -m query --windows --window &> /dev/null || yabai -m window --focus recent || yabai -m window --focus first
-}

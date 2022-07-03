@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-echo "Watching './home' for changes..."
+echo "Running initial apply..."
+chezmoi apply
 
-chezmoi apply "$@"
+echo "Watching './home' for changes..."
 
 fswatch -0 home | while read -d "" path
   do    
