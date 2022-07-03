@@ -26,3 +26,6 @@ brew install gh
 
 # fswatch
 brew install fswatch
+
+
+brew install starship

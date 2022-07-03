@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-
-# source ~/.yabai/.fns
-
-foo() {
-    echo foo
-}
-
-export FOO=foo
