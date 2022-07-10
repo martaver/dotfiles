@@ -27,5 +27,8 @@ brew install gh
 # fswatch
 brew install fswatch
 
-
+# Install starship prompt
 brew install starship
+
+# Install Goku to configure karabiner
+brew install yqrashawn/goku/goku
