@@ -1,0 +1,10 @@
+{;; define application identifiers
+    :applications {
+        :chrome ["^com\\.google\\.Chrome$"]
+    }
+    
+    :main [
+        {:des "foo" :rules [[:b :b :chrome]]},
+        ;; {:des "bar" :rules [[:a :1 :chrome]]}
+    ]
+}

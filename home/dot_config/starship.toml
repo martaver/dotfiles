@@ -1,6 +1,5 @@
 # Configuration reference: https://starship.rs/config/#prompt
 
-# Which is equivalent to
 format = """
 $username\
 $hostname\

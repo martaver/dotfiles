@@ -30,5 +30,6 @@ brew install fswatch
 # Install starship prompt
 brew install starship
 
-# Install Goku to configure karabiner
+# Install goku for making karabiner configs
 brew install yqrashawn/goku/goku
+brew services restart yqrashawn/goku/goku
