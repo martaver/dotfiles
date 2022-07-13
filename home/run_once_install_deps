@@ -3,6 +3,9 @@
 # Syncthing
 # brew install --cask syncthing
 
+# sha1sum etc
+brew install coreutils
+
 # Skhd (key bindings)
 brew install koekeishiya/formulae/skhd
 
@@ -16,7 +19,7 @@ brew services start yabai
 brew install yq
 
 # Kitty
-brew install kitty
+brew install --cask kitty
 
 # chezmoi
 brew install chezmoi
@@ -32,4 +35,7 @@ brew install starship
 
 # Install goku for making karabiner configs
 brew install yqrashawn/goku/goku
-brew services start yqrashawn/goku/goku
+brew services restart yqrashawn/goku/goku
+
+# Java
+brew install java

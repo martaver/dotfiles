@@ -136,7 +136,8 @@ export PATH="$PATH:/Users/martaver/flutter/bin"
 #
 # Java
 #
-export JAVA_HOME=$(/usr/libexec/java_home)
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export JAVA_HOME="/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home"
 
 
 
