@@ -8,3 +8,6 @@
         ;; {:des "bar" :rules [[:a :1 :chrome]]}
     ]
 }
+
+;; karabiner-windows-mode JSON
+;; karabiner://karabiner/assets/complex_modifications/import?url=https://raw.githubusercontent.com/rux616/karabiner-windows-mode/master/json/windows_shortcuts.json
