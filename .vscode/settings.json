@@ -1,5 +1,6 @@
 {
     "workbench.settings.editor": "json",
     "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
     "workbench.colorTheme": "Tomorrow Night Blue"
 }
