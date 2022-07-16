@@ -38,3 +38,56 @@ brew services start yqrashawn/goku/goku
 
 # Java
 brew install java
+
+# Slack
+brew install --cask slack
+
+# Signal
+brew install --cask Signal
+
+# Workflowy
+brew install --cask workflowy
+
+# Notion
+brew install --cask notion
+
+# GitHub
+brew install gh
+
+# NVM
+brew install nvm
+mkdir ~/.nvm
+
+# Node
+nvm install node
+
+# Yarn
+npm install --global yarn
+
+# Pritunl
+brew install --cask pritunl
+
+# golang
+brew install go
+
+# gcloud
+brew install --cask google-cloud-sdk
+
+# kubectl
+gcloud components install kubectl
+
+# GKE cloud auth plugin
+gcloud components install gke-gcloud-auth-plugin
+
+# auth docker to push to GCR
+gcloud auth configure-docker
+
+# terraform
+brew install terraform
+terraform --version
+
+# helm
+brew install helm
+
+# whatsapp
+brew install --cask whatsapp

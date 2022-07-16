@@ -75,9 +75,18 @@ yq shell-completion zsh > "${fpath[1]}/_yq"
 #
 # terraform
 #
+alias -g tf="terraform"
 
 # shell completion
 complete -o nospace -C /usr/local/bin/terraform terraform
+
+
+
+#
+# helm
+#
+source <(helm completion zsh)
+
 
 
 #
@@ -110,12 +119,15 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 #
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/martaver/Projects/tools/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/martaver/Projects/tools/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/martaver/Projects/tools/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/martaver/Projects/tools/google-cloud-sdk/completion.zsh.inc'; fi
+. /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+. /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 
 
+
+#
+# kubectl
+#
+source <(kubectl completion zsh)
 
 #
 # Postgres
@@ -144,9 +156,9 @@ export JAVA_HOME="/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home"
 #
 # NVM
 #
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 export NVM_SYMLINK_CURRENT=true
 
