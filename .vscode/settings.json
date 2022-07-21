@@ -11,10 +11,8 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
-        "**/.terraform": true,
-        "**/.terraform.lock.hcl": true
+        "**/.terraform": true       
     },
     "gitlens.codeLens.recentChange.enabled": false,
-    "gitlens.codeLens.authors.enabled": false,
-    "gitlens.blame.line.enabled": false
+    "gitlens.codeLens.authors.enabled": false
 }

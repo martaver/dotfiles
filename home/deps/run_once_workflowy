@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# Workflowy
+brew install --cask workflowy

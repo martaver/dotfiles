@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# whatsapp
+brew install --cask whatsapp

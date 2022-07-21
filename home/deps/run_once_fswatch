@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# fswatch
+brew install fswatch
