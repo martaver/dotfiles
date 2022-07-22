@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# bash (latest version)
+brew install bash
