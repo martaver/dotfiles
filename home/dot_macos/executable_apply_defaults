@@ -921,6 +921,19 @@ defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool t
 # # Bypass the annoyingly slow t.co URL shortener
 # defaults write com.tapbots.TweetbotMac OpenURLsDirectly -bool true
 
+
+# ###############################################################################
+# # Menubar                                                                     #
+# ###############################################################################
+
+defaults write com.apple.systemuiserver menuExtras -array \
+"/System/Library/CoreServices/Menu Extras/AirPort.menu" \
+"/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
+"/System/Library/CoreServices/Menu Extras/Clock.menu" \
+"/System/Library/CoreServices/Menu Extras/Displays.menu" \
+"/System/Library/CoreServices/Menu Extras/Volume.menu"
+
+
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################

@@ -3,6 +3,8 @@
 export GITHUB_USERNAME=martaver
 export EDITOR="code --wait"
 
+export NVM_LAZY=1
+
 get_sha1() {
     sha1sum "$1" | head -c 40
 }

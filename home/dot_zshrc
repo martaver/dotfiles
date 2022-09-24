@@ -3,7 +3,7 @@
 # 1. Uncomment the zmodload line, start a shell, then 
 # 2. run: zprof in ther terminal to get the profiling information
 #
-zmodload zsh/zprof
+# zmodload zsh/zprof
 
 _ENV="$(chezmoi source-path)"
 
@@ -24,17 +24,6 @@ fi
 
 
 
-#
-# Starship prompt (different to Spaceship)
-# https://starship.rs/
-# - cross-platform
-# - written in rust, really fast
-#
-
-eval "$(starship init zsh)"
-
-
-
 # Download Znap, if it's not there yet.
 [[ -f ~/Git/zsh-snap/znap.zsh ]] ||
     git clone --depth 1 -- \
@@ -42,15 +31,6 @@ eval "$(starship init zsh)"
 
 source ~/Git/zsh-snap/znap.zsh  # Start Znap
 
-#
-# Prompt
-# Disable starship (aboce) if you try these
-# `znap prompt` makes your prompt visible in just 15-40ms!
-#
-
-# znap prompt zimfw/eriner
-# znap prompt robbyrussell
-# znap prompt sindresorhus/pure
 
 
 
@@ -66,8 +46,6 @@ znap source zsh-users/zsh-syntax-highlighting
 #
 # yq
 #
-
-# shell completion
 yq shell-completion zsh > "${fpath[1]}/_yq"
 
 
@@ -76,8 +54,6 @@ yq shell-completion zsh > "${fpath[1]}/_yq"
 # terraform
 #
 alias -g tf="terraform"
-
-# shell completion
 complete -o nospace -C /usr/local/bin/terraform terraform
 
 
@@ -124,9 +100,11 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 
 
-#
+# 
 # kubectl
 #
+
+# Completion
 source <(kubectl completion zsh)
 
 #
@@ -187,3 +165,29 @@ alias -g cm="chezmoi"
 #
 
 PATH="${PATH}:/Users/martaver/.yabai/bin"
+
+
+
+#
+# Prompt
+# `znap prompt` makes your prompt visible in just 15-40ms!
+#
+
+# Starship prompt (different to Spaceship)
+# https://starship.rs/
+# - cross-platform
+# - written in rust, really fast
+
+# eval "$(starship init zsh)"
+
+znap eval starship 'starship init zsh --print-full-init'
+znap prompt
+
+# znap prompt zimfw/eriner
+# znap prompt robbyrussell
+# znap prompt sindresorhus/pure
+
+
+
+# Enable displaying zsh profiling results
+# zprof

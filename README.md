@@ -19,3 +19,8 @@ MacOS:
 [*] try kitty for terminal (suposed to be faster than iterm)
 [*] yabai
 [*] skhdc
+
+# Terminal
+
+## Debugging slow Terminal startup
+
