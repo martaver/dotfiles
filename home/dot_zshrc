@@ -5,8 +5,7 @@
 #
 # zmodload zsh/zprof
 
-_ENV="$(chezmoi source-path)"
-
+SRC_ZSHRC="$(chezmoi source-path ~/.zshrc)"
 #
 # IMPORTANT: Create a backup of ~/.zshrc so that if I fuck it up, I can restore from last usage
 #
@@ -16,10 +15,10 @@ _ENV="$(chezmoi source-path)"
 # Also, we get an extra backup for free.
 cp ~/.zshrc ~/.zshrc.backup
 SHA_HOME=$(get_sha1 ~/.zshrc.backup)
-SHA_DEV=$(get_sha1 $_ENV/dot_zshrc)
+SHA_DEV=$(get_sha1 $SRC_ZSHRC)
 if [ $SHA_HOME != $SHA_DEV ] ; then
-    echo "Backing up .zshrc to $_ENV/dot_zshrc"
-    cat ~/.zshrc.backup > "$_ENV/dot_zshrc"
+    echo "Backing up .zshrc to $SRC_ZSHRC"
+    cat ~/.zshrc.backup > "$SRC_ZSHRC"
 fi
 
 

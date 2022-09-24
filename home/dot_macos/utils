@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+function prepare() {
+    # Close any open System Preferences panes, to prevent them from overriding
+    # settings we’re about to change
+    osascript -e 'tell application "System Preferences" to quit'
+}
+
+function get_sudo() {
+    # Ask for the administrator password upfront    
+    echo $(op read "op://Private/MacOS Administrator/password") | sudo -v -S
+
+    # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+    while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+}
+
+function kill_apps() {
+    killall "$1" &> /dev/null
+}
+
+function kill_affected() {
+    ###############################################################################
+    # Kill affected applications                                                  #
+    ###############################################################################
+
+    for app in "Activity Monitor" \
+        "Address Book" \
+        "Calendar" \
+        "cfprefsd" \
+        "Contacts" \
+        "Dock" \
+        "Finder" \
+        "Google Chrome Canary" \
+        "Google Chrome" \
+        "Mail" \
+        "Messages" \
+        "Opera" \
+        "Photos" \
+        "Safari" \
+        "SizeUp" \
+        "Spectacle" \
+        "SystemUIServer" \
+        "Terminal" \
+        "Transmission" \
+        "Tweetbot" \
+        "Twitter" \
+        "iCal"; do
+        kill_apps "${app}"
+    done
+    echo "Done. Note that some of these changes require a logout/restart to take effect."
+}
