@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+. ./utils
+
+prepare
+
+
+###############################################################################
+# QuickTime
+###############################################################################
+
+# Auto-play videos when opened with QuickTime Player
+defaults write com.apple.QuickTimePlayerX MGPlayMovieOnOpen -bool true
+
+
+kill_apps "QuickTime Player"
