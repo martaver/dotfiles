@@ -122,6 +122,4 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 	Privileges -bool true
 
 
-
-
 kill_apps "Finder"

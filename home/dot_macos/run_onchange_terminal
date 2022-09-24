@@ -66,5 +66,4 @@ defaults write com.apple.Terminal ShowLineMarks -int 0
 
 
 
-
 kill_apps "Terminal"

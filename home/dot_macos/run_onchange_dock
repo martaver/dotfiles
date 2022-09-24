@@ -116,4 +116,6 @@ defaults write com.apple.dock wvous-br-modifier -int 0
 defaults write com.apple.dock wvous-bl-corner -int 4 # Desktop
 defaults write com.apple.dock wvous-bl-modifier -int 0
 
+
+
 kill_apps "Dock"
