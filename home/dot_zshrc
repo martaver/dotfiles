@@ -162,8 +162,7 @@ alias -g cm="chezmoi"
 #
 # yabai executable functions
 #
-
-PATH="${PATH}:/Users/martaver/.yabai/bin"
+PATH="${PATH}:/Users/$(id -un)/.yabai/bin"
 
 
 
@@ -190,3 +189,6 @@ znap prompt
 
 # Enable displaying zsh profiling results
 # zprof
+
+# Mirror the configured PATH variable to launchctl
+launchctl setenv PATH $PATH

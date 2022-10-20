@@ -2,7 +2,7 @@
     "workbench.settings.editor": "json",
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
-    "workbench.colorTheme": "Tomorrow Night Blue",
+    "workbench.colorTheme": "Solarized Dark",
     "files.autoSave": "onFocusChange",
     "files.exclude": {
         "**/.git": true,
@@ -14,5 +14,8 @@
         "**/.terraform": true       
     },
     "gitlens.codeLens.recentChange.enabled": false,
-    "gitlens.codeLens.authors.enabled": false
+    "gitlens.codeLens.authors.enabled": false,
+    "redhat.telemetry.enabled": false,
+    "svelte.enable-ts-plugin": true,
+    "svelte.plugin.svelte.note-new-transformation": false
 }
