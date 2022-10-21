@@ -17,5 +17,6 @@
     "gitlens.codeLens.authors.enabled": false,
     "redhat.telemetry.enabled": false,
     "svelte.enable-ts-plugin": true,
-    "svelte.plugin.svelte.note-new-transformation": false
+    "svelte.plugin.svelte.note-new-transformation": false,
+    "javascript.updateImportsOnFileMove.enabled": "always"
 }
