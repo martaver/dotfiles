@@ -21,7 +21,7 @@ MacOS:
 [*] skhdc
 [ ] direnv and asdf
     - https://blog.mikecordell.com/2021/12/18/better-project-environment-management-with-direnv-and-asdf/
-    
+
 # Terminal
 
 ## Debugging slow Terminal startup

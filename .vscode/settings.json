@@ -2,7 +2,7 @@
     "workbench.settings.editor": "json",
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
-    "workbench.colorTheme": "Solarized Dark",
+    "workbench.colorTheme": "Tomorrow Night Blue",
     "files.autoSave": "onFocusChange",
     "files.exclude": {
         "**/.git": true,
@@ -18,5 +18,10 @@
     "redhat.telemetry.enabled": false,
     "svelte.enable-ts-plugin": true,
     "svelte.plugin.svelte.note-new-transformation": false,
-    "javascript.updateImportsOnFileMove.enabled": "always"
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "yaml.maxItemsComputed": 20000,
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    }
 }

@@ -19,4 +19,7 @@ source ~/.config/kitty/kitty-quake
 
 # export GOKU_EDN_CONFIG_FILE=~/.config/karabiner/karabiner.edn
 
+#
+# rust
+#
 . "$HOME/.cargo/env"
