@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+# mergestat
+brew tap mergestat/mergestat
+brew install mergestat
