@@ -1,0 +1,4 @@
+["./menlo-for-powerline"]
+    type = "git-repo"
+    url = "https://github.com/abertsch/Menlo-for-Powerline.git"    
+    refreshPeriod = "168h"

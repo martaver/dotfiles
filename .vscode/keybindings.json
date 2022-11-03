@@ -38,7 +38,7 @@
         "command": "-workbench.action.selectTheme"
     },
     {
-        "key": "escape",
+        "key": "ctrl+escape",
         "command": "workbench.action.focusPreviousPart",
         "when": "terminalFocus"
     },

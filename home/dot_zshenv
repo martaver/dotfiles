@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
 export GITHUB_USERNAME=martaver
-export EDITOR="code --wait"
 
-export NVM_LAZY=1
+# Uses VSCode as default text editor.
+# A dir opened from terminal will block until VSCode closes.
+# A file opened from terminal will block until the file's editor in VSCode closes.
+export EDITOR="code --wait"
 
 get_sha1() {
     sha1sum "$1" | head -c 40

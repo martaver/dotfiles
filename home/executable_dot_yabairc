@@ -37,7 +37,8 @@ yabai -m rule --add app='^System Preferences$' manage=off
 yabai -m rule --add title='Preferences$' manage=off
 
 # float settings windows
-yabai -m rule --add title='Settings$' manage=off
+yabai -m rule --add app='^Parallels Desktop$' manage=off
+yabai -m rule --add app='^System Settings$' manage=off
 
 
 # YFL="yabai -m query --windows --window &> /dev/null || yabai -m window --focus recent || yabai -m window --focus first"
