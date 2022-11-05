@@ -43,12 +43,12 @@ yabai -m rule --add app='^System Settings$' manage=off
 
 # YFL="yabai -m query --windows --window &> /dev/null || yabai -m window --focus recent || yabai -m window --focus first"
 # YFL="./Users/sebastian.nemeth/.yabai/bin/yb_focus_last"
-YFL="PATH=${PATH}:/Users/sebastian.nemeth/.yabai/bin && yb_focus_last"
+INSTALL="PATH=/Users/sebastian.nemeth/.yabai/bin:${PATH}"
 
 # Focus on recent/first window after closing/minimising the current one
 
 # Todo: figure out how to set PATHS for the posix shell that yabai executes its scripts in
-yabai -m signal --add event=window_destroyed action="$YFL"
-yabai -m signal --add event=window_minimized action="$YFL"
-yabai -m signal --add event=application_terminated action="$YFL"
-yabai -m signal --add event=application_hidden action="$YFL"
+yabai -m signal --add event=window_destroyed action="$INSTALL && yb_focus_last"
+yabai -m signal --add event=window_minimized action="$INSTALL && yb_focus_last"
+yabai -m signal --add event=application_terminated action="$INSTALL && yb_focus_last"
+yabai -m signal --add event=application_hidden action="$INSTALL && yb_focus_last"

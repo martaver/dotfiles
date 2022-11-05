@@ -23,5 +23,6 @@
     "yaml.maxItemsComputed": 20000,
     "[typescript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
-    }
+    },
+    "debug.javascript.autoAttachFilter": "always"
 }
