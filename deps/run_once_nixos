@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# NixOS
+# sh <(curl -L https://nixos.org/nix/install)

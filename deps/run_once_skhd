@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+# Skhd (key bindings)
+brew install koekeishiya/formulae/skhd
+brew services start skhd || brew services restart skhd

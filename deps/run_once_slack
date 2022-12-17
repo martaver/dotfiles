@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# Slack
+brew install --cask slack

@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# sha1sum etc
+brew install coreutils

@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+
+. "$(dirname "${BASH_SOURCE[0]}")/.env"
+
+left="$1"
+right="$2"
+
+if [[ $left =~ $SEMVER_REGEX ]]; then        
+    left_major=${BASH_REMATCH[1]}
+    left_minor=${BASH_REMATCH[2]}
+    left_patch=${BASH_REMATCH[3]}
+fi
+
+if [[ $right =~ $SEMVER_REGEX ]]; then
+    right_major=${BASH_REMATCH[1]}
+    right_minor=${BASH_REMATCH[2]}
+    right_patch=${BASH_REMATCH[3]}
+fi    
+
+if [ $left_major -eq $right_major ]; then                
+    if [ $left_minor -eq $right_minor ]; then
+        if [ $left_patch -eq $right_patch ]; then
+            exit 0
+        fi
+    fi
+fi
+exit 1

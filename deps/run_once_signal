@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# Signal
+brew install --cask signal

@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+echo $PATH | grep sebastian.nemeth/bin
+# do_foo

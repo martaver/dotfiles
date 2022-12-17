@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+# NVM
+brew install nvm
+mkdir ~/.nvm
+
+# Node
+nvm install node
+
+# Yarn
+npm install --global yarn

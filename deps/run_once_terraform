@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+# terraform
+brew install terraform
+terraform --version

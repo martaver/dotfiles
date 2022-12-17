@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+# Rust
+brew install rustup
+rustup-init
+source "$HOME/.cargo/env"
+rustc --version

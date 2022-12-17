@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+# Yabai (window tiling)
+brew install koekeishiya/formulae/yabai
+brew services start yabai

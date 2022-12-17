@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+function run_foo() {
+    echo foo
+}

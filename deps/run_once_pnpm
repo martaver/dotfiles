@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+brew install pnpm
+pnpm --version
