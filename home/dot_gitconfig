@@ -1,0 +1,29 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = Sebastian Nemeth
+	email = sebastian@cleric.sh
+[pull]
+	rebase = true
+[maintenance]
+	repo = /Users/sebastian.nemeth/Git/zsh-snap
+	repo = /Users/sebastian.nemeth/Git/git-subrepo
+	repo = /Users/sebastian.nemeth/Git/nx-completion
+	repo = /Users/sebastian.nemeth/Git/ohmyzsh
+	repo = /Users/sebastian.nemeth/Git/zsh-autocomplete
+	repo = /Users/sebastian.nemeth/Git/zsh-autosuggestions
+	repo = /Users/sebastian.nemeth/Git/zsh-completions
+	repo = /Users/sebastian.nemeth/Git/zsh-syntax-highlighting
+[push]
+	autoSetupRemote = true
+[core]
+  editor = code --wait
+  ignorecase = false
+[diff]
+  tool = vscode
+[difftool "vscode"]
+  cmd = code --wait --diff $LOCAL $REMOTE
+[merge]
+  tool = vscode
+[mergetool "vscode"]
+  cmd = code --wait $MERGED

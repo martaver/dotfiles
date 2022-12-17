@@ -150,7 +150,11 @@ export NVM_SYMLINK_CURRENT=true
 source ~/git/git-subrepo/.rc
 
 
-
+#
+# puppeteer
+#
+export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+export PUPPETEER_EXECUTABLE_PATH=`which chromium`
 
 #
 # chezmoi

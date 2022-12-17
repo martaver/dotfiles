@@ -38,12 +38,24 @@
         "command": "-workbench.action.selectTheme"
     },
     {
-        "key": "ctrl+escape",
+        "key": "ctrl+`",
         "command": "workbench.action.focusPreviousPart",
         "when": "terminalFocus"
     },
     {
         "key": "shift+f6",
         "command": "-workbench.action.focusPreviousPart"
+    },
+    {
+        "key": "ctrl+shift+n",
+        "command": "explorer.newFolder"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "explorer.newFile"
+    },
+    {
+        "key": "ctrl+shift+`",
+        "command": "openInTerminal"
     }
 ]

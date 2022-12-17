@@ -2,8 +2,10 @@
     "workbench.settings.editor": "json",
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
-    "workbench.colorTheme": "Tomorrow Night Blue",
+    "explorer.openEditors.visible": 0,
+    "workbench.colorTheme": "Solarized Dark",
     "files.autoSave": "onFocusChange",
+    "explorer.autoReveal": false,
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
@@ -24,5 +26,36 @@
     "[typescript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
     },
-    "debug.javascript.autoAttachFilter": "always"
+    "debug.javascript.autoAttachFilter": "disabled",
+    "editor.minimap.enabled": false,
+    "editor.accessibilitySupport": "off",
+    "workbench.editor.revealIfOpen": false,
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.expand": false,
+    "explorer.fileNesting.patterns": {
+        "Cargo.toml": "Cargo.lock",
+        "tsconfig.json": "tsconfig.*.json",
+        "package.json": "project.json"
+    },
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+        "source.organizeImports": true
+    },
+    "editor.formatOnSave": true,
+    "json.schemas": [
+        // foo
+        {
+            "fileMatch": [
+                "appsscript.json"
+            ],
+            "url": "http://json.schemastore.org/appsscript"
+        }, 
+        {
+            "fileMatch": [
+                ".clasp.json"
+            ],
+            "url": "http://json.schemastore.org/clasp"
+        }
+    ]
 }
