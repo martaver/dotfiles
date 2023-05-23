@@ -2,7 +2,7 @@
 # open terminal
 
 alt - 0x32 : kitty_quake "quake-terminal"
-alt - return : kitty --instance-group "General" --single-instance
+alt + shift - return : kitty --instance-group "General" --single-instance
 
 # restart Yabi, SpaceBar, and SKHD
 alt + shift - r : \
