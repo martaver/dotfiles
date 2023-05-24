@@ -64,3 +64,5 @@ ensure_install_brew() {
 #     "sh <(curl -L https://releases.nixos.org/?prefix=nix/nix-\$VERSION/) --daemon" \
 #     "" \
 #     "sudo -i sh -c 'nix-channel --update && nix-env -iA nixpkgs.nix && launchctl remove org.nixos.nix-daemon && launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist'"
+
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix/tag/v0.9.0 | sh -s -- install --no-confirm

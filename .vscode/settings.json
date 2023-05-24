@@ -1,28 +1,36 @@
 {
-    "workbench.settings.editor": "json",
-    "explorer.confirmDragAndDrop": false,
-    "explorer.confirmDelete": false,
-    "workbench.colorTheme": "Tomorrow Night Blue",
-    "files.autoSave": "onFocusChange",
-    "files.exclude": {
-        "**/.git": true,
-        "**/.svn": true,
-        "**/.hg": true,
-        "**/CVS": true,
-        "**/.DS_Store": true,
-        "**/Thumbs.db": true,
-        "**/.terraform": true       
-    },
-    "gitlens.codeLens.recentChange.enabled": false,
-    "gitlens.codeLens.authors.enabled": false,
-    "redhat.telemetry.enabled": false,
-    "svelte.enable-ts-plugin": true,
-    "svelte.plugin.svelte.note-new-transformation": false,
-    "javascript.updateImportsOnFileMove.enabled": "always",
-    "typescript.updateImportsOnFileMove.enabled": "always",
-    "yaml.maxItemsComputed": 20000,
-    "[typescript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
-    "debug.javascript.autoAttachFilter": "always"
+  "workbench.settings.editor": "json",
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "workbench.colorTheme": "Tomorrow Night Blue",
+  "files.autoSave": "onFocusChange",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/.terraform": true
+  },
+  "gitlens.codeLens.recentChange.enabled": false,
+  "gitlens.codeLens.authors.enabled": false,
+  "redhat.telemetry.enabled": false,
+  "svelte.enable-ts-plugin": true,
+  "svelte.plugin.svelte.note-new-transformation": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "yaml.maxItemsComputed": 20000,
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "debug.javascript.autoAttachFilter": "always",
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "Cargo.toml": "Cargo.lock",
+    "*.ts": "${capture}.typegen.ts",
+    "*.tsx": "${capture}.typegen.ts",
+    "*.mts": "${capture}.typegen.ts",
+    "*.cts": "${capture}.typegen.ts"
+  }
 }

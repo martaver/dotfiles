@@ -1,7 +1,14 @@
-/// 2>/dev/null ; gorun "$0" "$@" ; exit $?
+///usr/bin/env go run "$0" "$@"; exit
 
 package main
 
+import (
+	"fmt"
+	"os"
+)
+
 func main() {
-    println("Hello world!")
+	fmt.Println("Go: Hello World.")
+
+	os.Exit(1)
 }
