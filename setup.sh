@@ -58,16 +58,16 @@ die() {
 	exit 1
 }
 
-# Usage: yesno MESSAGE
-#
-# Asks the user to confirm via y/n syntax. Exits if answer is no.
-yesno() {
-	read -p "${*} [y/n] " -n 2 -r
-	printf "\n"
-	if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-		exit 1
-	fi
-}
+# # Usage: yesno MESSAGE
+# #
+# # Asks the user to confirm via y/n syntax. Exits if answer is no.
+# yesno() {
+# 	read -p "${*} [y/n] " -n 2 -r
+# 	printf "\n"
+# 	if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+# 		exit 1
+# 	fi
+# }
 
 # Usage: tryInstall NAME EXECUTABLE
 #
@@ -75,13 +75,12 @@ yesno() {
 tryInstall() {
 	local name=${1}
 	local executable=${2}
+	
+	# yesno "Would you like to install it?"
 
-	log "It appears that ${name} is not installed and is required to continue."
-	yesno "Would you like to install it?"
-
-	log "Installing ${name}..."
+	log "${name}: Installing..."
 	${executable}
-	success "${name} was successfully installed"
+	success "${name}: Successfully installed!"
 }
 
 # Usage: checkDep NAME CONDITION EXECUTABE
@@ -95,17 +94,18 @@ checkDep() {
 	if ! ${condition} -p &>/dev/null; then
 		tryInstall "${name}" "${executable}"
 	else
-		log "${name} detected, skipping install"
+		log "${name}: Already installed, skipping..."
 	fi
+}
+
+chomp() {
+	printf "%s" "${1/"$'\n'"/}"
 }
 
 # Usage: installXcode
 #
 # Downloads and installs the xcode command line tools
 # Source: https://github.com/Homebrew/install/blob/master/install.sh#L846
-chomp() {
-	printf "%s" "${1/"$'\n'"/}"
-}
 installXcode() {
 	log "Searching online for the Command Line Tools"
 
