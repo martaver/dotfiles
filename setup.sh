@@ -224,11 +224,13 @@ installBrew() {
 	bash "${tmpDir}/brew.sh"
 
 	log "Configuring environment..."
+	# Note: switched from /opt/homebrew/bin/brew to use the bin below
+	# - it might be that on M1 mac or Ventura, brew is installed there.
 	# shellcheck disable=SC2016
-	echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>"${HOME}/.bash_profile"
+	echo 'eval "$(/usr/local/bin/brew shellenv)"' >>"${HOME}/.bash_profile"
 	# shellcheck disable=SC2016
-	echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>"${HOME}/.zprofile"
-	eval "$(/opt/homebrew/bin/brew shellenv)"
+	echo 'eval "$(/usr/local/bin/brew shellenv)"' >>"${HOME}/.zprofile"
+	eval "$(/usr/local/bin/brew shellenv)"
 
 	log "Configuring environment..."
 	set +o errexit
