@@ -22,7 +22,7 @@ readonly reset='\e[0m'
 readonly dotfiles='https://github.com/martaver/dotfiles'
 
 # Nix
-readonly nixVer='2.6.1'
+readonly nixVer='2.15.1'
 readonly nixReleaseBase='https://releases.nixos.org'
 
 # Brew
@@ -134,29 +134,36 @@ installXcode() {
 #
 # Downloads and executes the nix installer script
 installNix() {
-	# local nixURL="${nixReleaseBase}/nix/nix-${nixVer}/install"
-	# local checksumURL="${nixReleaseBase}/nix/nix-${nixVer}/install.sha256"
-	# local sha="$(curl "${checksumURL}")"
+	local nixURL="${nixReleaseBase}/nix/nix-${nixVer}/install"
+	local checksumURL="${nixReleaseBase}/nix/nix-${nixVer}/install.sha256"
+	local sha="$(curl "${checksumURL}")"
 
-	# log "Downloading install script from ${nixURL}..."
-	# curl "${nixURL}" -o "${tmpDir}/nix.sh" &>/dev/null
+	log "Downloading install script from ${nixURL}..."
+	curl "${nixURL}" -o "${tmpDir}/nix.sh" &>/dev/null
 
-	# log "Validating checksum..."
-	# if ! echo "${sha}  ${tmpDir}/nix.sh" | shasum -a 256 -c; then
-	# 	die "Checksum validation failed; cannot continue"
-	# fi
+	log "Validating checksum..."
+	if ! echo "${sha}  ${tmpDir}/nix.sh" | shasum -a 256 -c; then
+		die "Checksum validation failed; cannot continue"
+	fi
 
-	log "Running (determinate) nix installer..."
-	# Use Determinate Nix Installer: https://github.com/DeterminateSystems/nix-installer
-	curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm
-	# bash "${tmpDir}/nix.sh"
+	log "Running (determinate) nix installer..."	
+	bash "${tmpDir}/nix.sh"
 	success "Nix installed successfully"
 
 	# nix shell requires nix-command which is experimental
 	# we also need to add flakes so we can run our development flakes
-	# log 'Adding experimental features: nix-command flakes'
-	# mkdir -p ~/.config/nix
-	# echo 'experimental-features = nix-command flakes' >>~/.config/nix/nix.conf
+	log 'Adding experimental features: nix-command flakes'
+	mkdir -p ~/.config/nix
+	echo 'experimental-features = nix-command flakes' >>~/.config/nix/nix.conf
+
+
+	# Using Determinate Installer
+	# ------
+	# log "Running (determinate) nix installer..."
+	# # Use Determinate Nix Installer: https://github.com/DeterminateSystems/nix-installer
+	# curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm	
+	# success "Nix installed successfully"
+	# -------
 
 	log 'Configuring environment...'
 	set +o errexit
@@ -172,9 +179,7 @@ installNix() {
 # Usage: installNixDarwin
 #
 # Builds the nix-darwin installer and then executes it
-installNixDarwin() {
-	# nix-darwin complains if this file exists, so we back it up first
-	/usr/bin/sudo mv /etc/nix/nix.conf /etc/nix/nix.conf.backup
+installNixDarwin() {	
 
 	log 'Building nix-darwin installer...'
 	cd "${tmpDir}" && nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer

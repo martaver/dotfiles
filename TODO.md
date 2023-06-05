@@ -35,3 +35,9 @@ Why: to get scripts/aliases available globally to all applications/shells, e.g. 
 - Check out Raycast: https://www.raycast.com/
 - Check out ScriptKit: https://www.scriptkit.com/
 - Run ScriptKit commands from Raycast: https://www.raycast.com/pomdtr/script-kit
+
+## Nix
+- [ ] Revert to using Determinate's nix installer when following is fixed
+  - Cannot do nix-darwin install without rebooting first: https://github.com/DeterminateSystems/nix-installer/issues/275
+  - Determinate nix installer leaves ~/.nix-channels owned by root: https://github.com/DeterminateSystems/nix-installer/issues/287
+- [ ] Use `nix-darwin` to manage homebrew: https://daiderd.com/nix-darwin/manual/index.html#opt-homebrew.enable
