@@ -171,7 +171,6 @@ installNix() {
 	set +o nounset
 	set +o pipefail
 	# shellcheck disable=SC1091
-	source /etc/static/bashrc
 	source /etc/bashrc
 	set -o errexit
 	set -o nounset
