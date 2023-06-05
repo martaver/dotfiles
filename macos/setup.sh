@@ -9,7 +9,7 @@
 #/
 # shellcheck disable=SC2155
 
-echo "Foobar"
+echo "Hello World"
 
 exit
 
