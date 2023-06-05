@@ -2,4 +2,5 @@
 **
 
 # Include base setup only
-!print_foo
+!.config/brew
+!.config/nix

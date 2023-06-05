@@ -1,6 +1,7 @@
 #! /usr/bin/env bash
-#
-# Author: Joshua Gilman <joshuagilman@gmail.com>
+# 
+# Author: Sebastian Nemeth <sebastian@cleric.sh>
+# Original Author: Joshua Gilman <joshuagilman@gmail.com>
 #
 #/ Usage: setup.sh
 #/
@@ -8,10 +9,6 @@
 #/ environment on an M1 based Apple MacBook.
 #/
 # shellcheck disable=SC2155
-
-echo "Hello World"
-
-exit
 
 set -o errexit  # abort on nonzero exitstatus
 set -o nounset  # abort on unbound variable
@@ -236,16 +233,16 @@ installBrew() {
 # Usage bwUnlock
 #
 # Attempts to login or unlock Bitwarden using the CLI
-bwUnlock() {
-	# Unlock -> login -> check if already unlocked -> die because unreachable
-	if bw status | grep "locked" &>/dev/null; then
-		export BW_SESSION="$(bw unlock --raw)"
-	elif bw status | grep "unauthenticated" &>/dev/null; then
-		export BW_SESSION="$(bw login --raw)"
-	elif [[ -z "${BW_SESSION}" ]]; then
-		die "Unknown bitwarden status"
-	fi
-}
+# bwUnlock() {
+# 	# Unlock -> login -> check if already unlocked -> die because unreachable
+# 	if bw status | grep "locked" &>/dev/null; then
+# 		export BW_SESSION="$(bw unlock --raw)"
+# 	elif bw status | grep "unauthenticated" &>/dev/null; then
+# 		export BW_SESSION="$(bw login --raw)"
+# 	elif [[ -z "${BW_SESSION}" ]]; then
+# 		die "Unknown bitwarden status"
+# 	fi
+# }
 
 # need a scratch space for downloading files
 tmpDir="$(mktemp -d -t dev-setup-XXXXXXXXXX)"
