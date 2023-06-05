@@ -1,0 +1,5 @@
+# Exclude all, to selectively include source from previous config
+**
+
+# Include base setup only
+!print_foo
