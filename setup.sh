@@ -78,9 +78,9 @@ tryInstall() {
 	
 	# yesno "Would you like to install it?"
 
-	log "${name}: Installing..."
+	log "'${name}' not detected. Installing..."
 	${executable}
-	success "${name}: Successfully installed!"
+	success "'${name}' successfully installed!"
 }
 
 # Usage: checkDep NAME CONDITION EXECUTABE
@@ -94,7 +94,7 @@ checkDep() {
 	if ! ${condition} -p &>/dev/null; then
 		tryInstall "${name}" "${executable}"
 	else
-		log "${name}: Already installed, skipping..."
+		log "'${name}' detected. Already installed, skipping..."
 	fi
 }
 
@@ -134,27 +134,29 @@ installXcode() {
 #
 # Downloads and executes the nix installer script
 installNix() {
-	local nixURL="${nixReleaseBase}/nix/nix-${nixVer}/install"
-	local checksumURL="${nixReleaseBase}/nix/nix-${nixVer}/install.sha256"
-	local sha="$(curl "${checksumURL}")"
+	# local nixURL="${nixReleaseBase}/nix/nix-${nixVer}/install"
+	# local checksumURL="${nixReleaseBase}/nix/nix-${nixVer}/install.sha256"
+	# local sha="$(curl "${checksumURL}")"
 
-	log "Downloading install script from ${nixURL}..."
-	curl "${nixURL}" -o "${tmpDir}/nix.sh" &>/dev/null
+	# log "Downloading install script from ${nixURL}..."
+	# curl "${nixURL}" -o "${tmpDir}/nix.sh" &>/dev/null
 
-	log "Validating checksum..."
-	if ! echo "${sha}  ${tmpDir}/nix.sh" | shasum -a 256 -c; then
-		die "Checksum validation failed; cannot continue"
-	fi
+	# log "Validating checksum..."
+	# if ! echo "${sha}  ${tmpDir}/nix.sh" | shasum -a 256 -c; then
+	# 	die "Checksum validation failed; cannot continue"
+	# fi
 
-	log "Running nix installer..."
-	bash "${tmpDir}/nix.sh"
+	log "Running (determinate) nix installer..."
+	# Use Determinate Nix Installer: https://github.com/DeterminateSystems/nix-installer
+	curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm
+	# bash "${tmpDir}/nix.sh"
 	success "Nix installed successfully"
 
 	# nix shell requires nix-command which is experimental
 	# we also need to add flakes so we can run our development flakes
-	log 'Adding experimental features: nix-command flakes'
-	mkdir -p ~/.config/nix
-	echo 'experimental-features = nix-command flakes' >>~/.config/nix/nix.conf
+	# log 'Adding experimental features: nix-command flakes'
+	# mkdir -p ~/.config/nix
+	# echo 'experimental-features = nix-command flakes' >>~/.config/nix/nix.conf
 
 	log 'Configuring environment...'
 	set +o errexit
