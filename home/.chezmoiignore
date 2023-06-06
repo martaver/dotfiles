@@ -2,5 +2,5 @@
 **
 
 # Include base setup only
-!.config/brew
-!.config/nix
+# !.config/brew/test
+# !.config/nix/
