@@ -285,25 +285,25 @@ checkDep 'brew' 'command -v brew' 'installBrew'
 # log "Logging into bitwarden..."
 # bwUnlock
 
-# if [[ ! -d "$HOME/.local/share/chezmoi" ]]; then
-# 	log "Fetching dotfiles..."
-# 	nix shell nixpkgs#chezmoi -c chezmoi init "${dotfiles}"
+if [[ ! -d "$HOME/.local/share/chezmoi" ]]; then
+	log "Fetching dotfiles..."
+	nix shell nixpkgs#chezmoi -c chezmoi init "${dotfiles}"
 
-# 	nix shell nixpkgs#chezmoi -c chezmoi apply "${HOME}/.config/darwin"
+	nix shell nixpkgs#chezmoi -c chezmoi apply "${HOME}/.config/darwin"
 
-# 	log "Bootstrapping nix-darwin flake..."
-# 	cd "${tmpDir}" && nix build "${HOME}/.config/darwin#darwinConfigurations.Architeuthis.system"
-# 	cd "${tmpDir}" && ./result/sw/bin/darwin-rebuild switch --flake "${HOME}/.config/darwin#Architeuthis"
+	log "Bootstrapping nix-darwin flake..."
+	cd "${tmpDir}" && nix build "${HOME}/.config/darwin#darwinConfigurations.Architeuthis.system"
+	cd "${tmpDir}" && ./result/sw/bin/darwin-rebuild switch --flake "${HOME}/.config/darwin#Architeuthis"
+fi
+
+# implicitely calls `nix-darwin rebuild`` and `brew bundle install``
+log "Applying dotfiles..."
+nix shell nixpkgs#chezmoi -c chezmoi apply
+
+# creates the dotfile structure the first time it's run
+# if [[ ! -d "$HOME/.gnupg" ]]; then
+# 	log "Initializing GPG..."
+# 	gpg-agent --daemon
 # fi
 
-# # implicitely calls `nix-darwin rebuild`` and `brew bundle install``
-# log "Applying dotfiles..."
-# nix shell nixpkgs#chezmoi -c chezmoi apply
-
-# # creates the dotfile structure the first time it's run
-# # if [[ ! -d "$HOME/.gnupg" ]]; then
-# # 	log "Initializing GPG..."
-# # 	gpg-agent --daemon
-# # fi
-
-# success 'Done!'
+success 'Done!'
