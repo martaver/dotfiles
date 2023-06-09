@@ -292,8 +292,8 @@ if [[ ! -d "$HOME/.local/share/chezmoi" ]]; then
 	nix shell nixpkgs#chezmoi -c chezmoi apply "${HOME}/.config/darwin"
 
 	log "Bootstrapping nix-darwin flake..."
-	cd "${tmpDir}" && nix build "${HOME}/.config/darwin#darwinConfigurations.Joshuas-MacBook-Pro.system"
-	cd "${tmpDir}" && ./result/sw/bin/darwin-rebuild switch --flake "${HOME}/.config/darwin#Joshuas-MacBook-Pro"
+	cd "${tmpDir}" && nix build "${HOME}/.config/darwin#darwinConfigurations.Architeuthis.system"
+	cd "${tmpDir}" && ./result/sw/bin/darwin-rebuild switch --flake "${HOME}/.config/darwin#Architeuthis"
 fi
 
 # implicitely calls `nix-darwin rebuild`` and `brew bundle install``
