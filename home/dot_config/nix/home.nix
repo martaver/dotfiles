@@ -46,27 +46,8 @@ in
 
     shellAliases = {
       ".." = "cd ..";
-      "..." = "cd ../..";
-      brg = "batgrep";
-      cat = "bat --paging=never";
-      count = "find . -type f | wc -l";
-      ct = "column -t";
-      cz = "chezmoi";
-      cza = "chezmoi apply";
-      czd = "cd ~/.local/share/chezmoi";
-      cze = "chezmoi edit";
-      czr = "chezmoi apply ~/.config/darwin darwin-update && exec $SHELL";
-      gbc = "git checkut -b ";
-      gpb = ''git push origin "$(git rev-parse --abbrev-ref HEAD)"'';
-      k = "kubectl";
-      left = "ls -t -1";
-      ll = "ls -la";
-      lt = "du -sh * | sort -h";
-      mount = "mount | grep -E ^/dev | column -t";
-      now = ''date +"%T"'';
-      ports = "sudo lsof -iTCP -sTCP:LISTEN -n -P";
-      today = ''date +"%d-%m-%Y"'';
-      vi = "vim";
+      "..." = "cd ../..";      
+      cm = "chezmoi";            
     };
 
     plugins = [
