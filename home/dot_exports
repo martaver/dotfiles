@@ -1,0 +1,2 @@
+# Add Homebrew binaries to PATH
+export PATH=$PATH:/opt/homebrew/bin
