@@ -63,6 +63,7 @@ in
   system.activationScripts.postUserActivation.text = ''
     # Not all darwin settings are activated after nix-darwin configures them until restart
     # Following line should allow us to avoid a logout/login cycle
+    # Inspired by: https://medium.com/@zmre/nix-darwin-quick-tip-activate-your-preferences-f69942a93236
     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
   '';
 }
