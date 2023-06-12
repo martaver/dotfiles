@@ -25,7 +25,7 @@ in
 
   # # zsh configuration
   programs.zsh = {
-  #   enable = true;
+    enable = true;
   #   enableAutosuggestions = true;
   #   enableSyntaxHighlighting = true;
   #   oh-my-zsh = {
