@@ -90,5 +90,5 @@ in
     #   fpath+=${pkgs.chezmoi}/share/zsh/site-functions
     #   fpath+=${pkgs.google-cloud-sdk}/share/zsh/site-functions      
     # '';
-  };
+  # };
 }
