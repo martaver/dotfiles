@@ -59,4 +59,10 @@ in
     trusted-users = root martaver
     allow-import-from-derivation = true
   '';
+
+  system.activationScripts.postUserActivation.text = ''
+    # Not all darwin settings are activated after nix-darwin configures them until restart
+    # Following line should allow us to avoid a logout/login cycle
+    /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+  '';
 }
