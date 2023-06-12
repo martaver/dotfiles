@@ -52,8 +52,6 @@ in
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
 
-  nix.useDaemon = true;
-
   # system.stateVersion = 4;
   nix.extraOptions = ''
     extra-platforms = aarch64-darwin x86_64-darwin
