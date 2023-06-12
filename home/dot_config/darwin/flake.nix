@@ -7,14 +7,18 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.nix-index-database.url = "github:Mic92/nix-index-database";
-    home-manager.nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    nix-index-database.url = "github:Mic92/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, darwin, home-manager }: {
-    darwinConfigurations."Architeuthis" = darwin.lib.darwinSystem {      
-      # system = "aarch64-darwin";  # Apple Silicon
-      system = "x86_64-darwin"; # Intel
+  outputs = { self, nixpkgs, darwin, home-manager, nix-index-database }:  
+  let
+    # sys = "aarch64-darwin";  # Apple Silicon
+    sys = "x86_64-darwin"; # Intel
+    pkgs = nixpkgs.legacyPackages.${sys};
+  in {
+    darwinConfigurations."Architeuthis" = darwin.lib.darwinSystem {              
+      system = sys;
       modules = [
         ./configuration.nix                                
         home-manager.darwinModules.home-manager
@@ -25,10 +29,8 @@
         }
       ];
     };
-    
-    homeConfigurations.jdoe = home-manager.lib.homeManagerConfiguration {
-      system = "x86_64-darwin";
-      nixpkgs.legacyPackages.${system};
+    homeConfigurations.sebastiannemeth = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
 
       modules = [
         nix-index-database.hmModules.nix-index
@@ -36,5 +38,5 @@
         # { programs.nix-index-database.comma.enable = true; }
       ];
     };
-  };
+  };  
 }
