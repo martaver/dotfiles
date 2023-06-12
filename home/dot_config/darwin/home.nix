@@ -24,7 +24,7 @@ in
   # };
 
   # # zsh configuration
-  # programs.zsh = {
+  programs.zsh = {
   #   enable = true;
   #   enableAutosuggestions = true;
   #   enableSyntaxHighlighting = true;
@@ -44,11 +44,11 @@ in
   #     '';
   #   };
 
-    # shellAliases = {
-    #   ".." = "cd ..";
-    #   "..." = "cd ../..";      
-    #   cm = "chezmoi";            
-    # };
+    shellAliases = {
+      ".." = "cd ..";
+      "..." = "cd ../..";      
+      cm = "chezmoi";            
+    };
 
     # plugins = [
     #   {
@@ -90,5 +90,5 @@ in
     #   fpath+=${pkgs.chezmoi}/share/zsh/site-functions
     #   fpath+=${pkgs.google-cloud-sdk}/share/zsh/site-functions      
     # '';
-  # };
+  };
 }
