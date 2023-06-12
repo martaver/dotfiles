@@ -67,5 +67,5 @@ in
     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
   '';
 
-  # users.users.sebastiannemeth.home = "/Users/sebastiannemeth"
+  users.users.sebastiannemeth.home = "/Users/sebastiannemeth";
 }
