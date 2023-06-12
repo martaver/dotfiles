@@ -41,7 +41,7 @@ log() {
 #
 # Prints all arguments on the standard output stream
 success() {
-	printf "${green} %s${reset}}\n" "${*}"
+	printf "${green} %s${reset}\n" "${*}"
 }
 
 # Usage: error MESSAGE

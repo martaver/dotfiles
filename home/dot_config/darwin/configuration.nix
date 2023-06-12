@@ -39,8 +39,7 @@ in
 
   # Program configuration
 
-  programs.bash.enableCompletion = true;  
-  programs.nix-index.enable = true;
+  programs.bash.enableCompletion = true;    
   programs.zsh.enable = true;
 
   # Environment configuration
@@ -51,6 +50,10 @@ in
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
+
+  # Disable nix-index until we figure out a good (and working) way to load nix-index-database
+  # and prevent having to build the whole index every time we build
+  programs.nix-index.enable = false;
 
   # system.stateVersion = 4;
   nix.extraOptions = ''
