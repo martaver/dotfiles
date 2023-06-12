@@ -4,7 +4,7 @@ let
 in
 {
   # User-specific packages
-  home.stateVersion = "22.05";
+  home.stateVersion = "23.11";
   home.packages = [
     chezmoi    
     # pkgs.any-nix-shell        

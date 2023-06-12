@@ -66,4 +66,6 @@ in
     # Inspired by: https://medium.com/@zmre/nix-darwin-quick-tip-activate-your-preferences-f69942a93236
     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
   '';
+
+  # users.users.sebastiannemeth.home = "/Users/sebastiannemeth"
 }
