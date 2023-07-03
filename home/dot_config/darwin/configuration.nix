@@ -62,7 +62,7 @@ in
 
   # `launchd.envVariables`
   launchd.envVariables = {
-    LAUNCHD_VAR = true;
+    LAUNCHD_VAR = "true";
   };
 
   # Auto upgrade nix package and the daemon service.
