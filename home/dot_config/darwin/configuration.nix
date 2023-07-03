@@ -48,6 +48,18 @@ in
   # System packages
   environment.systemPackages = syspkgs;
 
+  # `environment.extraInit`
+  environment.extraInit = "echo Running extraInit";
+  
+  # `environment.interactiveShellInit`
+  environment.interactiveShellInit = "echo Running interactiveShellInit";
+  
+  # `environment.loginShellInit`
+  environment.loginShellInit = "echo Running loginShellInit";
+
+  # `environment.shellInit`
+  environment.shellInit = "echo Running shellInit";
+
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
 
