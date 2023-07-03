@@ -1,3 +1,6 @@
 
 # Add Homebrew binaries to PATH
 export PATH=$PATH:/opt/homebrew/bin
+
+# Configure Homebrew brewfile
+export HOMEBREW_BUNDLE_FILE=$HOME/.config/brew/bundle
