@@ -7,3 +7,4 @@
 `environment.interactiveShellInit`
 `environment.loginShellInit`
 `environment.shellInit`
+`launchd.envVariables`

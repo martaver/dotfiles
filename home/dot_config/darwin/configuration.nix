@@ -49,16 +49,16 @@ in
   environment.systemPackages = syspkgs;
 
   # `environment.extraInit`
-  environment.extraInit = "echo Running extraInit; EXTRA_INIT_RAN=true;";
+  environment.extraInit = "echo Running extraInit; export EXTRA_INIT_RAN=true;";
   
   # `environment.interactiveShellInit`
-  environment.interactiveShellInit = "echo Running interactiveShellInit; INTERACTIVE_SHELL_INIT_RAN=true;";
+  environment.interactiveShellInit = "echo Running interactiveShellInit; export INTERACTIVE_SHELL_INIT_RAN=true;";
   
   # `environment.loginShellInit`
-  environment.loginShellInit = "echo Running loginShellInit; LOGIN_SHELL_INIT_RAN=true;";
+  environment.loginShellInit = "echo Running loginShellInit; export LOGIN_SHELL_INIT_RAN=true;";
 
   # `environment.shellInit`
-  environment.shellInit = "echo Running shellInit; SHELL_INIT_RAN=true;";
+  environment.shellInit = "echo Running shellInit; export SHELL_INIT_RAN=true;";
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
