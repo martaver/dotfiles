@@ -60,6 +60,11 @@ in
   # `environment.shellInit`
   environment.shellInit = "echo Running shellInit; export SHELL_INIT_RAN=true;";
 
+  # `launchd.envVariables`
+  launchd.envVariables = {
+    LAUNCHD_VAR=true
+  }
+
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
 
