@@ -65,6 +65,24 @@ in
   #   LAUNCHD_VAR = "true";
   # };
 
+  homebrew = {
+    enable = true;
+    autoUpdate = true;
+    # updates homebrew packages on activation,
+    # can make darwin-rebuild much slower (otherwise i'd forget to do it ever though)
+    casks = [
+      "visual-studio-code"
+      "koekeishiya/formulae/skhd"
+      "koekeishiya/formulae/yabai"
+    ];
+  };
+
+  services.skhd.enable = true;
+  
+  services.yabai = {
+    enable = true;
+  };
+
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
 
