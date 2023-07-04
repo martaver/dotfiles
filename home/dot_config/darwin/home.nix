@@ -47,7 +47,7 @@ in
     shellAliases = {
       ".." = "cd ..";
       "..." = "cd ../..";      
-      cm = "chezmoi";            
+      cm = "chezmoi";
     };
 
     # plugins = [
