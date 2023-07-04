@@ -75,7 +75,7 @@ in
     brews = [
       # "koekeishiya/formulae/skhd"      
       # "koekeishiya/formulae/yabai"      
-    ]
+    ];
 
     casks = [
       "visual-studio-code"      
