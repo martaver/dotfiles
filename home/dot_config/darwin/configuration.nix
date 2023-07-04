@@ -71,10 +71,14 @@ in
     onActivation.upgrade = true;
     # updates homebrew packages on activation,
     # can make darwin-rebuild much slower (otherwise i'd forget to do it ever though)
+
+    brews = [
+      # "koekeishiya/formulae/skhd"      
+      # "koekeishiya/formulae/yabai"      
+    ]
+
     casks = [
-      "visual-studio-code"
-      # "koekeishiya/formulae/skhd"
-      # "koekeishiya/formulae/yabai"
+      "visual-studio-code"      
     ];
   };
 
@@ -105,6 +109,9 @@ in
     # Following line should allow us to avoid a logout/login cycle
     # Inspired by: https://medium.com/@zmre/nix-darwin-quick-tip-activate-your-preferences-f69942a93236
     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+
+    # yabai installation doesn't clear tmp files sometimes, so do it after activation
+    rm /tmp/yabai.*
   '';
 
   users.users.sebastiannemeth.home = "/Users/sebastiannemeth";
