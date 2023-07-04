@@ -73,8 +73,8 @@ in
     # can make darwin-rebuild much slower (otherwise i'd forget to do it ever though)
     casks = [
       "visual-studio-code"
-      "koekeishiya/formulae/skhd"
-      "koekeishiya/formulae/yabai"
+      # "koekeishiya/formulae/skhd"
+      # "koekeishiya/formulae/yabai"
     ];
   };
 
