@@ -73,8 +73,14 @@ in
     # can make darwin-rebuild much slower (otherwise i'd forget to do it ever though)
 
     brews = [
-      # "koekeishiya/formulae/skhd"      
-      # "koekeishiya/formulae/yabai"      
+      # {
+      #   name = "koekeishiya/formulae/skhd";
+      #   restart_service = "changed";
+      # }     
+      # {
+      #   name = "koekeishiya/formulae/yabai";
+      #   restart_service = "changed";
+      # }    
     ];
 
     casks = [
@@ -111,7 +117,7 @@ in
     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
 
     # yabai installation doesn't clear tmp files sometimes, so do it after activation
-    rm /tmp/yabai.*
+    rm /tmp/yabai*
   '';
 
   users.users.sebastiannemeth.home = "/Users/sebastiannemeth";

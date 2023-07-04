@@ -48,6 +48,7 @@ in
       ".." = "cd ..";
       "..." = "cd ../..";      
       cm = "chezmoi";
+      foo = "echo bar";
     };
 
     # plugins = [
