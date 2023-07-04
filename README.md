@@ -2,6 +2,10 @@
 
 # Bootstrap
 
+1. Disable System Integrity Protection
+
+Follow this: https://github.com/koekeishiya/yabai/wiki/Disabling-System-Integrity-Protection
+
 ```
 sh -c "$(curl -s "https://raw.githubusercontent.com/martaver/dotfiles/main/setup.sh?token=$(date +%s)")"
 ```

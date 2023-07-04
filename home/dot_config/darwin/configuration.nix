@@ -67,7 +67,8 @@ in
 
   homebrew = {
     enable = true;
-    autoUpdate = true;
+    onActivation.autoUpdate = true;
+    onActivation.upgrade = true;
     # updates homebrew packages on activation,
     # can make darwin-rebuild much slower (otherwise i'd forget to do it ever though)
     casks = [
@@ -81,6 +82,7 @@ in
   
   services.yabai = {
     enable = true;
+    enableScriptingAddition = true;
   };
 
   # Auto upgrade nix package and the daemon service.
