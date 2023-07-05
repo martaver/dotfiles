@@ -69,35 +69,35 @@ in
   #   LAUNCHD_VAR = "true";
   # };
 
-  homebrew = {
-    enable = true;
-    onActivation.autoUpdate = true;
-    onActivation.upgrade = true;
-    # updates homebrew packages on activation,
-    # can make darwin-rebuild much slower (otherwise i'd forget to do it ever though)
+  # homebrew = {
+  #   enable = true;
+  #   onActivation.autoUpdate = true;
+  #   onActivation.upgrade = true;
+  #   # updates homebrew packages on activation,
+  #   # can make darwin-rebuild much slower (otherwise i'd forget to do it ever though)
 
-    brews = [
-      # {
-      #   name = "koekeishiya/formulae/skhd";
-      #   restart_service = "changed";
-      # }     
-      # {
-      #   name = "koekeishiya/formulae/yabai";
-      #   restart_service = "changed";
-      # }    
-    ];
+  #   brews = [
+  #     # {
+  #     #   name = "koekeishiya/formulae/skhd";
+  #     #   restart_service = "changed";
+  #     # }     
+  #     # {
+  #     #   name = "koekeishiya/formulae/yabai";
+  #     #   restart_service = "changed";
+  #     # }    
+  #   ];
 
-    casks = [
-      "visual-studio-code"      
-    ];
-  };
+  #   casks = [
+  #     "visual-studio-code"      
+  #   ];
+  # };
 
-  services.skhd.enable = true;
+  # services.skhd.enable = true;
   
-  services.yabai = {
-    enable = true;
-    enableScriptingAddition = true;
-  };
+  # services.yabai = {
+  #   enable = true;
+  #   enableScriptingAddition = true;
+  # };
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
