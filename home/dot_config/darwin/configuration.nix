@@ -47,6 +47,10 @@ in
 
   # System packages
   environment.systemPackages = syspkgs;
+  
+  environment.systemPath = [
+    "/Users/sebastiannemeth/.yabai/bin"
+  ]
 
   # `environment.extraInit`
   # environment.extraInit = "echo Running extraInit; export EXTRA_INIT_RAN=true;";
@@ -118,6 +122,7 @@ in
 
     # yabai installation doesn't clear tmp files sometimes, so do it after activation
     rm /tmp/yabai*
+    yabai --start-service
   '';
 
   users.users.sebastiannemeth.home = "/Users/sebastiannemeth";
