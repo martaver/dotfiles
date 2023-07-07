@@ -1,0 +1,1 @@
+martaver ALL=(root) NOPASSWD: sha256:41f2caeae9e90e7478012ba918c4e50dd0f398c748cc2bf14ff2420887870bb7  /usr/local/bin/yabai /usr/local/bin/yabai --load-sa

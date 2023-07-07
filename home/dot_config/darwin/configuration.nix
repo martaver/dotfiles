@@ -50,7 +50,24 @@ in
   
   environment.systemPath = [
     "/Users/sebastiannemeth/.yabai/bin"
-  ]
+  ];
+
+ # todo: use this somehow to install yabai's SA?
+ # ref: https://github.com/LnL7/nix-darwin/issues/165
+
+  # environment.etc = {
+  # "sudoers.d/yabai".text = let
+  #   commands = [
+  #     "/run/current-system/sw/bin/darwin-rebuild"
+  #     "/run/current-system/sw/bin/nix*"
+  #     "/run/current-system/sw/bin/ln"
+  #     "/nix/store/*/activate"
+  #     "/bin/launchctl"
+  #   ];
+  #   commandsString = builtins.concatStringsSep ", " commands;
+  # in ''
+  #   %admin ALL=(ALL:ALL) NOPASSWD: ${commandsString}
+  # '';
 
   # `environment.extraInit`
   # environment.extraInit = "echo Running extraInit; export EXTRA_INIT_RAN=true;";

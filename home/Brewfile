@@ -1,4 +1,6 @@
-# Load all Brewfiles found in .config/brew
-Dir["#{File.dirname(__FILE__)}/.config/brew/Brewfile*"].each do |sub_file|
-  load sub_file
-end
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+cask "visual-studio-code"
+brew "koekeishiya/formulae/yabai"
+brew "koekeishiya/formulae/skhd"
