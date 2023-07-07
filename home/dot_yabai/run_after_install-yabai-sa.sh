@@ -1,5 +1,10 @@
 #! /usr/bin/env bash
 
+echo 'Installing homebrew deps'
+
+ls -a ~
+cat ~/Brewfile
+
 brew bundle install
 
 # Configures 'yabai --load-sa' to always be run as root as per instructions in
