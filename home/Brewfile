@@ -4,5 +4,5 @@ tap "homebrew/core"
 cask "visual-studio-code"
 
 tap "koekeishiya/formulae"
-brew "koekeishiya/formulae/yabai"
-brew "koekeishiya/formulae/skhd"
+brew "koekeishiya/formulae/yabai", restart_service: changed
+brew "koekeishiya/formulae/skhd", restart_service: changed
