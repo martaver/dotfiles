@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+brew bundle install
+
 # Configures 'yabai --load-sa' to always be run as root as per instructions in
 # 'Configure scripting addition' at:
 # https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
