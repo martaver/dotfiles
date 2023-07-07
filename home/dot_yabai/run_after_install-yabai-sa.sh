@@ -2,9 +2,6 @@
 
 echo 'Installing homebrew deps'
 
-ls -a ~
-cat ~/Brewfile
-
 brew bundle install --file=~/Brewfile
 
 # Configures 'yabai --load-sa' to always be run as root as per instructions in
@@ -15,3 +12,6 @@ USERNAME="$(id -un)"
 YABAI_PATH="$(which yabai)"
 SHASUM="$(shasum -a 256 "$YABAI_PATH")"
 sudo sh -c "echo \"$USERNAME ALL=(root) NOPASSWD: sha256:$SHASUM $YABAI_PATH --load-sa\" > /private/etc/sudoers.d/yabai"
+
+yabai --start-service
+skhd --start-service

@@ -5,5 +5,5 @@ tap "koekeishiya/formulae"
 
 cask "visual-studio-code"
 
-brew "koekeishiya/formulae/yabai", restart_service: :changed
-brew "koekeishiya/formulae/skhd", restart_service: :changed
+brew "koekeishiya/formulae/yabai"
+brew "koekeishiya/formulae/skhd"
