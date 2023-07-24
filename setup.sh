@@ -14,6 +14,8 @@ set -o errexit  # abort on nonzero exitstatus
 set -o nounset  # abort on unbound variable
 set -o pipefail # don't hide errors within pipes
 
+args=${1:0}
+
 readonly yellow='\e[0;33m'
 readonly green='\e[0;32m'
 readonly red='\e[0;31m'

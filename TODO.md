@@ -20,6 +20,12 @@ MacOS:
 [*] skhdc
 [ ] direnv and asdf - https://blog.mikecordell.com/2021/12/18/better-project-environment-management-with-direnv-and-asdf/
 
+# Neovim
+Check out:
+tpope's neovim stuff
+telescope
+harpoon
+
 # Terminal
 
 ## Debugging slow Terminal startup
@@ -36,8 +42,22 @@ Why: to get scripts/aliases available globally to all applications/shells, e.g. 
 - Check out ScriptKit: https://www.scriptkit.com/
 - Run ScriptKit commands from Raycast: https://www.raycast.com/pomdtr/script-kit
 
+## Bootstrap
+- [ ] Allow passing a flag to `setup.sh` that installs all system deps, but skips bootstrapping `nix-darwin` and `chezmoi`.
+  This'll allow us to setup a base VM snapshot more easily without having to comment out the bootstrapping every time.
+
 ## Nix
 - [ ] Revert to using Determinate's nix installer when following is fixed
   - Cannot do nix-darwin install without rebooting first: https://github.com/DeterminateSystems/nix-installer/issues/275
   - Determinate nix installer leaves ~/.nix-channels owned by root: https://github.com/DeterminateSystems/nix-installer/issues/287
 - [ ] Use `nix-darwin` to manage homebrew: https://daiderd.com/nix-darwin/manual/index.html#opt-homebrew.enable
+
+
+## Environment
+- [ ] Scroll Reverser
+- [ ] AltTab
+- [ ] Karabiner
+
+## Dev
+- [ ] VSCode
+- [ ] GitKraken

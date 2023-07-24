@@ -4,6 +4,9 @@ tap "homebrew/core"
 tap "koekeishiya/formulae"
 
 cask "visual-studio-code"
+cask "raycast"
 
 brew "koekeishiya/formulae/yabai"
 brew "koekeishiya/formulae/skhd"
+
+vscode "bbenoist.nix"

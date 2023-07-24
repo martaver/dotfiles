@@ -13,5 +13,8 @@ YABAI_PATH="$(which yabai)"
 SHASUM="$(shasum -a 256 "$YABAI_PATH")"
 sudo sh -c "echo \"$USERNAME ALL=(root) NOPASSWD: sha256:$SHASUM $YABAI_PATH --load-sa\" > /private/etc/sudoers.d/yabai"
 
+yabai --install-service
 yabai --start-service
+
+skhd --install-service
 skhd --start-service

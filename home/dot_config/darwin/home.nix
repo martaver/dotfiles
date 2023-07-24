@@ -63,11 +63,11 @@ in
     #   }
     # ];
 
-    # # Extra environment variables
-    # envExtra = ''
-    #   # Load exports
-    #   source $HOME/.exports
-    # '';
+    # Extra environment variables
+    envExtra = ''
+      # Load exports
+      source $HOME/.yabai/.fns
+    '';
 
     # # Extra content for .envrc
     # initExtra = ''      
