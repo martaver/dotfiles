@@ -14,7 +14,18 @@ set -o errexit  # abort on nonzero exitstatus
 set -o nounset  # abort on unbound variable
 set -o pipefail # don't hide errors within pipes
 
-args=${1:0}
+if [ "$1" = "--skip-bootstrap" ]; then
+	echo "Skipping bootstrap, only checking installed dependencies..."
+	
+	skipSetup=true
+else
+	if [ "$1" != "" ]; then
+		echo "WARNING: Argument '$1' was not recognised"
+		exit 1
+	fi
+
+	skipSetup=false
+fi
 
 readonly yellow='\e[0;33m'
 readonly green='\e[0;32m'
