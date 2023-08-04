@@ -10,10 +10,6 @@
 #/
 # shellcheck disable=SC2155
 
-set -o errexit  # abort on nonzero exitstatus
-set -o nounset  # abort on unbound variable
-set -o pipefail # don't hide errors within pipes
-
 if [ "$1" = "--skip-bootstrap" ]; then
 	echo "Skipping bootstrap, only checking installed dependencies..."
 	
@@ -26,6 +22,10 @@ else
 
 	skipSetup=false
 fi
+
+set -o errexit  # abort on nonzero exitstatus
+set -o nounset  # abort on unbound variable
+set -o pipefail # don't hide errors within pipes
 
 readonly yellow='\e[0;33m'
 readonly green='\e[0;32m'
