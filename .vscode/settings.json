@@ -4,7 +4,6 @@
   "explorer.confirmDelete": false,
   "explorer.openEditors.visible": 0,
   "workbench.colorTheme": "Solarized Dark",
-  "files.autoSave": "onFocusChange",
   "explorer.autoReveal": false,
   "files.exclude": {
     "**/.git": true,
@@ -17,12 +16,9 @@
   },
   "gitlens.codeLens.recentChange.enabled": false,
   "gitlens.codeLens.authors.enabled": false,
-  "redhat.telemetry.enabled": false,
   "svelte.enable-ts-plugin": true,
-  "svelte.plugin.svelte.note-new-transformation": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "yaml.maxItemsComputed": 20000,
   "[typescript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
@@ -30,59 +26,38 @@
   "editor.minimap.enabled": false,
   "editor.accessibilitySupport": "off",
   "workbench.editor.revealIfOpen": false,
-  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.enabled": false,
   "explorer.fileNesting.expand": false,
   "diffEditor.ignoreTrimWhitespace": false,
+  "editor.suggest.showKeywords": false,
+  "editor.wordBasedSuggestions": false,
+  //
+  // AutoSave & AutoFormat OnSave
+  //
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "files.autoSave": "onFocusChange",
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
     "source.organizeImports": true
   },
   "editor.formatOnSave": true,
+  //
   "json.schemas": [
-    // foo
     {
-      "fileMatch": ["appsscript.json"],
+      "fileMatch": [
+        "appsscript.json"
+      ],
       "url": "http://json.schemastore.org/appsscript"
     },
     {
-      "fileMatch": [".clasp.json"],
+      "fileMatch": [
+        ".clasp.json"
+      ],
       "url": "http://json.schemastore.org/clasp"
     }
   ],
   "go.toolsManagement.autoUpdate": true,
-  "totalTypeScript.hiddenTips": [
-    "variable-type-annotation",
-    "conditional-type",
-    "nested-conditional-type",
-    "passing-generics-to-types",
-    "keyof",
-    "type-alias-declaration",
-    "type-alias-with-generics",
-    "infer",
-    "never-keyword",
-    "type-alias-with-multiple-generics",
-    "union-type",
-    "array-type",
-    "any-type",
-    "mapped-type",
-    "omit-utility-type",
-    "record-utility-type",
-    "basic-types",
-    "ts-object-type",
-    "interface-declaration",
-    "interface-with-generics",
-    "interface-with-multiple-generics",
-    "optional-object-property",
-    "literal-type",
-    "null-keyword",
-    "typing-function-parameters",
-    "typeof",
-    "tuple-type",
-    "pick-utility-type",
-    "as-const"
-  ],
-  "totalTypeScript.hideAllTips": true,
-  "totalTypeScript.hideBasicTips": true,
   "explorer.fileNesting.patterns": {
     "Cargo.toml": "Cargo.lock",
     "*.ts": "${capture}.typegen.ts",

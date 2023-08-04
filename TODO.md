@@ -19,6 +19,7 @@ MacOS:
 [*] yabai
 [*] skhdc
 [ ] direnv and asdf - https://blog.mikecordell.com/2021/12/18/better-project-environment-management-with-direnv-and-asdf/
+[ ] hammerspoon for automation of MacOS (lua is also used to script neovim)
 
 # Neovim
 Check out:
