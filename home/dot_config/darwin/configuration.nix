@@ -49,7 +49,7 @@ in
   environment.systemPackages = syspkgs;
   
   environment.systemPath = [
-    "/Users/sebastiannemeth/.yabai/bin"
+    "/Users/martaver/.yabai/bin"
   ];
 
  # todo: use this somehow to install yabai's SA?
@@ -127,7 +127,7 @@ in
   nix.extraOptions = ''
     extra-platforms = aarch64-darwin x86_64-darwin
     experimental-features = nix-command flakes
-    trusted-users = root martaver sebastiannemeth
+    trusted-users = root martaver
     allow-import-from-derivation = true
   '';
 
@@ -142,5 +142,5 @@ in
     # yabai --start-service
   '';
 
-  users.users.sebastiannemeth.home = "/Users/sebastiannemeth";
+  users.users.martaver.home = "/Users/martaver";
 }
