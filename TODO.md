@@ -62,3 +62,20 @@ Why: to get scripts/aliases available globally to all applications/shells, e.g. 
 ## Dev
 - [ ] VSCode
 - [ ] GitKraken
+
+users/
+  martaver/
+
+platforms/
+  darwin/
+  linux/
+
+hosts/
+  test/
+    - x86
+    - darwin
+    - martaver
+  architeuthis/
+    - arm64
+    - darwin
+    - martaver
