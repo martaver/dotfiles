@@ -11,8 +11,8 @@
 
   outputs = { self, nixpkgs, darwin, home-manager }: {
     darwinConfigurations."Architeuthis" = darwin.lib.darwinSystem {      
-      # system = "aarch64-darwin";  # Apple Silicon
-      system = "x86_64-darwin"; # Intel
+      system = "aarch64-darwin";  # Apple Silicon
+      # system = "x86_64-darwin"; # Intel
       modules = [
         ./configuration.nix                                
         home-manager.darwinModules.home-manager

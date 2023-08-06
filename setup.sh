@@ -283,7 +283,7 @@ fi
 checkDep 'xcode' '/usr/bin/xcode-select' 'installXcode'
 
 # rosetta is needed for running x86_64 applications
-# checkDep 'rosetta' '/usr/bin/pgrep oahd' 'softwareupdate --install-rosetta'
+checkDep 'rosetta' '/usr/bin/pgrep oahd' 'softwareupdate --install-rosetta'
 
 # nix is needed to configure the entire system
 checkDep 'nix' 'command -v nix' 'installNix'
