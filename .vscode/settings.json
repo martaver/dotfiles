@@ -41,7 +41,6 @@
     "source.fixAll": true,
     "source.organizeImports": true
   },
-  "editor.formatOnSave": true,
   //
   "json.schemas": [
     {
@@ -64,5 +63,6 @@
     "*.tsx": "${capture}.typegen.ts",
     "*.mts": "${capture}.typegen.ts",
     "*.cts": "${capture}.typegen.ts"
-  }
+  },
+  "editor.formatOnSave": true
 }
