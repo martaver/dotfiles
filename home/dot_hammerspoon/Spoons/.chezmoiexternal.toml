@@ -1,0 +1,4 @@
+["."]
+    type = "archive"
+    url = "https://github.com/Hammerspoon/Spoons/raw/master/Spoons/EmmyLua.spoon.zip"    
+    refreshPeriod = "168h"

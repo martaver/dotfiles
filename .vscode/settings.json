@@ -64,5 +64,8 @@
     "*.mts": "${capture}.typegen.ts",
     "*.cts": "${capture}.typegen.ts"
   },
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "Lua.workspace.library": [
+    "/Users/martaver/.hammerspoon/Spoons/EmmyLua.spoon/annotations"
+  ]
 }

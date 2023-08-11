@@ -54,7 +54,15 @@ Why: to get scripts/aliases available globally to all applications/shells, e.g. 
 - [*] Use `nix-darwin` to manage homebrew: https://daiderd.com/nix-darwin/manual/index.html#opt-homebrew.enable
 - [*] Solve `environment.variables` not being applied. Variables set here are not available in Terminal after `darwin-rebuild switch`
 - [ ] Install `nixpkgs-fmt` via `nix-darwin` in system configuration
-- [ ] Install parallels 
+- [*] Install parallels from script
+- [ ] Split installers from `setup.sh` into scripts under `installers/`
+- [ ] Install 1Password from script
+- [ ] Apply parallels license from ./install-parallels.sh using `prlsrvctl`
+- [ ] Configure git from home dir
+- [ ] Use symlink for nix-darwin configuration
+- [ ] Use vagrant to configure test VM for building / applying system changes
+- [ ] Structure nix-darwin for hosts/ users/
+- [ ] Use `sudo scutil --set HostName name-you-want` to ensure correct machine name, matching `nix-darwin` configuration
 
 ## Environment
 - [ ] Scroll Reverser
