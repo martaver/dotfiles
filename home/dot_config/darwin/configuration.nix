@@ -1,15 +1,15 @@
 { config, pkgs, ... }:
 
 # All system packages
-let  
-  syspkgs = [    
+let
+  syspkgs = [
     pkgs.curl
-    pkgs.direnv    
-    pkgs.git    
-    pkgs.jq    
+    pkgs.direnv
+    pkgs.git
+    pkgs.jq
     pkgs.nodejs
-    pkgs.openssh    
-    pkgs.wget    
+    pkgs.openssh
+    pkgs.wget
     pkgs.yq-go
     pkgs.zsh
   ];
@@ -39,21 +39,25 @@ in
 
   # Program configuration
 
-  programs.bash.enableCompletion = true;    
+  programs.bash.enableCompletion = true;
   programs.zsh.enable = true;
 
   # Environment configuration
-  environment.variables.LANG = "en_US.UTF-8";
+  environment.variables = {
+      LANG = "en_US.UTF-8";
+      HOMEBREW_BUNDLE_FILE = "~/Brewfile";
+      FOO = "BAR";
+    };
 
   # System packages
   environment.systemPackages = syspkgs;
-  
+
   environment.systemPath = [
     "/Users/martaver/.yabai/bin"
   ];
 
- # todo: use this somehow to install yabai's SA?
- # ref: https://github.com/LnL7/nix-darwin/issues/165
+  # todo: use this somehow to install yabai's SA?
+  # ref: https://github.com/LnL7/nix-darwin/issues/165
 
   # environment.etc = {
   # "sudoers.d/yabai".text = let
@@ -71,10 +75,10 @@ in
 
   # `environment.extraInit`
   # environment.extraInit = "echo Running extraInit; export EXTRA_INIT_RAN=true;";
-  
+
   # `environment.interactiveShellInit`
   # environment.interactiveShellInit = "echo Running interactiveShellInit; export INTERACTIVE_SHELL_INIT_RAN=true;";
-  
+
   # `environment.loginShellInit`
   # environment.loginShellInit = "echo Running loginShellInit; export LOGIN_SHELL_INIT_RAN=true;";
 
@@ -110,7 +114,7 @@ in
   # };
 
   # services.skhd.enable = true;
-  
+
   # services.yabai = {
   #   enable = true;
   #   enableScriptingAddition = true;

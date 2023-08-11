@@ -1,0 +1,2 @@
+
+/run/current-system/sw/bin/darwin-rebuild switch --flake "${PWD}/home/dot_config/darwin"

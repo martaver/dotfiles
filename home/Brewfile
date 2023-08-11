@@ -9,4 +9,4 @@ cask "raycast"
 brew "koekeishiya/formulae/yabai"
 brew "koekeishiya/formulae/skhd"
 
-vscode "bbenoist.nix"
+vscode "jnoortheen.nix-ide"

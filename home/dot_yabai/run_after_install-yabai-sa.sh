@@ -8,13 +8,23 @@ brew bundle install --file=~/Brewfile
 # 'Configure scripting addition' at:
 # https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
 
-USERNAME="$(id -un)"
-YABAI_PATH="$(which yabai)"
-SHASUM="$(shasum -a 256 "$YABAI_PATH")"
-sudo sh -c "echo \"$USERNAME ALL=(root) NOPASSWD: sha256:$SHASUM $YABAI_PATH --load-sa\" > /private/etc/sudoers.d/yabai"
+if [ ! -f /private/etc/sudoers.d/yabai ]; then
+  echo 'Installing yabai scripting addition...'
+  USERNAME="$(id -un)"
+  YABAI_PATH="$(which yabai)"
+  SHASUM="$(shasum -a 256 "$YABAI_PATH")"
+  sudo sh -c "echo \"$USERNAME ALL=(root) NOPASSWD: sha256:$SHASUM $YABAI_PATH --load-sa\" > /private/etc/sudoers.d/yabai"
+  sudo yabai --load-sa
+fi
 
-yabai --install-service
-yabai --start-service
+if [ ! -f ~/Library/LaunchAgents/com.koekeishiya.yabai.plist ]; then
+  echo 'Starting/installing yabai...'
+  yabai --install-service
+  yabai --start-service
+fi
 
-skhd --install-service
-skhd --start-service
+if [ ! -f ~/Library/LaunchAgents/com.koekeishiya.skhd.plist ]; then
+  echo 'Starting/installing skhd...'
+  skhd --install-service
+  skhd --start-service
+fi
