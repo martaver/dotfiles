@@ -46,6 +46,7 @@ Why: to get scripts/aliases available globally to all applications/shells, e.g. 
 ## Bootstrap
 - [*] Allow passing a flag to `setup.sh` that installs all system deps, but skips bootstrapping `nix-darwin` and `chezmoi`.
   This'll allow us to setup a base VM snapshot more easily without having to comment out the bootstrapping every time.
+- [ ] Split installers from `setup.sh` into scripts under `installers/`
 
 ## Nix
 - [ ] Revert to using Determinate's nix installer when following is fixed
@@ -54,15 +55,24 @@ Why: to get scripts/aliases available globally to all applications/shells, e.g. 
 - [*] Use `nix-darwin` to manage homebrew: https://daiderd.com/nix-darwin/manual/index.html#opt-homebrew.enable
 - [*] Solve `environment.variables` not being applied. Variables set here are not available in Terminal after `darwin-rebuild switch`
 - [ ] Install `nixpkgs-fmt` via `nix-darwin` in system configuration
-- [*] Install parallels from script
-- [ ] Split installers from `setup.sh` into scripts under `installers/`
-- [ ] Install 1Password from script
-- [ ] Apply parallels license from ./install-parallels.sh using `prlsrvctl`
-- [ ] Configure git from home dir
 - [ ] Use symlink for nix-darwin configuration
 - [ ] Use vagrant to configure test VM for building / applying system changes
 - [ ] Structure nix-darwin for hosts/ users/
 - [ ] Use `sudo scutil --set HostName name-you-want` to ensure correct machine name, matching `nix-darwin` configuration
+
+## Hammerspoon
+- [*] Install hammerspoon & configure scripting environment
+- [*] Auto reload hammerspoon config
+
+## Parallels
+- [*] Install parallels from script
+- [ ] Apply parallels license from ./install-parallels.sh using `prlsrvctl`
+
+## 1Password
+- [ ] Install 1Password from script
+- [ ] Install 1Password CLI (use hammerspoon to automate)
+- [ ] Configure git from home dir
+
 
 ## Environment
 - [ ] Scroll Reverser
