@@ -1,2 +1,2 @@
-
+cm apply
 darwin-rebuild switch --flake "~/.config/darwin"
