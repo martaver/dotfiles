@@ -2,10 +2,13 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 tap "koekeishiya/formulae"
+tap "hashicorp/tap"
+tap "cirruslabs/cli"
 
 cask "raycast"
 cask "hammerspoon"
 
+brew "cirruslabs/cli/tart"
 brew "koekeishiya/formulae/yabai"
 brew "koekeishiya/formulae/skhd"
 

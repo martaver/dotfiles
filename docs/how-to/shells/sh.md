@@ -1,4 +1,4 @@
-# zsh
+# sh
 
 ## Test regex
 Positive:

@@ -2,7 +2,7 @@
 
 echo 'Installing homebrew deps'
 
-brew bundle install --file=~/Brewfile
+brew bundle install --cleanup
 
 # Configures 'yabai --load-sa' to always be run as root as per instructions in
 # 'Configure scripting addition' at:
