@@ -3,14 +3,15 @@ tap "homebrew/cask"
 tap "homebrew/core"
 tap "koekeishiya/formulae"
 
-cask "visual-studio-code"
 cask "raycast"
 cask "hammerspoon"
-cask "hashicorp/tap/hashicorp-vagrant"
 
 brew "koekeishiya/formulae/yabai"
 brew "koekeishiya/formulae/skhd"
 
-
+cask "visual-studio-code"
 vscode "jnoortheen.nix-ide"
 vscode "sumneko.lua"
+
+cask "hashicorp/tap/hashicorp-vagrant"
+cask "parallels-virtualization-sdk"

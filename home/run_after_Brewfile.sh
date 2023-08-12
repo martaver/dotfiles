@@ -28,3 +28,8 @@ if [ ! -f ~/Library/LaunchAgents/com.koekeishiya.skhd.plist ]; then
   skhd --install-service
   skhd --start-service
 fi
+
+if ! [[ "$(vagrant plugin list | grep vagrant-parallels)" =~ "vagrant-parallels" ]]; then
+  echo "Installing 'vagrant-parallels' provider..."
+  vagrant plugin install vagrant-parallels
+fi
