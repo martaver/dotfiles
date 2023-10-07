@@ -14,7 +14,6 @@
     "**/Thumbs.db": true,
     "**/.terraform": true
   },
-  "gitlens.codeLens.recentChange.enabled": false,
   "gitlens.codeLens.authors.enabled": false,
   "svelte.enable-ts-plugin": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
@@ -25,7 +24,7 @@
   "debug.javascript.autoAttachFilter": "onlyWithFlag",
   "editor.minimap.enabled": false,
   "editor.accessibilitySupport": "off",
-  "workbench.editor.revealIfOpen": false,
+  "workbench.editor.revealIfOpen": true,
   "explorer.fileNesting.enabled": false,
   "explorer.fileNesting.expand": false,
   "diffEditor.ignoreTrimWhitespace": false,
@@ -64,5 +63,13 @@
     "*.mts": "${capture}.typegen.ts",
     "*.cts": "${capture}.typegen.ts"
   },
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "gitlens.codeLens.recentChange.enabled": false,
+  "gitlens.heatmap.locations": [
+    "gutter",
+    "line",
+    "overview"
+  ],
+  "git.autofetch": true,
+  "gitTreeCompare.diffMode": "full"
 }
