@@ -1,36 +1,35 @@
 #!/usr/bin/env zsh
 
-#
-# Assuming a bare repository (whose dir name is suffixed by '.git'), this script
-# detects when a new worktree is created and links files from an overlay directory
-# identified by 'OVERLAY_DIR_NAME'.
-#
-# This allows untracked files, like '.env' files, to be persisted across worktrees.
-#
-
-OVERLAY_DIR_NAME=".overlay"
-
-BARE_REPO_DIR="${0%/hooks/post-checkout}"
-DESTINATION="$PWD"
-DESTINATION_REL="${DESTINATION##"$BARE_REPO_DIR"/}"
-
-OVERLAY_DIR="$BARE_REPO_DIR/$OVERLAY_DIR_NAME"
-
-makelink() {
-  SOURCE="$1"
-  SOURCE_REL="${SOURCE##"$OVERLAY_DIR/"}"
-  echo " - $SOURCE_REL"
-  ln -fis "$SOURCE" "$DESTINATION"/"$SOURCE_REL"
-}
-
-# export -f makelink
-
 if [[ "$0" =~ .git/hooks/post-checkout ]] && [[ "$1" == "0000000000000000000000000000000000000000" ]]; then
+
+  #
+  # Assuming a bare repository (whose dir name is suffixed by '.git'), this script
+  # detects when a new worktree is created and links files from an overlay directory
+  # identified by 'OVERLAY_DIR_NAME'.
+  #
+  # This allows untracked files, like '.env' files, to be persisted across worktrees.
+  #
+
+  OVERLAY_DIR_NAME=".overlay"
+
+  BARE_REPO_DIR="${0%/hooks/post-checkout}"
+  DESTINATION="$PWD"
+  DESTINATION_REL="${DESTINATION##"$BARE_REPO_DIR"/}"
+
+  OVERLAY_DIR="$BARE_REPO_DIR/$OVERLAY_DIR_NAME"
+
+  makelink() {
+    SOURCE="$1"
+    SOURCE_REL="${SOURCE##"$OVERLAY_DIR/"}"
+    echo " - $SOURCE_REL"
+    ln -fis "$SOURCE" "$DESTINATION"/"$SOURCE_REL"
+  }
+
   echo "Created new worktree in: '$DESTINATION_REL', linking files from $OVERLAY_DIR_NAME..."
   
   mkdir -p "$OVERLAY_DIR"  
   
-  for f in "$OVERLAY_DIR"/**/*(D.); do    
+  for f in "$OVERLAY_DIR"/**/*(D.); do
     makelink "$f"
-  done  
+  done
 fi 

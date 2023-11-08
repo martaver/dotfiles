@@ -18,6 +18,8 @@
   "svelte.enable-ts-plugin": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.preferences.useAliasesForRenames": false,
+  "typescript.preferences.useAliasesForRenames": false,
   "[typescript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
