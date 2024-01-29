@@ -22,6 +22,7 @@ MacOS:
 [ ] hammerspoon for automation of MacOS (lua is also used to script neovim)
 
 # Neovim
+
 Check out:
 tpope's neovim stuff
 telescope
@@ -44,11 +45,13 @@ Why: to get scripts/aliases available globally to all applications/shells, e.g. 
 - Run ScriptKit commands from Raycast: https://www.raycast.com/pomdtr/script-kit
 
 ## Bootstrap
+
 - [*] Allow passing a flag to `setup.sh` that installs all system deps, but skips bootstrapping `nix-darwin` and `chezmoi`.
   This'll allow us to setup a base VM snapshot more easily without having to comment out the bootstrapping every time.
 - [ ] Split installers from `setup.sh` into scripts under `installers/`
 
 ## Nix
+
 - [ ] Revert to using Determinate's nix installer when following is fixed
   - Cannot do nix-darwin install without rebooting first: https://github.com/DeterminateSystems/nix-installer/issues/275
   - Determinate nix installer leaves ~/.nix-channels owned by root: https://github.com/DeterminateSystems/nix-installer/issues/287
@@ -61,41 +64,45 @@ Why: to get scripts/aliases available globally to all applications/shells, e.g. 
 - [ ] Use `sudo scutil --set HostName name-you-want` to ensure correct machine name, matching `nix-darwin` configuration
 
 ## Hammerspoon
+
 - [*] Install hammerspoon & configure scripting environment
 - [*] Auto reload hammerspoon config
+- [ ] Use hammerspoon to control yabai instead of skhd via hs-socket: https://github.com/Hammerspoon/hammerspoon/discussions/3254
 
 ## Parallels
+
 - [*] Install parallels from script
 - [ ] Apply parallels license from ./install-parallels.sh using `prlsrvctl`
 
 ## 1Password
+
 - [ ] Install 1Password from script
 - [ ] Install 1Password CLI (use hammerspoon to automate)
 - [ ] Configure git from home dir
 
-
 ## Environment
+
 - [ ] Scroll Reverser
 - [ ] AltTab
 - [ ] Karabiner
 
 ## Dev
+
 - [ ] VSCode
 - [ ] GitKraken
+- [ ] Neovim
+  - [ ] Neovim Kickstarter
+  - [ ] TJ's Neovim tutorial
+  - [ ] Prime's Neovim course
+  - [ ] T Pope's plugins
 
 users/
-  martaver/
+martaver/
 
 platforms/
-  darwin/
-  linux/
+darwin/
+linux/
 
 hosts/
-  test/
-    - x86
-    - darwin
-    - martaver
-  architeuthis/
-    - arm64
-    - darwin
-    - martaver
+test/ - x86 - darwin - martaver
+architeuthis/ - arm64 - darwin - martaver
