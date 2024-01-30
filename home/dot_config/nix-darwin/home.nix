@@ -6,7 +6,7 @@ in
   # User-specific packages
   home.stateVersion = "23.11";
   home.packages = [
-    pkgs.chezmoi    
+    pkgs.chezmoi
     # pkgs.any-nix-shell        
     # pkgs.gh    
     # pkgs.oh-my-zsh    
@@ -17,7 +17,7 @@ in
 
   # # Enable direnv with nix support
   # programs.direnv = {
-  #   enable = true;
+  #   enable = true; 
   #   nix-direnv = {
   #     enable = true;
   #   };
@@ -26,27 +26,27 @@ in
   # # zsh configuration
   programs.zsh = {
     enable = true;
-  #   enableAutosuggestions = true;
-  #   enableSyntaxHighlighting = true;
-  #   oh-my-zsh = {
-  #     enable = true;
-  #     plugins = [        
-  #       "gh"
-  #       "git"
-  #       "macos"
-  #       "ssh-agent"
-  #       "sudo"        
-  #       "vscode"
-  #     ];
-  #     theme = "";
-  #     extraConfig = ''
-  #       zstyle :omz:plugins:ssh-agent lazy yes
-  #     '';
-  #   };
+    #   enableAutosuggestions = true;
+    #   enableSyntaxHighlighting = true;
+    #   oh-my-zsh = {
+    #     enable = true;
+    #     plugins = [        
+    #       "gh"
+    #       "git"
+    #       "macos"
+    #       "ssh-agent"
+    #       "sudo"        
+    #       "vscode"
+    #     ];
+    #     theme = "";
+    #     extraConfig = ''
+    #       zstyle :omz:plugins:ssh-agent lazy yes
+    #     '';
+    #   };
 
     shellAliases = {
       ".." = "cd ..";
-      "..." = "cd ../..";      
+      "..." = "cd ../..";
       cm = "chezmoi";
       foo = "echo bar";
     };

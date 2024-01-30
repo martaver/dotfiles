@@ -11,10 +11,10 @@
 
   outputs = { self, nixpkgs, darwin, home-manager }: {
     # PHLTHEL0266s-MacBook-Pro
-    darwinConfigurations."PHLTHEL0266s-MacBook-Pro" = darwin.lib.darwinSystem {      
-      system = "aarch64-darwin";  # Apple Silicon      
+    darwinConfigurations."PHLTHEL0266s-MacBook-Pro" = darwin.lib.darwinSystem {
+      system = "aarch64-darwin"; # Apple Silicon      
       modules = [
-        ./configuration.nix                                
+        ./configuration.nix
         home-manager.darwinModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
@@ -25,11 +25,11 @@
     };
 
     # "Architeuthis"
-    darwinConfigurations."Architeuthis" = darwin.lib.darwinSystem {      
-      system = "aarch64-darwin";  # Apple Silicon
+    darwinConfigurations."Architeuthis" = darwin.lib.darwinSystem {
+      system = "aarch64-darwin"; # Apple Silicon
       # system = "x86_64-darwin"; # Intel
       modules = [
-        ./configuration.nix                                
+        ./configuration.nix
         home-manager.darwinModules.home-manager
         {
           home-manager.useGlobalPkgs = true;

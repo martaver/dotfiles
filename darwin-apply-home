@@ -1,2 +1,2 @@
-cm apply
-darwin-rebuild switch --flake "~/.config/darwin"
+nix shell nixpkgs#chezmoi -c chezmoi apply 
+darwin-rebuild switch --flake ~/.config/nix-darwin

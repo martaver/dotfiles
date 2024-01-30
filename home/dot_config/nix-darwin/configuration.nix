@@ -12,6 +12,7 @@ let
     pkgs.wget
     pkgs.yq-go
     pkgs.zsh
+    pkgs.nixpkgs-fmt
   ];
 
 in
@@ -44,17 +45,17 @@ in
 
   # Environment configuration
   environment.variables = {
-      LANG = "en_US.UTF-8";
-      HOMEBREW_BUNDLE_FILE = "~/Brewfile";
-      FOO = "BAR";
-    };
+    LANG = "en_US.UTF-8";
+    HOMEBREW_BUNDLE_FILE = "~/Brewfile";
+    FOO = "BAR";
+  };
 
   # System packages
   environment.systemPackages = syspkgs;
 
-  environment.systemPath = [
-    "/Users/martaver/.yabai/bin"
-  ];
+  # environment.systemPath = [
+  #   "/Users/martaver/.yabai/bin"
+  # ];
 
   # todo: use this somehow to install yabai's SA?
   # ref: https://github.com/LnL7/nix-darwin/issues/165
@@ -131,7 +132,7 @@ in
   nix.extraOptions = ''
     extra-platforms = aarch64-darwin x86_64-darwin
     experimental-features = nix-command flakes
-    trusted-users = root martaver
+    trusted-users = root martaver sebastiannemeth
     allow-import-from-derivation = true
   '';
 
@@ -147,4 +148,5 @@ in
   '';
 
   users.users.martaver.home = "/Users/martaver";
+  users.users.sebastiannemeth.home = "/Users/sebastiannemeth";
 }
