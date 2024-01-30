@@ -1,12 +1,12 @@
 { config, pkgs, machnix, ... }:
 let
-  chezmoi = pkgs.callPackage ./packages/chezmoi.nix { };  
+  # chezmoi = pkgs.callPackage ./packages/chezmoi.nix { };  
 in
 {
   # User-specific packages
   home.stateVersion = "23.11";
   home.packages = [
-    chezmoi    
+    pkgs.chezmoi    
     # pkgs.any-nix-shell        
     # pkgs.gh    
     # pkgs.oh-my-zsh    

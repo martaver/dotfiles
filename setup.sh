@@ -43,6 +43,8 @@ readonly brewRepo='https://raw.githubusercontent.com/Homebrew/install'
 readonly brewCommitSha='e8114640740938c20cc41ffdbf07816b428afc49'
 readonly brewChecksum='98a0040bd3dc4b283780a010ad670f6441d5da9f32b2cb83d28af6ad484a2c72'
 
+readonly LocalHostName="$(scutil --get LocalHostName)"
+
 # Usage: log MESSAGE
 #
 # Prints all arguments on the standard output stream
@@ -201,7 +203,7 @@ installNixDarwin() {
 	mkdir -p ~/.config/nix-darwin
 	cd ~/.config/nix-darwin
 	nix flake init -t nix-darwin
-	sed -i '' "s/simple/$(scutil --get LocalHostName)/" flake.nix # Replace 'simple' with LocalHostName
+	sed -i '' "s/simple/$LocalHostName/" flake.nix # Replace 'simple' with LocalHostName
 
 	# Configure Apple Silicon
 	sed -i '' 's/nixpkgs.hostPlatform = "x86_64-darwin";/nixpkgs.hostPlatform = "aarch64-darwin";/' flake.nix # Replace 'x86_64-darwin' with 'aarch64-darwin'
@@ -339,8 +341,8 @@ if [[ ! -d "$HOME/.local/share/chezmoi" ]]; then
 	nix shell nixpkgs#chezmoi -c chezmoi apply "${HOME}/.config/darwin"
 
 	log "Bootstrapping nix-darwin flake..."
-	cd "${tmpDir}" && nix build "${HOME}/.config/darwin#darwinConfigurations.Architeuthis.system"
-	cd "${tmpDir}" && ./result/sw/bin/darwin-rebuild switch --flake "${HOME}/.config/darwin#Architeuthis"
+	cd "${tmpDir}" && nix build "${HOME}/.config/darwin#darwinConfigurations.$LocalHostName.system"
+	cd "${tmpDir}" && ./result/sw/bin/darwin-rebuild switch --flake "${HOME}/.config/darwin#$LocalHostName"
 fi
 
 # implicitely calls `nix-darwin rebuild`` and `brew bundle install``
