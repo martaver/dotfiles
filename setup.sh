@@ -150,36 +150,36 @@ installNix() {
 	
 	# Using Standard Installer
 	# ------
-	local nixURL="${nixReleaseBase}/nix/nix-${nixVer}/install"
-	local checksumURL="${nixReleaseBase}/nix/nix-${nixVer}/install.sha256"
-	local sha="$(curl "${checksumURL}")"
+	# local nixURL="${nixReleaseBase}/nix/nix-${nixVer}/install"
+	# local checksumURL="${nixReleaseBase}/nix/nix-${nixVer}/install.sha256"
+	# local sha="$(curl "${checksumURL}")"
 
-	log "Downloading install script from ${nixURL}..."
-	curl "${nixURL}" -o "${tmpDir}/nix.sh" &>/dev/null
+	# log "Downloading install script from ${nixURL}..."
+	# curl "${nixURL}" -o "${tmpDir}/nix.sh" &>/dev/null
 
-	log "Validating checksum..."
-	if ! echo "${sha}  ${tmpDir}/nix.sh" | shasum -a 256 -c; then
-		die "Checksum validation failed; cannot continue"
-	fi
+	# log "Validating checksum..."
+	# if ! echo "${sha}  ${tmpDir}/nix.sh" | shasum -a 256 -c; then
+	# 	die "Checksum validation failed; cannot continue"
+	# fi
 
-	log "Running nix installer..."	
-	bash "${tmpDir}/nix.sh"
-	success "Nix installed successfully"
+	# log "Running nix installer..."	
+	# bash "${tmpDir}/nix.sh"
+	# success "Nix installed successfully"
 
-	# nix shell requires nix-command which is experimental
-	# we also need to add flakes so we can run our development flakes
-	log 'Adding experimental features: nix-command flakes'
-	mkdir -p ~/.config/nix
-	echo 'experimental-features = nix-command flakes' >>~/.config/nix/nix.conf
+	# # nix shell requires nix-command which is experimental
+	# # we also need to add flakes so we can run our development flakes
+	# log 'Adding experimental features: nix-command flakes'
+	# mkdir -p ~/.config/nix
+	# echo 'experimental-features = nix-command flakes' >>~/.config/nix/nix.conf
 	# -------
 
 
 	# Using Determinate Installer
 	# ------
-	# log "Running (determinate) nix installer..."
-	# # Use Determinate Nix Installer: https://github.com/DeterminateSystems/nix-installer
-	# curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm	
-	# success "Nix installed successfully"
+	log "Running (determinate) nix installer..."
+	# Use Determinate Nix Installer: https://github.com/DeterminateSystems/nix-installer
+	curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm	
+	success "Nix installed successfully"
 	# -------
 
 	log 'Configuring environment...'
