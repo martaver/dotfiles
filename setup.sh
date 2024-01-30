@@ -179,6 +179,7 @@ installNix() {
 	log "Running (determinate) nix installer..."
 	# Use Determinate Nix Installer: https://github.com/DeterminateSystems/nix-installer
 	curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm	
+
 	success "Nix installed successfully"
 	# -------
 
@@ -187,7 +188,37 @@ installNix() {
 	set +o nounset
 	set +o pipefail
 	# shellcheck disable=SC1091
-	source /etc/bashrc
+	source /etc/zshrc # Load nix cmds into the current shell
+	set -o errexit
+	set -o nounset
+	set -o pipefail
+}
+
+installNixDarwin() {
+	log 'Building (flakes) nix-darwin installer...'
+
+  # Initialise flake.nix inside
+	mkdir -p ~/.config/nix-darwin
+	cd ~/.config/nix-darwin
+	nix flake init -t nix-darwin
+	sed -i '' "s/simple/$(scutil --get LocalHostName)/" flake.nix # Replace 'simple' with LocalHostName
+
+	# Configure Apple Silicon
+	sed -i '' 's/nixpkgs.hostPlatform = "x86_64-darwin";/nixpkgs.hostPlatform = "aarch64-darwin";/' flake.nix # Replace 'x86_64-darwin' with 'aarch64-darwin'
+
+	# Backup existing /etc files
+	sudo mv /etc/nix.conf /etc/nix.conf.backup 
+	sudo mv /etc/zshenv /etc/zshenv.backup 
+
+	# Install nix-darwin
+	nix run nix-darwin -- switch --flake ~/.config/nix-darwin
+
+	log "Configuring environment..."
+	set +o errexit
+	set +o nounset
+	set +o pipefail
+	# shellcheck disable=SC1091
+	source /etc/static/zshrc
 	set -o errexit
 	set -o nounset
 	set -o pipefail
@@ -196,7 +227,7 @@ installNix() {
 # Usage: installNixDarwin
 #
 # Builds the nix-darwin installer and then executes it
-installNixDarwin() {		
+installNixDarwinOld() {		
 
 	log 'Building nix-darwin installer...'
 	cd "${tmpDir}" && nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
