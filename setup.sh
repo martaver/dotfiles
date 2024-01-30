@@ -347,7 +347,7 @@ fi
 
 # implicitely calls `nix-darwin rebuild`` and `brew bundle install``
 log "Applying dotfiles..."
-nix shell nixpkgs#chezmoi -c chezmoi apply
+nix shell nixpkgs#chezmoi -c chezmoi update
 
 # creates the dotfile structure the first time it's run
 # if [[ ! -d "$HOME/.gnupg" ]]; then
