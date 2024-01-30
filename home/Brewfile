@@ -1,5 +1,4 @@
 tap "homebrew/bundle"
-tap "homebrew/cask"
 tap "koekeishiya/formulae"
 tap "hashicorp/tap"
 tap "cirruslabs/cli"
