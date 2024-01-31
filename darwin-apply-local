@@ -1,2 +1,0 @@
-nix shell nixpkgs#chezmoi -c chezmoi apply
-/run/current-system/sw/bin/darwin-rebuild switch --flake "${PWD}/home/dot_config/nix-darwin"

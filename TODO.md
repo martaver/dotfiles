@@ -52,16 +52,15 @@ Why: to get scripts/aliases available globally to all applications/shells, e.g. 
 
 ## Nix
 
-- [ ] Revert to using Determinate's nix installer when following is fixed
+- [*] Revert to using Determinate's nix installer when following is fixed
   - Cannot do nix-darwin install without rebooting first: https://github.com/DeterminateSystems/nix-installer/issues/275
   - Determinate nix installer leaves ~/.nix-channels owned by root: https://github.com/DeterminateSystems/nix-installer/issues/287
+- [*] Install `nix-darwin` with flake instead of downloaded installer.
 - [*] Use `nix-darwin` to manage homebrew: https://daiderd.com/nix-darwin/manual/index.html#opt-homebrew.enable
 - [*] Solve `environment.variables` not being applied. Variables set here are not available in Terminal after `darwin-rebuild switch`
-- [ ] Install `nixpkgs-fmt` via `nix-darwin` in system configuration
-- [ ] Use symlink for nix-darwin configuration
+- [*] Install `nixpkgs-fmt` via `nix-darwin` in system configuration
 - [ ] Use vagrant to configure test VM for building / applying system changes
 - [ ] Structure nix-darwin for hosts/ users/
-- [ ] Use `sudo scutil --set HostName name-you-want` to ensure correct machine name, matching `nix-darwin` configuration
 
 ## Hammerspoon
 

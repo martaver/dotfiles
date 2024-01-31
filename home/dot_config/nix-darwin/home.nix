@@ -7,10 +7,9 @@ in
   home.stateVersion = "23.11";
   home.packages = [
     pkgs.chezmoi
+    pkgs.starship
     # pkgs.any-nix-shell        
-    # pkgs.gh    
-    # pkgs.oh-my-zsh    
-    # pkgs.pure-prompt
+    pkgs.gh
     # pkgs.thefuck
     # pkgs.tldr    
   ];
@@ -21,28 +20,45 @@ in
   #   nix-direnv = {
   #     enable = true;
   #   };
-  # };  
+  # };
+
+  programs.starship = {
+    enable = true;
+    # Configuration reference: https://starship.rs/config/#prompt
+    settings = {
+      format = ''$all'';
+      add_newline = true;
+    };
+  };
 
   # # zsh configuration
   programs.zsh = {
     enable = true;
-    #   enableAutosuggestions = true;
-    #   enableSyntaxHighlighting = true;
-    #   oh-my-zsh = {
-    #     enable = true;
-    #     plugins = [        
-    #       "gh"
-    #       "git"
-    #       "macos"
-    #       "ssh-agent"
-    #       "sudo"        
-    #       "vscode"
-    #     ];
-    #     theme = "";
-    #     extraConfig = ''
-    #       zstyle :omz:plugins:ssh-agent lazy yes
-    #     '';
-    #   };
+    enableAutosuggestions = true;
+    enableCompletion = false;
+    syntaxHighlighting.enable = true;
+    zplug = {
+      enable = true;
+      plugins = [
+        {
+          name = "marlonrichert/zsh-autocomplete";
+        }
+      ];
+    };
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "gh"
+        "git"
+        "macos"
+        "ssh-agent"
+        "sudo"
+      ];
+      theme = "";
+      extraConfig = ''
+        zstyle :omz:plugins:ssh-agent lazy agent-forwarding yes
+      '';
+    };
 
     shellAliases = {
       ".." = "cd ..";
@@ -68,6 +84,10 @@ in
     #   # Load exports
     #   source $HOME/.yabai/.fns
     # '';
+
+    initExtra = ''
+      bindkey "''${key[Up]}" up-line-or-search
+    '';
 
     # # Extra content for .envrc
     # initExtra = ''      
