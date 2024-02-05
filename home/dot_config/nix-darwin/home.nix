@@ -86,7 +86,10 @@ in
     # '';
 
     initExtra = ''
-      bindkey "''${key[Up]}" up-line-or-search
+      # A fix for problems with marlonrichert/zsh-autocomplete in nix:
+      # as per https://nixos.wiki/wiki/Zsh
+      # 
+      # bindkey "''${key[Up]}" up-line-or-search
     '';
 
     # # Extra content for .envrc
