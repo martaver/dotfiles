@@ -2,18 +2,6 @@
 
 # All system packages
 let
-  syspkgs = [
-    pkgs.curl
-    pkgs.direnv
-    pkgs.git
-    pkgs.jq
-    pkgs.nodejs
-    pkgs.openssh
-    pkgs.wget
-    pkgs.yq-go
-    pkgs.zsh
-    pkgs.nixpkgs-fmt
-  ];
 
 in
 {
@@ -51,7 +39,18 @@ in
   };
 
   # System packages
-  environment.systemPackages = syspkgs;
+  environment.systemPackages = [
+    pkgs.curl
+    pkgs.direnv
+    pkgs.git
+    pkgs.jq
+    pkgs.openssh
+    pkgs.wget
+    pkgs.yq-go
+    pkgs.zsh
+    pkgs.nixpkgs-fmt
+    pkgs.iterm2
+  ];
 
   # environment.systemPath = [
   #   "/Users/martaver/.yabai/bin"
