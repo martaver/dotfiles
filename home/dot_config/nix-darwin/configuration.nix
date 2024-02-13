@@ -49,6 +49,7 @@ in
     pkgs.yq-go
     pkgs.zsh
     pkgs.nixpkgs-fmt
+    pkgs.nixd
     pkgs.iterm2
   ];
 
@@ -113,12 +114,18 @@ in
   #   ];
   # };
 
-  # services.skhd.enable = true;
+  services.karabiner-elements = {
+    enable = true;
+  };
 
-  # services.yabai = {
-  #   enable = true;
-  #   enableScriptingAddition = true;
-  # };
+  services.skhd = {
+    enable = true;
+  };
+
+  services.yabai = {
+    enable = true;
+    enableScriptingAddition = true;
+  };
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;

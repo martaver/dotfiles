@@ -8,6 +8,7 @@ in
   home.packages = [
     pkgs.chezmoi
     pkgs.starship
+
     # pkgs.any-nix-shell        
     pkgs.gh
     # pkgs.thefuck
@@ -20,11 +21,12 @@ in
   #   nix-direnv = {
   #     enable = true;
   #   };
-  # };
+  # };  
 
   programs.starship = {
     enable = true;
     # Configuration reference: https://starship.rs/config/#prompt
+
     settings = {
       format = ''$all'';
       add_newline = true;
@@ -90,6 +92,8 @@ in
       # as per https://nixos.wiki/wiki/Zsh
       # 
       # bindkey "''${key[Up]}" up-line-or-search
+
+      export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
     '';
 
     # # Extra content for .envrc

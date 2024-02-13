@@ -1,7 +1,7 @@
 ####### Shortcut Hotkeys #############
 # open terminal
 
-alt - 0x32 : kitty_quake "quake-terminal"
+# alt - 0x32 : kitty_quake "quake-terminal"
 alt + shift - return : kitty --instance-group "General" --single-instance
 
 # restart Yabi, SpaceBar, and SKHD

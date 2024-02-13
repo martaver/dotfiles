@@ -6,6 +6,7 @@
   "workbench.colorTheme": "Solarized Dark",
   "explorer.autoReveal": false,
   "files.exclude": {
+    "**/node_modules": true,
     "**/.git": true,
     "**/.svn": true,
     "**/.hg": true,
@@ -20,9 +21,6 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "javascript.preferences.useAliasesForRenames": false,
   "typescript.preferences.useAliasesForRenames": false,
-  "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
   "debug.javascript.autoAttachFilter": "onlyWithFlag",
   "editor.minimap.enabled": false,
   "editor.accessibilitySupport": "off",
@@ -30,7 +28,7 @@
   "explorer.fileNesting.enabled": false,
   "explorer.fileNesting.expand": false,
   "diffEditor.ignoreTrimWhitespace": false,
-  "editor.suggest.showKeywords": false,
+  // "editor.suggest.showKeywords": false,
   "editor.wordBasedSuggestions": "off",
   //
   // AutoSave & AutoFormat OnSave
@@ -38,18 +36,18 @@
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
   "files.autoSave": "onFocusChange",
-  "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
-    "source.organizeImports": "explicit"
-  },
   //
   "json.schemas": [
     {
-      "fileMatch": ["appsscript.json"],
+      "fileMatch": [
+        "appsscript.json"
+      ],
       "url": "http://json.schemastore.org/appsscript"
     },
     {
-      "fileMatch": [".clasp.json"],
+      "fileMatch": [
+        ".clasp.json"
+      ],
       "url": "http://json.schemastore.org/clasp"
     }
   ],
@@ -61,9 +59,55 @@
     "*.mts": "${capture}.typegen.ts",
     "*.cts": "${capture}.typegen.ts"
   },
-  "editor.formatOnSave": true,
   "gitlens.codeLens.recentChange.enabled": false,
-  "gitlens.heatmap.locations": ["gutter", "line", "overview"],
-  "git.autofetch": true,
-  "gitTreeCompare.diffMode": "full"
+  "gitlens.heatmap.locations": [
+    "gutter",
+    "line",
+    "overview"
+  ],
+  "git.autofetch": false,
+  "gitTreeCompare.diffMode": "full",
+  "security.workspace.trust.untrustedFiles": "open",
+  "nix.enableLanguageServer": true,
+  "nix.serverPath": "nixd",
+  "nix.serverSettings": {
+    // settings for 'nixd' LSP
+    "nixd": {
+      "eval": {
+        // stuff
+      },
+      "formatting": {
+        "command": "nixpkgs-fmt"
+      },
+      // "options": {
+      //   "enable": true,
+      //   "target": {
+      //     // tweak arguments here
+      //     "args": [],
+      //     // NixOS options
+      //     "installable": "/Users/sebastiannemeth/.local/share/chezmoi/home/dot_config/nix-darwin#darwinConfigurations.PHLTHEL0266s-MacBook-Pro.options"
+      //     // Flake-parts options
+      //     // "installable": "<flakeref>#debug.options"
+      //     // Home-manager options
+      //     // "installable": "<flakeref>#homeConfigurations.<name>.options"
+      //   }
+      // }
+    },
+    // settings for 'nil' LSP
+    "nil": {
+      // "diagnostics": {
+      //   "ignored": [
+      //     "unused_binding",
+      //     "unused_with"
+      //   ]
+      // },
+      "formatting": {
+        "command": [
+          "nixpkgs-fmt"
+        ]
+      }
+    }
+  },
+  "playwright.reuseBrowser": true,
+  "playwright.showTrace": false
 }

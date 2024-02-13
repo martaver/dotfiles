@@ -59,8 +59,11 @@ Why: to get scripts/aliases available globally to all applications/shells, e.g. 
 - [*] Use `nix-darwin` to manage homebrew: https://daiderd.com/nix-darwin/manual/index.html#opt-homebrew.enable
 - [*] Solve `environment.variables` not being applied. Variables set here are not available in Terminal after `darwin-rebuild switch`
 - [*] Install `nixpkgs-fmt` via `nix-darwin` in system configuration
+- [ ] Install `nil` for nix LSP support.
+  - [ ] Check out `nixd` once it seems to have settled down a bit into its `nixd-next` releases.
 - [ ] Use vagrant to configure test VM for building / applying system changes
 - [ ] Structure nix-darwin for hosts/ users/
+- [ ] Check out: https://github.com/srid/nixos-flake?tab=readme-ov-file for a way to work with nixos/nix-darwin/home-manager consistently
 
 ## Hammerspoon
 
