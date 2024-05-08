@@ -4,6 +4,29 @@
   "explorer.confirmDelete": false,
   "explorer.openEditors.visible": 0,
   "workbench.colorTheme": "Solarized Dark",
+  "workbench.colorCustomizations": {
+    "[Solarized Dark]": {
+      "editorCursor.foreground": "#00fff7",
+    }
+  },
+  "editor.tokenColorCustomizations": {
+    "[Solarized Dark]": {
+      "textMateRules": [
+        {
+          "scope": [
+            "entity.name.class",
+            "entity.name.type",
+            "entity.name.namespace",
+            "entity.name.scope-resolution"
+          ],
+          "settings": {
+            "foreground": "#d85e2a",
+            "fontStyle": ""
+          }
+        }
+      ]
+    }
+  },  
   "explorer.autoReveal": false,
   "files.exclude": {
     "**/node_modules": true,
@@ -109,5 +132,6 @@
     }
   },
   "playwright.reuseBrowser": true,
-  "playwright.showTrace": false
+  "playwright.showTrace": false,
+  "security.promptForLocalFileProtocolHandling": false
 }

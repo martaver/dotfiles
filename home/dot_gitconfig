@@ -1,0 +1,19 @@
+[user]
+  email = sebastian@cleric.sh
+  username = martaver
+  name = Sebastian Nemeth
+
+[core]
+	editor = code --wait
+
+[push]
+  autoSetupRemote = true
+
+[includeIf "gitdir:~/cleric-sh/"]
+  path = ~/cleric-sh/.gitconfig
+
+[includeIf "gitdir:~/martaver/"]
+  path = ~/martaver/.gitconfig
+
+[includeIf "gitdir:~/holvi/"]
+  path = ~/holvi/.gitconfig

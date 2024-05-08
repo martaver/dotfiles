@@ -1,0 +1,17 @@
+[user]
+  email = snemeth@holvi.com
+  username = holvi-sebastian
+  name = Sebastian Nemeth
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH34cbWKpZS5c78FqioKPf/jpobCBb2rLmkiWBsrzd63
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+  gpgsign = true
+
+[core]
+    sshCommand = "ssh -i ~/.ssh/id_holvi.pub -o IdentitiesOnly=yes"

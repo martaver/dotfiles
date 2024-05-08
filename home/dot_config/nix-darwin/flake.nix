@@ -11,7 +11,7 @@
 
   outputs = { self, nixpkgs, darwin, home-manager }: {
     # PHLTHEL0266s-MacBook-Pro
-    darwinConfigurations."PHLTHEL0266s-MacBook-Pro" = darwin.lib.darwinSystem {
+    darwinConfigurations."PHLTHEL0266sMBP" = darwin.lib.darwinSystem {
       system = "aarch64-darwin"; # Apple Silicon      
       modules = [
         ./configuration.nix

@@ -124,7 +124,7 @@ in
 
   services.yabai = {
     enable = true;
-    enableScriptingAddition = true;
+    enableScriptingAddition = false;
   };
 
   # Auto upgrade nix package and the daemon service.
@@ -147,10 +147,6 @@ in
     # Following line should allow us to avoid a logout/login cycle
     # Inspired by: https://medium.com/@zmre/nix-darwin-quick-tip-activate-your-preferences-f69942a93236
     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-
-    # yabai installation doesn't clear tmp files sometimes, so do it after activation
-    # rm -rf /tmp/yabai*
-    # yabai --start-service
   '';
 
   users.users.martaver.home = "/Users/martaver";
