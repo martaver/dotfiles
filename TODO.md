@@ -7,7 +7,6 @@ Search /r/UnixPorn for pro setups.
 [*] Split keymaps project out
 [*] Rename repo to dotfiles, or ~ to dotfiles or something.
 
-[ ] helix editor?
 [ ] neovim + vscode?
 [ ] tree-sitter
 [ ] neorg
@@ -27,6 +26,16 @@ Check out:
 tpope's neovim stuff
 telescope
 harpoon
+nvchad
+nv kickstart.nvim
+
+# Problems
+
+- [ ] `skhd` commands for `yabai` commands for swapping / changing focus of windows are broken
+- [ ] `starship` prompt is slow and sometimes errors when opening prompt (possibly because of `nvm` - drop `nvm` and use `nix-env`?)
+- [ ] sometimes hover breaks... not specific to any particular app, but it can happen in any app... and it can happen to some apps and not others at any point in time
+- [ ] dynamic profiles error in `iTerm`
+- [ ] `iTerm` doesn't start automatically (and silently) on startup
 
 # Terminal
 

@@ -3,13 +3,13 @@ Host *
 
 # LogLevel DEBUG
 
-Host github.com
+Host github.com#martaver
     HostName github.com		
     User git
     IdentityFile ~/.ssh/id_martaver.pub
     IdentitiesOnly yes
 
-Host github.com#id_holvi
+Host github.com
     HostName github.com
     User git
     IdentityFile ~/.ssh/id_holvi.pub

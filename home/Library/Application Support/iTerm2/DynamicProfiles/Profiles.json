@@ -1,6 +1,8 @@
 {
 "Profiles": [
 {
+  "Guid" : "0e69d95c-ea5a-44b2-aab1-18eb9daa8143",
+  "Name" : "Quake Terminal",
   "Working Directory" : "\/Users\/sebastiannemeth",
   "Prompt Before Closing 2" : false,
   "Selected Text Color" : {
@@ -276,10 +278,8 @@
     "Green Component" : 0,
     "Blue Component" : 0,
     "Red Component" : 0.73333334922790527
-  },
-  "Name" : "Quake Terminal",
-  "Blinking Cursor" : false,
-  "Guid" : "1DD4E9B2-53DA-4C97-BB7E-770D90094A42",
+  },  
+  "Blinking Cursor" : false,  
   "Idle Code" : 0,
   "Ansi 10 Color" : {
     "Green Component" : 1,

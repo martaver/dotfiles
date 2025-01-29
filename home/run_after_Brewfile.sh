@@ -31,5 +31,5 @@ brew bundle install --cleanup
 
 if ! [[ "$(vagrant plugin list | grep vagrant-parallels)" =~ "vagrant-parallels" ]]; then
   echo "Installing 'vagrant-parallels' provider..."
-  vagrant plugin install vagrant-parallels
+  VAGRANT_DISABLE_STRICT_DEPENDENCY_ENFORCEMENT=1 vagrant plugin install vagrant-parallels
 fi

@@ -26,7 +26,7 @@
         }
       ]
     }
-  },  
+  },
   "explorer.autoReveal": false,
   "files.exclude": {
     "**/node_modules": true,
@@ -133,5 +133,15 @@
   },
   "playwright.reuseBrowser": true,
   "playwright.showTrace": false,
-  "security.promptForLocalFileProtocolHandling": false
+  "security.promptForLocalFileProtocolHandling": false,
+  "wallaby.node": "/Users/sebastiannemeth/.nvm/versions/node/v20.11.0/bin/node",
+  "terminal.integrated.allowedLinkSchemes": [
+    "file",
+    "http",
+    "https",
+    "mailto",
+    "vscode",
+    "vscode-insiders",
+    "docker-desktop"
+  ],
 }

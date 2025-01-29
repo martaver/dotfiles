@@ -16,12 +16,35 @@ vscode "sumneko.lua"
 vscode "timonwong.shellcheck"
 vscode "dbaeumer.vscode-eslint"
 vscode "ms-playwright.playwright"
-vscode "vue.vscode-typescript-vue-plugin"
-vscode "WallabyJs.wallaby-vscode"
-vscode "WallabyJs.quokka-vscode"
+vscode "vitest.explorer"
+vscode "vue.volar"
+# vscode "WallabyJs.wallaby-vscode"
+# vscode "WallabyJs.quokka-vscode"
 vscode "andrewbranch.vscode-tsserver-debug"
 vscode "hashicorp.terraform"
 vscode "ms-azuretools.vscode-docker"
+vscode "yoavbls.pretty-ts-errors"
+vscode "bierner.markdown-mermaid"
+
+# vscode extensions
+vscode "ms-vscode.extension-test-runner"
+
+# esbuild
+vscode "connor4312.esbuild-problem-matchers"
+
+# python
+vscode "ms-python.python"
+vscode "ms-python.debugpy"
+vscode "ms-python.vscode-pylance"
+
+vscode "ms-vsliveshare.vsliveshare"
+vscode "vercel.turbo-vsc"
+
+cask "google-cloud-sdk"
+
 
 cask "hashicorp/tap/hashicorp-vagrant"
 cask "parallels-virtualization-sdk"
+
+brew "temporal"
+brew "withgraphite/tap/graphite"
