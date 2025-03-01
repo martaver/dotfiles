@@ -204,22 +204,31 @@ installNixDarwin() {
 	log 'Building (flakes) nix-darwin installer...'
 
   # Initialise flake.nix inside
-	mkdir -p ~/.config/nix-darwin
-	cd ~/.config/nix-darwin
-	nix flake init -t nix-darwin
+	sudo mkdir -p /etc/nix-darwin
+	sudo chown $(id -nu):$(id -ng) /etc/nix-darwin
+	cd /etc/nix-darwin
+	
+	# To use Nixpkgs unstable:
+	nix flake init -t nix-darwin/master
+	# To use Nixpkgs 24.11:
+	# nix flake init -t nix-darwin/nix-darwin-24.11
+	
 	sed -i '' "s/simple/$LocalHostName/" flake.nix # Replace 'simple' with LocalHostName
 
 	# Configure Apple Silicon
 	sed -i '' 's/nixpkgs.hostPlatform = "x86_64-darwin";/nixpkgs.hostPlatform = "aarch64-darwin";/' flake.nix # Replace 'x86_64-darwin' with 'aarch64-darwin'
 
 	# Backup existing /etc files
-	sudo mv /etc/nix.conf /etc/nix.conf.backup 
-	sudo mv /etc/zshenv /etc/zshenv.backup 
+	sudo mv /etc/zshenv /etc/zshenv.bak
 
 	# Install nix-darwin
-	nix run nix-darwin -- switch --flake ~/.config/nix-darwin
+	
+ 	# To use Nixpkgs unstable:
+	nix run nix-darwin/master#darwin-rebuild -- switch
+	# To use Nixpkgs 24.11:
+	# nix run nix-darwin/nix-darwin-24.11#darwin-rebuild -- switch
 
-	log "Configuring environment..."
+	log "Configuring nix-darwin environment..."
 	set +o errexit
 	set +o nounset
 	set +o pipefail
@@ -228,6 +237,7 @@ installNixDarwin() {
 	set -o errexit
 	set -o nounset
 	set -o pipefail
+ 	log "Configured nix-darwin environment successfully"
 }
 
 # Usage: installNixDarwin
@@ -325,6 +335,12 @@ checkDep 'rosetta' '/usr/bin/pgrep oahd' 'sudo softwareupdate --install-rosetta 
 # nix is needed to configure the entire system
 checkDep 'nix' 'command -v nix' 'installNix'
 
+# init chezmoi from dotfiles repo, to load nix, nix-darwin and home-manager configuration
+if [[ ! -d "$HOME/.local/share/chezmoi" ]]; then
+	log "Fetching dotfiles..."
+	nix shell nixpkgs#chezmoi -c chezmoi init "${dotfiles}"
+fi
+
 # nix-darwin is what actually does the configuration
 checkDep 'nix-darwin' 'command -v darwin-rebuild' 'installNixDarwin'
 
@@ -339,9 +355,6 @@ checkDep 'brew' 'command -v brew' 'installBrew'
 # bwUnlock
 
 if [[ ! -d "$HOME/.local/share/chezmoi" ]]; then
-	log "Fetching dotfiles..."
-	nix shell nixpkgs#chezmoi -c chezmoi init "${dotfiles}"
-
 	nix shell nixpkgs#chezmoi -c chezmoi apply "${HOME}/.config/darwin"
 
 	log "Bootstrapping nix-darwin flake..."
