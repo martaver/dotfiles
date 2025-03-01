@@ -283,6 +283,16 @@ installNixDarwinOld() {
 #
 # Downloads and executes the brew installer script
 installBrew() {
+
+	log "Configuring shell profiles for brew..."
+	# Note: switched from /opt/homebrew/bin/brew to use the bin below
+	# - it might be that on M1 mac or Ventura, brew is installed there.
+	# shellcheck disable=SC2016
+	echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>"${HOME}/.bash_profile"
+	# shellcheck disable=SC2016
+	echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>"${HOME}/.zprofile"
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+ 
 	# NONINTERACTIVE=1
 	# local brewURL="${brewRepo}/${brewCommitSha}/install.sh"
 	
@@ -299,21 +309,12 @@ installBrew() {
 	# log "Running brew installer..."
 	# bash "NONINTERACTIVE=1 ${tmpDir}/brew.sh"
 	
-	log "Configuring shell profiles for brew..."
-	# Note: switched from /opt/homebrew/bin/brew to use the bin below
-	# - it might be that on M1 mac or Ventura, brew is installed there.
-	# shellcheck disable=SC2016
-	echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>"${HOME}/.bash_profile"
-	# shellcheck disable=SC2016
-	echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>"${HOME}/.zprofile"
-	eval "$(/opt/homebrew/bin/brew shellenv)"
-	
 	log "Configuring brew environment..."
 	set +o errexit
 	set +o nounset
 	set +o pipefail
 	# shellcheck disable=SC1091
-	source "${HOME}/.bash_profile" 	
+	source "${HOME}/.bash_profile"
 	set -o errexit
 	set -o nounset
 	set -o pipefail
