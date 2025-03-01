@@ -124,9 +124,9 @@ in
   #   ];
   # };
 
-  services.karabiner-elements = {
-    enable = true;
-  };
+  # services.karabiner-elements = {
+  #   enable = true;
+  # };
 
   services.skhd = {
     enable = true;
