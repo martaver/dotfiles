@@ -290,7 +290,7 @@ installBrew() {
 	# curl "${brewURL}" -o "${tmpDir}/brew.sh" &>/dev/null
 	
 	log "Downloading install script and running non-interactively..."
-	/bin/bash -c "sudo NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	# log "Validating checksum..."
 	# if ! echo "${brewChecksum}  ${tmpDir}/brew.sh" | shasum -a 256 -c; then
 	# 	die "Checksum validation failed; cannot continue"
