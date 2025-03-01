@@ -209,7 +209,8 @@ installNixDarwin() {
 
   	# Initialise flake.nix inside
 	sudo mkdir -p /etc/nix-darwin
-	sudo chown $(id -nu):$(id -ng) $nixDarwinDir
+	# sudo chown $(id -nu):$(id -ng) $nixDarwinDir
+ 	sudo chown $(id -nu):$(id -ng) /etc/nix-darwin
 	cd /etc/nix-darwin
 	
 	# To use Nixpkgs unstable:
