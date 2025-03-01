@@ -230,7 +230,7 @@ installNixDarwin() {
 	# Install nix-darwin
 
 	# To use flake.nix stored in chezmoi dotfiles repo:
- 	nix run nix-darwin/master#darwin-rebuild -- switch --flake "$nixDarwinInstallDir#$init"
+ 	nix run nix-darwin/master#darwin-rebuild -- switch --flake "$nixDarwinInstallDir#init"
  
  	# To use Nixpkgs unstable:
 	# nix run nix-darwin/master#darwin-rebuild -- switch
