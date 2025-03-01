@@ -332,7 +332,7 @@ if [[ ! -d "$cmPath" ]]; then
 	nix shell nixpkgs#chezmoi -c chezmoi init "${dotfiles}"
 else
 	log "Fetching dotfiles..."
-	nix shell nixpkgs#chezmoi -c chezmoi init "${dotfiles}"
+	nix shell nixpkgs#chezmoi -c chezmoi git pull "${dotfiles}"
 fi
 
 # nix-darwin is what actually does the configuration
