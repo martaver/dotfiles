@@ -42,6 +42,8 @@ vscode "vercel.turbo-vsc"
 
 cask "google-cloud-sdk"
 
+cask "karabiner-elements"
+
 
 cask "hashicorp/tap/hashicorp-vagrant"
 cask "parallels-virtualization-sdk"
