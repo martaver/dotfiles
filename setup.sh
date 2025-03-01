@@ -328,6 +328,9 @@ checkDep 'nix' 'command -v nix' 'installNix'
 
 # init chezmoi from dotfiles repo, to load nix, nix-darwin and home-manager configuration
 if [[ ! -d "$cmPath" ]]; then
+	log "Initialising dotfiles..."
+	nix shell nixpkgs#chezmoi -c chezmoi init "${dotfiles}"
+else
 	log "Fetching dotfiles..."
 	nix shell nixpkgs#chezmoi -c chezmoi init "${dotfiles}"
 fi
