@@ -40,7 +40,7 @@
     };
 
     # "Sebastians-MBP" (default for unnamed MBP install)
-    darwinConfigurations."Sebastians-MBP" = darwin.lib.darwinSystem {
+    darwinConfigurations."Sebastians-MacBook-Pro" = darwin.lib.darwinSystem {
       system = "aarch64-darwin"; # Apple Silicon
       # system = "x86_64-darwin"; # Intel
       modules = [
