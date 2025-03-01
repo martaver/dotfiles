@@ -283,20 +283,23 @@ installNixDarwinOld() {
 #
 # Downloads and executes the brew installer script
 installBrew() {
-	local brewURL="${brewRepo}/${brewCommitSha}/install.sh"
+	# NONINTERACTIVE=1
+	# local brewURL="${brewRepo}/${brewCommitSha}/install.sh"
 
-	log "Downloading install script from ${brewURL}..."
-	curl "${brewURL}" -o "${tmpDir}/brew.sh" &>/dev/null
+	# log "Downloading install script from ${brewURL}..."
+	# curl "${brewURL}" -o "${tmpDir}/brew.sh" &>/dev/null
 
-	log "Validating checksum..."
-	if ! echo "${brewChecksum}  ${tmpDir}/brew.sh" | shasum -a 256 -c; then
-		die "Checksum validation failed; cannot continue"
-	fi
+ 	log "Downloading install script and running non-interactively..."
+  	/bin/bash -c "NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	# log "Validating checksum..."
+	# if ! echo "${brewChecksum}  ${tmpDir}/brew.sh" | shasum -a 256 -c; then
+	# 	die "Checksum validation failed; cannot continue"
+	# fi
 
-	log "Running brew installer..."
-	bash "${tmpDir}/brew.sh"
+	# log "Running brew installer..."
+	# bash "NONINTERACTIVE=1 ${tmpDir}/brew.sh"
 
-	log "Configuring environment..."
+	log "Configuring shell profiles for brew..."
 	# Note: switched from /opt/homebrew/bin/brew to use the bin below
 	# - it might be that on M1 mac or Ventura, brew is installed there.
 	# shellcheck disable=SC2016
@@ -305,12 +308,13 @@ installBrew() {
 	echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>"${HOME}/.zprofile"
 	eval "$(/opt/homebrew/bin/brew shellenv)"
 
-	log "Configuring environment..."
+	log "Configuring brew environment..."
 	set +o errexit
 	set +o nounset
 	set +o pipefail
 	# shellcheck disable=SC1091
-	source "${HOME}/.bash_profile"
+	# source "${HOME}/.bash_profile"
+ 	source "${HOME}/.zprofile"
 	set -o errexit
 	set -o nounset
 	set -o pipefail
