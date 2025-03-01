@@ -45,6 +45,9 @@ readonly brewChecksum='98a0040bd3dc4b283780a010ad670f6441d5da9f32b2cb83d28af6ad4
 
 readonly LocalHostName="$(scutil --get LocalHostName)"
 
+readonly cmPath="$HOME/.local/share/chezmoi"
+readonly nixDarwinDir="$cmPath/home/dot_config/nix-darwin"
+
 # Usage: log MESSAGE
 #
 # Prints all arguments on the standard output stream
@@ -203,28 +206,35 @@ installNix() {
 installNixDarwin() {
 	log 'Building (flakes) nix-darwin installer...'
 
+	if [[ ! -d "$cmPath" ]]; then
+		die "Chezmoi not initialised, initialise chezmoi from dotfiles repo first..."
+	fi
+
   	# Initialise flake.nix inside
-	sudo mkdir -p /etc/nix-darwin
-	sudo chown $(id -nu):$(id -ng) /etc/nix-darwin
-	cd /etc/nix-darwin
+	# sudo mkdir -p /etc/nix-darwin
+	sudo chown $(id -nu):$(id -ng) $nixDarwinDir
+	# cd /etc/nix-darwin
 	
 	# To use Nixpkgs unstable:
-	nix flake init -t nix-darwin/master
+	# nix flake init -t nix-darwin/master
 	# To use Nixpkgs 24.11:
 	# nix flake init -t nix-darwin/nix-darwin-24.11
 	
-	sed -i '' "s/simple/$LocalHostName/" flake.nix # Replace 'simple' with LocalHostName
+	# sed -i '' "s/simple/$LocalHostName/" flake.nix # Replace 'simple' with LocalHostName
 
 	# Configure Apple Silicon
-	sed -i '' 's/nixpkgs.hostPlatform = "x86_64-darwin";/nixpkgs.hostPlatform = "aarch64-darwin";/' flake.nix # Replace 'x86_64-darwin' with 'aarch64-darwin'
+	# sed -i '' 's/nixpkgs.hostPlatform = "x86_64-darwin";/nixpkgs.hostPlatform = "aarch64-darwin";/' flake.nix # Replace 'x86_64-darwin' with 'aarch64-darwin'
 
 	# Backup existing /etc files
 	sudo mv /etc/zshenv /etc/zshenv.bak
 
 	# Install nix-darwin
-	
+
+	# To use flake.nix stored in chezmoi dotfiles repo:
+ 	nix run nix-darwin/master#darwin-rebuild -- switch --flake "$nixDarwinDir#$LocalHostName"
+ 
  	# To use Nixpkgs unstable:
-	nix run nix-darwin/master#darwin-rebuild -- switch
+	# nix run nix-darwin/master#darwin-rebuild -- switch
 	# To use Nixpkgs 24.11:
 	# nix run nix-darwin/nix-darwin-24.11#darwin-rebuild -- switch
 
@@ -339,7 +349,7 @@ checkDep 'brew' 'command -v brew' 'installBrew'
 checkDep 'nix' 'command -v nix' 'installNix'
 
 # init chezmoi from dotfiles repo, to load nix, nix-darwin and home-manager configuration
-if [[ ! -d "$HOME/.local/share/chezmoi" ]]; then
+if [[ ! -d "$cmPath" ]]; then
 	log "Fetching dotfiles..."
 	nix shell nixpkgs#chezmoi -c chezmoi init "${dotfiles}"
 fi
@@ -354,13 +364,11 @@ checkDep 'nix-darwin' 'command -v darwin-rebuild' 'installNixDarwin'
 # log "Logging into bitwarden..."
 # bwUnlock
 
-if [[ ! -d "$HOME/.local/share/chezmoi" ]]; then
-	nix shell nixpkgs#chezmoi -c chezmoi apply "${HOME}/.config/darwin"
 
-	log "Bootstrapping nix-darwin flake..."
-	cd "${tmpDir}" && nix build "${HOME}/.config/darwin#darwinConfigurations.$LocalHostName.system"
-	cd "${tmpDir}" && ./result/sw/bin/darwin-rebuild switch --flake "${HOME}/.config/darwin#$LocalHostName"
-fi
+
+log "Bootstrapping nix-darwin flake..."
+cd "${tmpDir}" && nix build "$nixDarwinDir#darwinConfigurations.$LocalHostName.system"
+cd "${tmpDir}" && ./result/sw/bin/darwin-rebuild switch --flake "$nixDarwinDir#$LocalHostName"
 
 # implicitely calls `nix-darwin rebuild`` and `brew bundle install``
 log "Applying dotfiles..."
