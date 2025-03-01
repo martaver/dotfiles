@@ -47,6 +47,7 @@ readonly LocalHostName="$(scutil --get LocalHostName)"
 
 readonly cmPath="$HOME/.local/share/chezmoi"
 readonly nixDarwinDir="$cmPath/home/dot_config/nix-darwin"
+readonly nixDarwinInstallDir="$cmPath/home/dot_config/nix-darwin-install"
 
 # Usage: log MESSAGE
 #
@@ -208,20 +209,20 @@ installNixDarwin() {
 
 
   	# Initialise flake.nix inside
-	sudo mkdir -p /etc/nix-darwin
+	# sudo mkdir -p /etc/nix-darwin
 	# sudo chown $(id -nu):$(id -ng) $nixDarwinDir
- 	sudo chown $(id -nu):$(id -ng) /etc/nix-darwin
-	cd /etc/nix-darwin
+ 	# sudo chown $(id -nu):$(id -ng) /etc/nix-darwin
+	# cd /etc/nix-darwin
 	
 	# To use Nixpkgs unstable:
-	nix flake init -t nix-darwin/master
+	# nix flake init -t nix-darwin/master
 	# To use Nixpkgs 24.11:
 	# nix flake init -t nix-darwin/nix-darwin-24.11
 	
-	sed -i '' "s/simple/$LocalHostName/" flake.nix # Replace 'simple' with LocalHostName
+	# sed -i '' "s/simple/$LocalHostName/" flake.nix # Replace 'simple' with LocalHostName
 
 	# Configure Apple Silicon
-	sed -i '' 's/nixpkgs.hostPlatform = "x86_64-darwin";/nixpkgs.hostPlatform = "aarch64-darwin";/' flake.nix # Replace 'x86_64-darwin' with 'aarch64-darwin'
+	sed -i '' 's/nixpkgs.hostPlatform = "x86_64-darwin";/nixpkgs.hostPlatform = "aarch64-darwin";/' "$nixDarwinInstallDir/flake.nix" # Replace 'x86_64-darwin' with 'aarch64-darwin'
 
 	# Backup existing /etc files
 	sudo mv /etc/zshenv /etc/zshenv.bak
@@ -229,10 +230,10 @@ installNixDarwin() {
 	# Install nix-darwin
 
 	# To use flake.nix stored in chezmoi dotfiles repo:
- 	# nix run nix-darwin/master#darwin-rebuild -- switch --flake "$nixDarwinDir#$LocalHostName"
+ 	nix run nix-darwin/master#darwin-rebuild -- switch --flake "$nixDarwinInstallDir#$init"
  
  	# To use Nixpkgs unstable:
-	nix run nix-darwin/master#darwin-rebuild -- switch
+	# nix run nix-darwin/master#darwin-rebuild -- switch
 	# To use Nixpkgs 24.11:
 	# nix run nix-darwin/nix-darwin-24.11#darwin-rebuild -- switch
 
