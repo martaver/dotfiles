@@ -203,7 +203,7 @@ installNix() {
 installNixDarwin() {
 	log 'Building (flakes) nix-darwin installer...'
 
-  # Initialise flake.nix inside
+  	# Initialise flake.nix inside
 	sudo mkdir -p /etc/nix-darwin
 	sudo chown $(id -nu):$(id -ng) /etc/nix-darwin
 	cd /etc/nix-darwin
@@ -332,6 +332,9 @@ checkDep 'xcode' '/usr/bin/xcode-select' 'installXcode'
 # rosetta is needed for running x86_64 applications
 checkDep 'rosetta' '/usr/bin/pgrep oahd' 'sudo softwareupdate --install-rosetta --agree-to-license'
 
+# brew is needed for installing GUI applications (casks)
+checkDep 'brew' 'command -v brew' 'installBrew'
+
 # nix is needed to configure the entire system
 checkDep 'nix' 'command -v nix' 'installNix'
 
@@ -346,9 +349,6 @@ checkDep 'nix-darwin' 'command -v darwin-rebuild' 'installNixDarwin'
 
 # bitwarden-cli is needed to pull down secrets with chezmoi
 # checkDep 'bitwarden-cli' 'command -v bw' 'nix-env -i bitwarden-cli'
-
-# brew is needed for installing GUI applications (casks)
-checkDep 'brew' 'command -v brew' 'installBrew'
 
 # needs to be unlocked before calling chezmoi
 # log "Logging into bitwarden..."
