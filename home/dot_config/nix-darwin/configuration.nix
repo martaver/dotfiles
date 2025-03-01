@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ self, config, pkgs, ... }:
 
 # All system packages
 let
