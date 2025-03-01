@@ -59,11 +59,13 @@ Why: to get scripts/aliases available globally to all applications/shells, e.g. 
   This'll allow us to setup a base VM snapshot more easily without having to comment out the bootstrapping every time.
 - [ ] Split installers from `setup.sh` into scripts under `installers/`
 
-## Nix
+## nix
 
 - [*] Revert to using Determinate's nix installer when following is fixed
   - Cannot do nix-darwin install without rebooting first: https://github.com/DeterminateSystems/nix-installer/issues/275
   - Determinate nix installer leaves ~/.nix-channels owned by root: https://github.com/DeterminateSystems/nix-installer/issues/287
+
+## nix-darwin
 - [*] Install `nix-darwin` with flake instead of downloaded installer.
 - [*] Use `nix-darwin` to manage homebrew: https://daiderd.com/nix-darwin/manual/index.html#opt-homebrew.enable
 - [*] Solve `environment.variables` not being applied. Variables set here are not available in Terminal after `darwin-rebuild switch`

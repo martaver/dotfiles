@@ -180,7 +180,8 @@ installNix() {
 	# ------
 	log "Running (determinate) nix installer..."
 	# Use Determinate Nix Installer: https://github.com/DeterminateSystems/nix-installer
-	curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm	
+	# This call installs the Determinate Nix build with the --determinate option
+	curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm	--determinate
 
 	success "Nix installed successfully"
 	# -------

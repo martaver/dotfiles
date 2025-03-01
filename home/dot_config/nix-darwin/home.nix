@@ -36,7 +36,7 @@ in
   # # zsh configuration
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     enableCompletion = false;
     syntaxHighlighting.enable = true;
     zplug = {

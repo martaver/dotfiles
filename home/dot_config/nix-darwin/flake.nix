@@ -38,5 +38,20 @@
         }
       ];
     };
+
+    # "Sebastians-MBP" (default for unnamed MBP install)
+    darwinConfigurations."Sebastians-MBP" = darwin.lib.darwinSystem {
+      system = "aarch64-darwin"; # Apple Silicon
+      # system = "x86_64-darwin"; # Intel
+      modules = [
+        ./configuration.nix
+        home-manager.darwinModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.martaver = import ./home.nix;
+        }
+      ];
+    };
   };
 }

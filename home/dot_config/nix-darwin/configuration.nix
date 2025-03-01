@@ -5,6 +5,10 @@ let
 
 in
 {
+  nix.enable = false;
+
+  system.stateVersion = 6;
+
   # Default system configurations
   system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
   system.defaults.NSGlobalDomain.InitialKeyRepeat = 15;
@@ -28,7 +32,7 @@ in
 
   # Program configuration
 
-  programs.bash.enableCompletion = true;
+  programs.bash.completion.enable = true;
   programs.zsh.enable = true;
 
   # Environment configuration
@@ -128,19 +132,20 @@ in
   };
 
   # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
+  # services.nix-daemon.enable = true;
+  # nix.useDaemon = true;
 
   # Disable nix-index until we figure out a good (and working) way to load nix-index-database
   # and prevent having to build the whole index every time we build
-  programs.nix-index.enable = false;
+  # programs.nix-index.enable = false;
 
-  # system.stateVersion = 4;
-  nix.extraOptions = ''
-    extra-platforms = aarch64-darwin x86_64-darwin
-    experimental-features = nix-command flakes
-    trusted-users = root martaver sebastiannemeth
-    allow-import-from-derivation = true
-  '';
+  # # system.stateVersion = 4;
+  # nix.extraOptions = ''
+  #   extra-platforms = aarch64-darwin x86_64-darwin
+  #   experimental-features = nix-command flakes
+  #   trusted-users = root martaver sebastiannemeth
+  #   allow-import-from-derivation = true
+  # '';
 
   system.activationScripts.postUserActivation.text = ''
     # Not all darwin settings are activated after nix-darwin configures them until restart
@@ -151,4 +156,5 @@ in
 
   users.users.martaver.home = "/Users/martaver";
   users.users.sebastiannemeth.home = "/Users/sebastiannemeth";
+  users.users."sebastian.nemeth".home = "/Users/sebastian.nemeth";
 }
