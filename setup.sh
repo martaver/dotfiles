@@ -178,7 +178,7 @@ installNix() {
 
 	# Using Determinate Installer
 	# ------
-	log "Running (determinate) nix installer..."
+	log "Running (determinate) nix installer (distro: Determinate)..."
 	# Use Determinate Nix Installer: https://github.com/DeterminateSystems/nix-installer
 	# This call installs the Determinate Nix build with the --determinate option
 	curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm	--determinate
@@ -186,15 +186,18 @@ installNix() {
 	success "Nix installed successfully"
 	# -------
 
-	log 'Configuring environment...'
+	log 'Configuring nix environment...'
 	set +o errexit
 	set +o nounset
 	set +o pipefail
 	# shellcheck disable=SC1091
-	source /etc/zshrc # Load nix cmds into the current shell
+	# Load nix cmds into the current shell, so that we don't have to open a new one
+ 	. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 	set -o errexit
 	set -o nounset
 	set -o pipefail
+ 	nix --version
+ 	log 'Configured nix environment successfully'
 }
 
 installNixDarwin() {
