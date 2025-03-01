@@ -248,35 +248,6 @@ installNixDarwin() {
  	log "Configured nix-darwin environment successfully"
 }
 
-# Usage: installNixDarwin
-#
-# Builds the nix-darwin installer and then executes it
-installNixDarwinOld() {		
-
-	log 'Building nix-darwin installer...'
-	cd "${tmpDir}" && nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
-
-	# nix-darwin complains if this file exists, so we back it up first
-	/usr/bin/sudo mv /etc/nix/nix.conf /etc/nix/nix.conf.backup
-
-	log 'Running nix-darwin installer...'
-	cd "${tmpDir}" && ./result/bin/darwin-installer
-
-	# nix-darwin manages nix itself, so we can remove the global version now
-	log "Removing redundant nix version..."
-	/usr/bin/sudo -i nix-env -e nix
-
-	log "Configuring environment..."
-	set +o errexit
-	set +o nounset
-	set +o pipefail
-	# shellcheck disable=SC1091
-	source /etc/static/bashrc
-	set -o errexit
-	set -o nounset
-	set -o pipefail
-}
-
 # Usage installBrew
 #
 # Downloads and executes the brew installer script
