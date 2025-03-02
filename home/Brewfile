@@ -3,6 +3,7 @@ tap "koekeishiya/formulae"
 tap "hashicorp/tap"
 tap "cirruslabs/cli"
 
+cask "ghostty"
 cask "raycast"
 cask "hammerspoon"
 cask "karabiner-elements"
