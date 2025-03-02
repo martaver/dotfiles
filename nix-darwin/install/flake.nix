@@ -7,14 +7,11 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs }:
+  outputs = { self, nix-darwin }:
   let
-    configuration = { pkgs, ... }: {
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
-      environment.systemPackages =
-        [
-        ];
+    configuration = { ... }: {
+      
+      environment.systemPackages = [];
 
       # Necessary for using flakes on this system.
       nix.enable = false;

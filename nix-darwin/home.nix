@@ -9,11 +9,14 @@ in
     pkgs.chezmoi
     pkgs.starship
 
+
     # pkgs.any-nix-shell        
     pkgs.gh
     # pkgs.thefuck
     # pkgs.tldr    
   ];
+
+  
 
   # # Enable direnv with nix support
   # programs.direnv = {
@@ -23,11 +26,13 @@ in
   #   };
   # };  
 
-  programs.starship = {
+  programs.starship = {    
     enable = true;
+
     # Configuration reference: https://starship.rs/config/#prompt
 
     settings = {
+      
       format = ''$all'';
       add_newline = true;
     };
@@ -91,7 +96,7 @@ in
       # A fix for problems with marlonrichert/zsh-autocomplete in nix:
       # as per https://nixos.wiki/wiki/Zsh
       # 
-      # bindkey "''${key[Up]}" up-line-or-search
+      bindkey "''${key[Up]}" up-line-or-search
 
       export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
     '';

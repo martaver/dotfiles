@@ -5,6 +5,7 @@ tap "cirruslabs/cli"
 
 cask "raycast"
 cask "hammerspoon"
+cask "karabiner-elements"
 
 brew "cirruslabs/cli/tart"
 # brew "koekeishiya/formulae/yabai"
@@ -25,6 +26,7 @@ vscode "hashicorp.terraform"
 vscode "ms-azuretools.vscode-docker"
 vscode "yoavbls.pretty-ts-errors"
 vscode "bierner.markdown-mermaid"
+vscode "christian-kohler.path-intellisense"
 
 # vscode extensions
 vscode "ms-vscode.extension-test-runner"
@@ -42,11 +44,8 @@ vscode "vercel.turbo-vsc"
 
 cask "google-cloud-sdk"
 
-cask "karabiner-elements"
-
 
 cask "hashicorp/tap/hashicorp-vagrant"
 cask "parallels-virtualization-sdk"
 
 brew "temporal"
-brew "withgraphite/tap/graphite"

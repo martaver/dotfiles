@@ -1,4 +1,9 @@
-{ self, config, pkgs, ... }:
+{
+  self,
+  config,
+  pkgs,
+  ...
+}:
 
 # All system packages
 let
@@ -58,7 +63,7 @@ in
     pkgs.wget
     pkgs.yq-go
     pkgs.zsh
-    pkgs.nixpkgs-fmt
+    pkgs.nixfmt-rfc-style
     pkgs.nixd
     pkgs.iterm2
   ];
@@ -112,15 +117,15 @@ in
   #     # {
   #     #   name = "koekeishiya/formulae/skhd";
   #     #   restart_service = "changed";
-  #     # }     
+  #     # }
   #     # {
   #     #   name = "koekeishiya/formulae/yabai";
   #     #   restart_service = "changed";
-  #     # }    
+  #     # }
   #   ];
 
   #   casks = [
-  #     "visual-studio-code"      
+  #     "visual-studio-code"
   #   ];
   # };
 

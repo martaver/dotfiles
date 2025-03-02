@@ -46,8 +46,8 @@ readonly brewChecksum='98a0040bd3dc4b283780a010ad670f6441d5da9f32b2cb83d28af6ad4
 readonly LocalHostName="$(scutil --get LocalHostName)"
 
 readonly cmPath="$HOME/.local/share/chezmoi"
-readonly nixDarwinDir="$cmPath/home/dot_config/nix-darwin"
-readonly nixDarwinInstallDir="$cmPath/home/dot_config/nix-darwin-install"
+readonly nixDarwinDir="$cmPath/nix-darwin"
+readonly nixDarwinInstallDir="$cmPath/nix-darwin/install"
 
 # Usage: log MESSAGE
 #
