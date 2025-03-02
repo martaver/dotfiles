@@ -25,11 +25,11 @@ brew bundle install --cleanup
 #   yabai --start-service
 # fi
 
-# if [ ! -f ~/Library/LaunchAgents/com.koekeishiya.skhd.plist ]; then
-#   echo 'Starting/installing skhd...'
-#   skhd --install-service
-#   skhd --start-service
-# fi
+if [ ! -f ~/Library/LaunchAgents/com.koekeishiya.skhd.plist ]; then
+  echo 'Starting/installing skhd...'
+  skhd --install-service
+  skhd --start-service
+fi
 
 if ! [[ "$(vagrant plugin list | grep vagrant-parallels)" =~ "vagrant-parallels" ]]; then
   echo "Installing 'vagrant-parallels' provider..."

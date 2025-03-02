@@ -1,18 +1,18 @@
 ####### Shortcut Hotkeys #############
-# open terminal
 
-# alt - 0x32 : kitty_quake "quake-terminal"
-alt + shift - return : kitty --instance-group "General" --single-instance
-
-# restart Yabi, SpaceBar, and SKHD
+# # restart Yabi, and SKHD
 alt + shift - r : \
     launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"; \
     skhd --reload
 
 
 ####### Application Blacklists #############
-# .blacklist [
-#  "Kitty"
-# ]
+# .blacklist [ "Ghostty" ]
 
 .load ".yabai/.skhdrc"
+
+# Open Ghostty
+cmd + shift - backspace : open -a Ghostty.app;
+
+# Open VSCode in a new window
+cmd + shift - 0x2A : open -na "Visual Studio Code.app" --args --new-window;

@@ -41,6 +41,8 @@ in
   system.defaults.finder.FXEnableExtensionChangeWarning = false;
   system.defaults.finder.QuitMenuItem = true;
 
+  
+
   # Program configuration
 
   programs.bash.completion.enable = true;
@@ -65,7 +67,6 @@ in
     pkgs.zsh
     pkgs.nixfmt-rfc-style
     pkgs.nixd
-    pkgs.iterm2
     pkgs.fswatch
   ];
 
@@ -134,30 +135,16 @@ in
   #   enable = true;
   # };
 
-  services.skhd = {
-    enable = true;
-  };
+  # services.skhd = {
+  #   enable = true;
+  # };
+
+  # services.skhd.skhdConfig = "cmd + shift - r   :   code";
 
   services.yabai = {
     enable = true;
     enableScriptingAddition = false;
   };
-
-  # Auto upgrade nix package and the daemon service.
-  # services.nix-daemon.enable = true;
-  # nix.useDaemon = true;
-
-  # Disable nix-index until we figure out a good (and working) way to load nix-index-database
-  # and prevent having to build the whole index every time we build
-  # programs.nix-index.enable = false;
-
-  # # system.stateVersion = 4;
-  # nix.extraOptions = ''
-  #   extra-platforms = aarch64-darwin x86_64-darwin
-  #   experimental-features = nix-command flakes
-  #   trusted-users = root martaver sebastiannemeth
-  #   allow-import-from-derivation = true
-  # '';
 
   system.activationScripts.postUserActivation.text = ''
     # Not all darwin settings are activated after nix-darwin configures them until restart
