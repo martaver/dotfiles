@@ -1,7 +1,12 @@
-{ config, pkgs, machnix, ... }:
+{
+  config,
+  pkgs,
+  machnix,
+  ...
+}:
 let
-  # chezmoi = pkgs.callPackage ./packages/chezmoi.nix { };  
 in
+# chezmoi = pkgs.callPackage ./packages/chezmoi.nix { };
 {
   # User-specific packages
   home.stateVersion = "23.11";
@@ -9,30 +14,27 @@ in
     pkgs.chezmoi
     pkgs.starship
 
-
-    # pkgs.any-nix-shell        
+    # pkgs.any-nix-shell
     pkgs.gh
     # pkgs.thefuck
-    # pkgs.tldr    
+    # pkgs.tldr
   ];
-
-  
 
   # # Enable direnv with nix support
   # programs.direnv = {
-  #   enable = true; 
+  #   enable = true;
   #   nix-direnv = {
   #     enable = true;
   #   };
-  # };  
+  # };
 
-  programs.starship = {    
+  programs.starship = {
     enable = true;
 
     # Configuration reference: https://starship.rs/config/#prompt
 
     settings = {
-      
+
       format = ''$all'';
       add_newline = true;
     };
@@ -96,13 +98,13 @@ in
       # A fix for problems with marlonrichert/zsh-autocomplete in nix:
       # as per https://nixos.wiki/wiki/Zsh
       # 
-      bindkey "''${key[Up]}" up-line-or-search
+      # bindkey "''${key[Up]}" up-line-or-search
 
       export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
     '';
 
     # # Extra content for .envrc
-    # initExtra = ''      
+    # initExtra = ''
 
     #   # Setup pure
     #   fpath+=${pkgs.pure-prompt}/share/zsh/site-functions
@@ -111,7 +113,7 @@ in
     #   zstyle :prompt:pure:path color green
 
     #   # Configure thefuck
-    #   eval $(thefuck --alias)      
+    #   eval $(thefuck --alias)
 
     #   # Configure any-nix-shell
     #   any-nix-shell zsh --info-right | source /dev/stdin
@@ -121,7 +123,7 @@ in
     # initExtraBeforeCompInit = ''
     #   # Add completions
     #   fpath+=${pkgs.chezmoi}/share/zsh/site-functions
-    #   fpath+=${pkgs.google-cloud-sdk}/share/zsh/site-functions      
+    #   fpath+=${pkgs.google-cloud-sdk}/share/zsh/site-functions
     # '';
   };
 }

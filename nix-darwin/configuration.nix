@@ -66,6 +66,7 @@ in
     pkgs.nixfmt-rfc-style
     pkgs.nixd
     pkgs.iterm2
+    pkgs.fswatch
   ];
 
   # environment.systemPath = [
