@@ -12,6 +12,9 @@ brew "cirruslabs/cli/tart"
 # brew "koekeishiya/formulae/yabai"
 brew "koekeishiya/formulae/skhd"
 
+# 'gettext' commands, e.g. 'msgcat'
+brew "gettext"
+
 cask "visual-studio-code"
 vscode "jnoortheen.nix-ide"
 vscode "sumneko.lua"
