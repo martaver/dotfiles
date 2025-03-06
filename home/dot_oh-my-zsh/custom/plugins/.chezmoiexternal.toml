@@ -13,3 +13,7 @@
     url = "https://github.com/marlonrichert/zsh-autocomplete.git"
     refreshPeriod = "168h"
 
+["./pnpm-shell-completion"]
+    type = "git-repo"
+    url = "https://github.com/g-plane/pnpm-shell-completion.git"
+    refreshPeriod = "168h"

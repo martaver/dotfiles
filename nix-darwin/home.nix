@@ -1,6 +1,12 @@
-{ config, pkgs, machnix, ... }:
+{
+  config,
+  pkgs,
+  machnix,
+  ...
+}:
 let
-in {
+in
+{
   # User-specific packages
   home.stateVersion = "23.11";
   home.packages = with pkgs; [
@@ -8,7 +14,7 @@ in {
     starship
     gh
 
-    # pkgs.any-nix-shell    
+    # pkgs.any-nix-shell
     # pkgs.thefuck
     # pkgs.tldr
   ];
@@ -35,6 +41,10 @@ in {
   programs.zsh = {
     enable = true;
 
+    # Uncomment this to run the shell profile
+    # to identify what's slowing down shell initialisation
+    # zprof.enable = true;
+
     # Extra environment variables
     envExtra = ''
       # Load exports
@@ -50,41 +60,21 @@ in {
     # See: https://github.com/marlonrichert/zsh-autocomplete?tab=readme-ov-file#installation--setup
     enableCompletion = false;
 
-    zplug = {
-      enable = true;
-      plugins = [{
-        # pnpm's completions for zsh out of the box don't work (as of v10)
-        #
-        # As a result, when typing pnpm commands, zsh-autocomplete lags trying
-        # to find completion files that are apparently broken
-        # See: https://github.com/pnpm/pnpm/issues/4564
-        # See: https://github.com/pnpm/pnpm/issues/7986
-        #
-        # And on pnpm 9's completions being incompatible with pnpm 10
-        # See: https://pnpm.io/completion
-        #
-        # This third party zsh plugin install working pnpm completions
-        # and also solves the lagging issue
-        name = "g-plane/pnpm-shell-completion";
-        tags = [ "hook-build:./zplug.zsh" "defer:2" ];
-      }];
-    };
-
     oh-my-zsh = {
       enable = true;
       plugins = [
         # This plugin ensures ssh-agent is enabled when entering a shell.
         # Ref: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/ssh-agent
-        # 
+        #
         # This is what makes ~/.ssh/config take effect and use
         # 1Password ssh-agent for identities and biometrics for auth
         "ssh-agent"
 
         # Adds an interactive chooser for 'cd'.
         # Ref: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/zsh-interactive-cd
-        # 
+        #
         # Type 'cd ' + TAB to display it
-        # - use Up/Down Tab/Shift-Tab to scroll 
+        # - use Up/Down Tab/Shift-Tab to scroll
         # - use ENTER to select
         # - press TAB again to continue choosing from the next dir
         "zsh-interactive-cd"
@@ -98,6 +88,23 @@ in {
         # with others installed by other plugin manages, e.g. with
         # zsh-autocomplete, which has no native omz package.
         # They are clones into ~/.oh-my-zsh/custom/plugins by chezmoi.
+
+        # Adds completions for pnpm.
+        # Ref: https://github.com/g-plane/pnpm-shell-completion
+        #
+        # pnpm's completions for zsh out of the box don't work (as of v10)
+        #
+        # As a result, when typing pnpm commands, zsh-autocomplete lags trying
+        # to find completion files that are apparently broken
+        # See: https://github.com/pnpm/pnpm/issues/4564
+        # See: https://github.com/pnpm/pnpm/issues/7986
+        #
+        # And on pnpm 9's completions being incompatible with pnpm 10
+        # See: https://pnpm.io/completion
+        #
+        # This third party zsh plugin install working pnpm completions
+        # and also solves the lagging issue
+        "pnpm-shell-completion"
 
         # Adds inline historical command suggestions as you type.
         # Ref: https://github.com/zsh-users/zsh-autosuggestions.git
