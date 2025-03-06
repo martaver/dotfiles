@@ -1,15 +1,9 @@
-{
-  self,
-  config,
-  pkgs,
-  ...
-}:
+{ self, config, pkgs, ... }:
 
 # All system packages
 let
 
-in
-{
+in {
   # Disable nix-darwin's control of the nix installation, which is managed by Determinate.
   nix.enable = false;
 
@@ -53,14 +47,14 @@ in
   };
 
   # System packages
-  environment.systemPackages = with pkgs;[
+  environment.systemPackages = with pkgs; [
     curl
     direnv
     git
     jq
     openssh
     wget
-    yq-go    
+    yq-go
     fswatch
     zsh
     zsh-completions
@@ -70,8 +64,6 @@ in
     pnpm
     fzf
   ];
-
-
 
   # environment.systemPath = [
   #   "/Users/martaver/.yabai/bin"

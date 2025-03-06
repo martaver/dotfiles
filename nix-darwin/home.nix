@@ -9,12 +9,12 @@ in
 {
   # User-specific packages
   home.stateVersion = "23.11";
-  home.packages = [
-    pkgs.chezmoi
-    pkgs.starship
-
-    # pkgs.any-nix-shell
-    pkgs.gh
+  home.packages = with pkgs; [
+    chezmoi
+    starship
+    gh
+    
+    # pkgs.any-nix-shell    
     # pkgs.thefuck
     # pkgs.tldr
   ];
