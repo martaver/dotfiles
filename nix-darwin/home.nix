@@ -46,22 +46,37 @@ in
     autosuggestion.enable = true;
     enableCompletion = false;
     syntaxHighlighting.enable = true;
+    
     zplug = {
       enable = true;
       plugins = [
         {
           name = "marlonrichert/zsh-autocomplete";
         }
+        {
+          # pnpm's completions for zsh out of the box don't work (as of v10)
+          #
+          # As a result, when typing pnpm commands, zsh-autocomplete lags trying
+          # to find completion files that are apparently broken
+          # See: https://github.com/pnpm/pnpm/issues/4564
+          # See: https://github.com/pnpm/pnpm/issues/7986
+          #
+          # And on pnpm 9's completions being incompatible with pnpm 10
+          # See: https://pnpm.io/completion
+          #
+          # This third party zsh plugin install working pnpm completions
+          # and also solves the lagging issue
+          name = "g-plane/pnpm-shell-completion"; 
+          tags = [ hook-build:./zplug.zsh defer:2 ];
+        }
       ];
     };
+
     oh-my-zsh = {
       enable = true;
       plugins = [
-        "gh"
-        "git"
-        "macos"
         "ssh-agent"
-        "sudo"
+        # "sudo"
       ];
       theme = "";
       extraConfig = ''
@@ -100,7 +115,12 @@ in
       # 
       # bindkey "''${key[Up]}" up-line-or-search
 
-      export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+      eval "$(fnm env --use-on-cd --shell zsh)"
+
+      # zstyle ':autocomplete:*' min-input 3
+      # zstyle -e ':autocomplete:*:*' list-lines 'reply=( $(( LINES / 3 )) )'
+
+      # export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
     '';
 
     # # Extra content for .envrc

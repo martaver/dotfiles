@@ -19,7 +19,7 @@ open -n -W "$TMP/1Password Installer.app"
 echo "Installed!"
 
 echo "Cleaning up..."
-rm -rf "/Applications÷/Install Parallels Desktop.app"
+# rm -rf "/Applications÷/Install Parallels Desktop.app"
 rm -rf "$TMP"
 
 echo "Done!"

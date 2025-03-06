@@ -50,3 +50,7 @@ cask "hashicorp/tap/hashicorp-vagrant"
 cask "parallels-virtualization-sdk"
 
 brew "temporal"
+
+cask "1password-cli"
+
+brew "zsh-completions"

@@ -33,6 +33,10 @@ in
   system.defaults.NSGlobalDomain.NSNavPanelExpandedStateForSaveMode = true;
   system.defaults.NSGlobalDomain.NSNavPanelExpandedStateForSaveMode2 = true;
   system.defaults.SoftwareUpdate.AutomaticallyInstallMacOSUpdates = false;
+  system.defaults.CustomSystemPreferences = {
+    NSGlobalDomain = { };
+    "com.apple.Safari" = { };
+  };
 
   system.defaults.dock.autohide = true;
   system.defaults.dock.showhidden = true;
@@ -40,13 +44,6 @@ in
   system.defaults.finder.AppleShowAllExtensions = true;
   system.defaults.finder.FXEnableExtensionChangeWarning = false;
   system.defaults.finder.QuitMenuItem = true;
-
-  
-
-  # Program configuration
-
-  programs.bash.completion.enable = true;
-  programs.zsh.enable = true;
 
   # Environment configuration
   environment.variables = {
@@ -65,9 +62,12 @@ in
     pkgs.wget
     pkgs.yq-go
     pkgs.zsh
+    pkgs.zsh-completions
     pkgs.nixfmt-rfc-style
     pkgs.nixd
     pkgs.fswatch
+    pkgs.fnm
+    pkgs.pnpm
   ];
 
   # environment.systemPath = [

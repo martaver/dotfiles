@@ -94,7 +94,7 @@
   "security.workspace.trust.untrustedFiles": "open",
   "nix.enableLanguageServer": true,
   "nix.serverPath": "nixd",
-  "nix.formatterPath": "nixfmt",
+  "nix.formatterPath": "nixpkgs-fmt",
   "nix.serverSettings": {
     // settings for 'nixd' LSP
     "nixd": {

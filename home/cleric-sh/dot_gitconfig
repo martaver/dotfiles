@@ -2,6 +2,3 @@
     name = Sebastian Nemeth
     email = sebastian@cleric.sh
     username = martaver
-
-[core]
-    sshCommand = "ssh -i ~/.ssh/id_martaver.pub -o IdentitiesOnly=yes"
