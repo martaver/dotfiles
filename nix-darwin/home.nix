@@ -1,19 +1,13 @@
-{
-  config,
-  pkgs,
-  machnix,
-  ...
-}:
+{ config, pkgs, machnix, ... }:
 let
-in
-{
+in {
   # User-specific packages
   home.stateVersion = "23.11";
   home.packages = with pkgs; [
     chezmoi
     starship
     gh
-    
+
     # pkgs.any-nix-shell    
     # pkgs.thefuck
     # pkgs.tldr
@@ -33,12 +27,11 @@ in
     # Configuration reference: https://starship.rs/config/#prompt
 
     settings = {
-      format = ''$all'';
+      format = "$all";
       add_newline = true;
     };
   };
 
-  # # zsh configuration
   programs.zsh = {
     enable = true;
 
@@ -46,40 +39,35 @@ in
     envExtra = ''
       # Load exports
       # source $HOME/.yabai/.fns
-      
+
       # This directs oh-my-zsh to look for custom plugins in the dir
       # where we clone plugins that aren't included in their own plugin
       # repository.
       ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
     '';
 
-    # autosuggestion.enable = true;
-    # syntaxHighlighting.enable = true;
-
     # Required to be disabled when using 'marlonrichert/zsh-autocomplete'
     # See: https://github.com/marlonrichert/zsh-autocomplete?tab=readme-ov-file#installation--setup
     enableCompletion = false;
-    
+
     zplug = {
       enable = true;
-      plugins = [
-        {
-          # pnpm's completions for zsh out of the box don't work (as of v10)
-          #
-          # As a result, when typing pnpm commands, zsh-autocomplete lags trying
-          # to find completion files that are apparently broken
-          # See: https://github.com/pnpm/pnpm/issues/4564
-          # See: https://github.com/pnpm/pnpm/issues/7986
-          #
-          # And on pnpm 9's completions being incompatible with pnpm 10
-          # See: https://pnpm.io/completion
-          #
-          # This third party zsh plugin install working pnpm completions
-          # and also solves the lagging issue
-          name = "g-plane/pnpm-shell-completion"; 
-          tags = [ hook-build:./zplug.zsh defer:2 ];
-        }
-      ];
+      plugins = [{
+        # pnpm's completions for zsh out of the box don't work (as of v10)
+        #
+        # As a result, when typing pnpm commands, zsh-autocomplete lags trying
+        # to find completion files that are apparently broken
+        # See: https://github.com/pnpm/pnpm/issues/4564
+        # See: https://github.com/pnpm/pnpm/issues/7986
+        #
+        # And on pnpm 9's completions being incompatible with pnpm 10
+        # See: https://pnpm.io/completion
+        #
+        # This third party zsh plugin install working pnpm completions
+        # and also solves the lagging issue
+        name = "g-plane/pnpm-shell-completion";
+        tags = [ "hook-build:./zplug.zsh" "defer:2" ];
+      }];
     };
 
     oh-my-zsh = {
@@ -101,8 +89,26 @@ in
         # - press TAB again to continue choosing from the next dir
         "zsh-interactive-cd"
 
+        #
+        # Custom Plugins
+        #
+        # We install these through omz rather than by enabling them
+        # in home-manager's zsh options, so that omz can manage their
+        # initialisation. This prevents plugins from conflicting
+        # with others installed by other plugin manages, e.g. with
+        # zsh-autocomplete, which has no native omz package.
+        # They are clones into ~/.oh-my-zsh/custom/plugins by chezmoi.
+
+        # Adds inline historical command suggestions as you type.
+        # Ref: https://github.com/zsh-users/zsh-autosuggestions.git
         "zsh-autosuggestions"
+
+        # Adds basic syntax highlighting when viewing scripts in zsh.
+        # Ref: https://github.com/zsh-users/zsh-syntax-highlighting.git
         "zsh-syntax-highlighting"
+
+        # Adds real-time lookahead command and history autocompletion.
+        # Ref: https://github.com/marlonrichert/zsh-autocomplete
         "zsh-autocomplete"
       ];
       # theme = "";
@@ -120,18 +126,6 @@ in
       cm = "chezmoi";
       foo = "echo bar";
     };
-
-    # plugins = [
-    #   {
-    #     name = "you-should-use";
-    #     src = pkgs.fetchFromGitHub {
-    #       owner = "MichaelAquilina";
-    #       repo = "zsh-you-should-use";
-    #       rev = "1.7.3";
-    #       sha256 = "/uVFyplnlg9mETMi7myIndO6IG7Wr9M7xDFfY1pG5Lc=";
-    #     };
-    #   }
-    # ];
 
     initExtra = ''
       # Configures the active shell to use fnm
