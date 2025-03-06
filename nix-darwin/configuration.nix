@@ -53,22 +53,25 @@ in
   };
 
   # System packages
-  environment.systemPackages = [
-    pkgs.curl
-    pkgs.direnv
-    pkgs.git
-    pkgs.jq
-    pkgs.openssh
-    pkgs.wget
-    pkgs.yq-go
-    pkgs.zsh
-    pkgs.zsh-completions
-    pkgs.nixfmt-rfc-style
-    pkgs.nixd
-    pkgs.fswatch
-    pkgs.fnm
-    pkgs.pnpm
+  environment.systemPackages = with pkgs;[
+    curl
+    direnv
+    git
+    jq
+    openssh
+    wget
+    yq-go    
+    fswatch
+    zsh
+    zsh-completions
+    nixfmt-rfc-style
+    nixd
+    fnm
+    pnpm
+    fzf
   ];
+
+
 
   # environment.systemPath = [
   #   "/Users/martaver/.yabai/bin"

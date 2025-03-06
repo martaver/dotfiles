@@ -6,7 +6,6 @@
 }:
 let
 in
-# chezmoi = pkgs.callPackage ./packages/chezmoi.nix { };
 {
   # User-specific packages
   home.stateVersion = "23.11";
@@ -34,7 +33,6 @@ in
     # Configuration reference: https://starship.rs/config/#prompt
 
     settings = {
-
       format = ''$all'';
       add_newline = true;
     };
@@ -43,16 +41,28 @@ in
   # # zsh configuration
   programs.zsh = {
     enable = true;
-    autosuggestion.enable = true;
+
+    # Extra environment variables
+    envExtra = ''
+      # Load exports
+      # source $HOME/.yabai/.fns
+      
+      # This directs oh-my-zsh to look for custom plugins in the dir
+      # where we clone plugins that aren't included in their own plugin
+      # repository.
+      ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
+    '';
+
+    # autosuggestion.enable = true;
+    # syntaxHighlighting.enable = true;
+
+    # Required to be disabled when using 'marlonrichert/zsh-autocomplete'
+    # See: https://github.com/marlonrichert/zsh-autocomplete?tab=readme-ov-file#installation--setup
     enableCompletion = false;
-    syntaxHighlighting.enable = true;
     
     zplug = {
       enable = true;
       plugins = [
-        {
-          name = "marlonrichert/zsh-autocomplete";
-        }
         {
           # pnpm's completions for zsh out of the box don't work (as of v10)
           #
@@ -75,11 +85,31 @@ in
     oh-my-zsh = {
       enable = true;
       plugins = [
+        # This plugin ensures ssh-agent is enabled when entering a shell.
+        # Ref: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/ssh-agent
+        # 
+        # This is what makes ~/.ssh/config take effect and use
+        # 1Password ssh-agent for identities and biometrics for auth
         "ssh-agent"
-        # "sudo"
+
+        # Adds an interactive chooser for 'cd'.
+        # Ref: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/zsh-interactive-cd
+        # 
+        # Type 'cd ' + TAB to display it
+        # - use Up/Down Tab/Shift-Tab to scroll 
+        # - use ENTER to select
+        # - press TAB again to continue choosing from the next dir
+        "zsh-interactive-cd"
+
+        "zsh-autosuggestions"
+        "zsh-syntax-highlighting"
+        "zsh-autocomplete"
       ];
-      theme = "";
+      # theme = "";
       extraConfig = ''
+        # Configures ssh-agent
+        #   lazy: evaluates identities when requested
+        #   agent-forwarding yes: enable agent-forwarding by default 
         zstyle :omz:plugins:ssh-agent lazy agent-forwarding yes
       '';
     };
@@ -103,47 +133,12 @@ in
     #   }
     # ];
 
-    # Extra environment variables
-    # envExtra = ''
-    #   # Load exports
-    #   source $HOME/.yabai/.fns
-    # '';
-
     initExtra = ''
-      # A fix for problems with marlonrichert/zsh-autocomplete in nix:
-      # as per https://nixos.wiki/wiki/Zsh
-      # 
-      # bindkey "''${key[Up]}" up-line-or-search
-
+      # Configures the active shell to use fnm
+      # If you get the following error, it's because this wasn't called:
+      # error: `fnm env` was not applied in this context.
+      # Can't find fnm's environment variables
       eval "$(fnm env --use-on-cd --shell zsh)"
-
-      # zstyle ':autocomplete:*' min-input 3
-      # zstyle -e ':autocomplete:*:*' list-lines 'reply=( $(( LINES / 3 )) )'
-
-      # export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
     '';
-
-    # # Extra content for .envrc
-    # initExtra = ''
-
-    #   # Setup pure
-    #   fpath+=${pkgs.pure-prompt}/share/zsh/site-functions
-    #   autoload -U promptinit; promptinit
-    #   prompt pure
-    #   zstyle :prompt:pure:path color green
-
-    #   # Configure thefuck
-    #   eval $(thefuck --alias)
-
-    #   # Configure any-nix-shell
-    #   any-nix-shell zsh --info-right | source /dev/stdin
-    # '';
-
-    # # Extra content for .envrc loaded before compinit()
-    # initExtraBeforeCompInit = ''
-    #   # Add completions
-    #   fpath+=${pkgs.chezmoi}/share/zsh/site-functions
-    #   fpath+=${pkgs.google-cloud-sdk}/share/zsh/site-functions
-    # '';
   };
 }

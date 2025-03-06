@@ -1,7 +1,16 @@
+# Note that to use this config, ssh-agent needs to be running.
+#
+# To automate this, the oh-my-zsh 'ssh-agent' plugin is installed
+# and configured to enable agent-forwarding
+
+# This line directs ssh-agent to use 1password to provide identities
 Host *
   IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 
 # LogLevel DEBUG
+
+# The following are Host overrides, 
+# directing ssh-agent to use different identities for different remote hosts
 
 # Host github.com#martaver
 #     HostName github.com		
