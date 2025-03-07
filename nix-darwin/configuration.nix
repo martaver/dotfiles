@@ -1,9 +1,15 @@
-{ self, config, pkgs, ... }:
+{
+  self,
+  config,
+  pkgs,
+  ...
+}:
 
 # All system packages
 let
 
-in {
+in
+{
   # Disable nix-darwin's control of the nix installation, which is managed by Determinate.
   nix.enable = false;
 
@@ -64,6 +70,11 @@ in {
     pnpm
     fzf
   ];
+
+  # Disable the default compinit call that nix adds to each zsh env
+  # We will be customising our call, to ensure it's at the end
+  # of the .zshrc and only rebuilds .zcompdump when needed.
+  programs.zsh.enableGlobalCompInit = false;
 
   # environment.systemPath = [
   #   "/Users/martaver/.yabai/bin"

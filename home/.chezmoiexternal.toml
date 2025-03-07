@@ -1,0 +1,6 @@
+["./zsh-bench"]
+    type = "git-repo"
+    url = "https://github.com/romkatv/zsh-bench.git"
+    refreshPeriod = "168h"
+
+
