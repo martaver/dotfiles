@@ -1,6 +1,7 @@
 {
   "vscode_custom_css.imports": [
-    "file://${userHome}/Library/Application Support/Code/User/pretty-ts-errors.css"
+    "file://${userHome}/Library/Application Support/Code/User/pretty-ts-errors.css",
+    "file://${userHome}/Library/Application Support/Code/User/content-hover-side-panel.css"
   ],
   "workbench.settings.editor": "json",
   "explorer.confirmDragAndDrop": false,
