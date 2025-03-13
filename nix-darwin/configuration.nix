@@ -33,9 +33,12 @@ in
   system.defaults.NSGlobalDomain.NSNavPanelExpandedStateForSaveMode = true;
   system.defaults.NSGlobalDomain.NSNavPanelExpandedStateForSaveMode2 = true;
   system.defaults.SoftwareUpdate.AutomaticallyInstallMacOSUpdates = false;
+
   system.defaults.CustomSystemPreferences = {
     NSGlobalDomain = { };
-    "com.apple.Safari" = { };
+    "com.apple.keyboard" = {
+      fnState = true;
+    };
   };
 
   system.defaults.dock.autohide = true;

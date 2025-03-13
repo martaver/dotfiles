@@ -25,9 +25,14 @@ vscode "vue.volar"
 vscode "andrewbranch.vscode-tsserver-debug"
 vscode "hashicorp.terraform"
 vscode "ms-azuretools.vscode-docker"
-vscode "yoavbls.pretty-ts-errors"
 vscode "bierner.markdown-mermaid"
 vscode "christian-kohler.path-intellisense"
+
+# Make TS error prettier
+vscode "yoavbls.pretty-ts-errors" 
+# Hide original, ugly errors (instructions included)
+# https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css
+vscode "be5invis.vscode-custom-css" 
 
 # vscode extensions
 vscode "ms-vscode.extension-test-runner"

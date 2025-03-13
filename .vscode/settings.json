@@ -1,4 +1,7 @@
 {
+  "vscode_custom_css.imports": [
+    "file://${userHome}/Library/Application Support/Code/User/pretty-ts-errors.css"
+  ],
   "workbench.settings.editor": "json",
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
@@ -93,11 +96,11 @@
   "gitTreeCompare.diffMode": "full",
   "security.workspace.trust.untrustedFiles": "open",
   "nix.enableLanguageServer": true,
-  //"nix.serverPath": "nixd",
   // When nixd is installed with nix, and vscode with brew
   // nixd isn't accessible to vscode, because it can't find it
   // in $PATH, so set the absolute path to the binary.
   "nix.serverPath": "/run/current-system/sw/bin/nixd",
+  //"nix.serverPath": "nixd",
   "nix.serverSettings": {
     // settings for 'nixd' LSP
     "nixd": {
@@ -106,11 +109,11 @@
       // },
       "formatting": {
         "command": [
-          // "nixfmt"
           // When nixfmt is installed with nix, and vscode with brew
           // nixfmt isn't accessible to vscode, because it can't find it
           // in $PATH, so set the absolute path to the binary.
           "/run/current-system/sw/bin/nixfmt"
+          // "nixfmt"
         ]
       },
       // "nixpkgs": {
@@ -127,9 +130,9 @@
         // By default, this entriy will be read from `import <nixpkgs> { }`
         // You can write arbitary nix expression here, to produce valid "options" declaration result.
         // Tip: for flake-based configuration, utilize `builtins.getFlake`
-        // "nixos": {
-        //   "expr": "{}"
-        // },
+        "nixos": {
+          "expr": "{}"
+        },
         // "home-manager": {
         //     "expr": "(builtins.getFlake \"${workspaceFolder}/nix-darwin\").homeConfigurations.Sebastians-MacBook-Pro.options"
         // },

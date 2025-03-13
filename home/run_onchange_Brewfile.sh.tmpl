@@ -20,13 +20,13 @@ brew bundle install --cleanup
 # fi
 
 # if [ ! -f ~/Library/LaunchAgents/com.koekeishiya.yabai.plist ]; then
-#   echo 'Starting/installing yabai...'
+#   echo 'Starting/installing yabai service...'
 #   yabai --install-service
 #   yabai --start-service
 # fi
 
 if [ ! -f ~/Library/LaunchAgents/com.koekeishiya.skhd.plist ]; then
-  echo 'Starting/installing skhd...'
+  echo 'Starting/installing skhd service...'
   skhd --install-service
   skhd --start-service
 fi
@@ -40,3 +40,7 @@ fi
 # fnm default 20
 
 # pnpm setup
+
+if ! which turbo; then
+  echo "'turbo' not found..."
+fi

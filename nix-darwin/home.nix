@@ -126,6 +126,7 @@ in
     # Also good advice here: https://dev.to/djmoch/zsh-compinit--rtfm-47kg
     #
     # It's oh-my-zsh that's running compinit, but without zsh-autocomplete it's instant.
+    # Also, disabling omz removes the call to compinit.
     #
     # It's zsh-autocomplete that's slowing down the compinit call.
     #
@@ -135,6 +136,7 @@ in
     # https://github.com/marlonrichert/zsh-snap/blob/main/.zshrc
     #
     # znap loads shell plugins asynchronously and compile / evals them to speed up shell init.
+    # Let's try to get a set up working with znap, and load the ssh-agent omz plugins.
     #
     # Uncomment this to run the shell profile
     # to identify what's slowing down shell initialisation
@@ -244,12 +246,14 @@ in
       eval "$(fnm env --use-on-cd --shell zsh)"
 
 
-      # This snippet pre-compiles the .zcompdump file for slightly faster loads.
-      # https://news.ycombinator.com/item?id=40128826
+
       # WARN: This next compinit doubles up what zsh-autocomplete inits, it's just for debugging performance.
       # When uncommented, zprof will show two calls to compinit
       # autoload -Uz compinit && compinit -C -u # no cache, no security check
       # autoload -Uz compinit && compinit
+
+      # This snippet pre-compiles the .zcompdump file for slightly faster loads.
+      # https://news.ycombinator.com/item?id=40128826
       {
         # Compile the completion dump to increase startup speed. Run in background.
         zcompdump="''${"ZDOTDIR:-$HOME"}/.zcompdump"
