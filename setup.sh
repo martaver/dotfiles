@@ -109,11 +109,13 @@ checkDep() {
 	local name=${1}
 	local condition=${2}
 	local executable=${3}
+	local ifexists=${4}
 
 	if ! ${condition} -p &>/dev/null; then
 		tryInstall "${name}" "${executable}"
 	else
-		log "'${name}' detected. Already installed, skipping..."
+		log "'${name}' detected. Already installed..."
+		${ifexists}
 	fi
 }
 
@@ -226,7 +228,7 @@ bootstrapNixDarwin() {
 	# Configure Apple Silicon
 	# sed -i '' 's/nixpkgs.hostPlatform = "x86_64-darwin";/nixpkgs.hostPlatform = "aarch64-darwin";/' "$nixDarwinInstallDir/flake.nix" # Replace 'x86_64-darwin' with 'aarch64-darwin'
 
-	# Backup existing /etc files
+	# Backup existing /etc files, they'll get replaced during the first switch
 	[ ! -f /etc/zshenv ]   || sudo mv /etc/zshenv /etc/zshenv.bak
 	[ ! -f /etc/zshrc ]   || sudo mv /etc/zshenv /etc/zshrc.bak
 	[ ! -f /etc/zprofile ] || sudo mv /etc/zprofile /etc/zprofile.bak
@@ -345,8 +347,13 @@ else
 	nix shell nixpkgs#chezmoi -c chezmoi git pull "${dotfiles}"
 fi
 
+applyNixDarwin() {
+	log "Applying (flake) nix-darwin configuration..."
+	sudo darwin-rebuild switch --flake "$nixDarwinDir#default"
+}
+
 # nix-darwin is what actually does the configuration
-# checkDep 'nix-darwin' 'command -v darwin-rebuild' 'installNixDarwin'
+checkDep 'nix-darwin' 'command -v darwin-rebuild' 'bootstrapNixDarwin' 'applyNixDarwin'
 
 # bitwarden-cli is needed to pull down secrets with chezmoi
 # checkDep 'bitwarden-cli' 'command -v bw' 'nix-env -i bitwarden-cli'
@@ -360,7 +367,7 @@ fi
 # log "Bootstrapping nix-darwin flake..."
 # cd "${tmpDir}" && nix build "$nixDarwinDir#darwinConfigurations.$LocalHostName.system"
 # cd "${tmpDir}" && ./result/sw/bin/darwin-rebuild switch --flake "$nixDarwinDir#$LocalHostName"
-bootstrapNixDarwin
+
 
 # implicitely calls `nix-darwin rebuild`` and `brew bundle install``
 log "Applying dotfiles..."
