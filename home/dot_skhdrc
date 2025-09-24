@@ -14,5 +14,6 @@ alt + shift - r : \
 # Open Ghostty
 cmd + shift - backspace : open -a Ghostty.app;
 
-# Open VSCode in a new window
+# Open VSCode in a new window: cmd + shift - '\'
 cmd + shift - 0x2A : open -na "Visual Studio Code.app" --args --new-window;
+

@@ -70,8 +70,12 @@ in
     nixfmt-rfc-style
     nixd
     fnm
-    pnpm
     fzf
+    flutter
+    ruby
+    cocoapods
+    serverless
+    turbo
   ];
 
   # Disable the default compinit call that nix adds to each zsh env
@@ -146,6 +150,7 @@ in
 
   # services.skhd = {
   #   enable = true;
+
   # };
 
   # services.skhd.skhdConfig = "cmd + shift - r   :   code";

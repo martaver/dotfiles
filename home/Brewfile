@@ -1,16 +1,18 @@
 tap "homebrew/bundle"
 tap "koekeishiya/formulae"
-tap "hashicorp/tap"
-tap "cirruslabs/cli"
+# tap "hashicorp/tap"
+# tap "cirruslabs/cli"
 
 cask "ghostty"
 cask "raycast"
+
+brew "koekeishiya/formulae/skhd"
 cask "hammerspoon"
 cask "karabiner-elements"
 
-brew "cirruslabs/cli/tart"
+# brew "cirruslabs/cli/tart"
 # brew "koekeishiya/formulae/yabai"
-brew "koekeishiya/formulae/skhd"
+
 
 # 'gettext' commands, e.g. 'msgcat'
 brew "gettext"
@@ -50,13 +52,20 @@ vscode "ms-python.debugpy"
 vscode "ms-python.vscode-pylance"
 
 vscode "ms-vsliveshare.vsliveshare"
+
+# flutter
+vscode "dart-code.flutter"
+
 vscode "vercel.turbo-vsc"
+
+vscode "casualjim.gotemplate"
+vscode "redhat.vscode-yaml"
 
 cask "google-cloud-sdk"
 
 
-cask "hashicorp/tap/hashicorp-vagrant"
-cask "parallels-virtualization-sdk"
+#cask "hashicorp/tap/hashicorp-vagrant"
+#cask "parallels-virtualization-sdk"
 
 brew "temporal"
 
@@ -73,3 +82,17 @@ brew "libpng"
 brew "jpeg"
 brew "giflib"
 brew "librsvg"
+
+
+cask "google-chrome"
+
+# Postgres
+brew "postgresql"
+cask "pgadmin4"
+
+brew "pnpm"
+
+brew "atmos"
+brew "opentofu"
+
+brew "awscli"

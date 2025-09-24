@@ -34,14 +34,14 @@ readonly reset='\e[0m'
 
 readonly dotfiles='https://github.com/martaver/dotfiles'
 
-# Nix
-readonly nixVer='2.15.1'
-readonly nixReleaseBase='https://releases.nixos.org'
+# # Nix
+# readonly nixVer='2.15.1'
+# readonly nixReleaseBase='https://releases.nixos.org'
 
-# Brew
-readonly brewRepo='https://raw.githubusercontent.com/Homebrew/install'
-readonly brewCommitSha='e8114640740938c20cc41ffdbf07816b428afc49'
-readonly brewChecksum='98a0040bd3dc4b283780a010ad670f6441d5da9f32b2cb83d28af6ad484a2c72'
+# # Brew
+# readonly brewRepo='https://raw.githubusercontent.com/Homebrew/install'
+# readonly brewCommitSha='e8114640740938c20cc41ffdbf07816b428afc49'
+# readonly brewChecksum='98a0040bd3dc4b283780a010ad670f6441d5da9f32b2cb83d28af6ad484a2c72'
 
 readonly LocalHostName="$(scutil --get LocalHostName)"
 
@@ -123,9 +123,11 @@ chomp() {
 
 # Usage: installXcode
 #
+# Xcode is required to install Homebrew
+#
 # Downloads and installs the xcode command line tools
 # Source: https://github.com/Homebrew/install/blob/master/install.sh#L846
-installXcode() {
+installXcodeCommandLineTools() {
 	log "Searching online for the Command Line Tools"
 
 	# This temporary file prompts the 'softwareupdate' utility to list the Command Line Tools
@@ -315,7 +317,7 @@ if [[ ! -d "${tmpDir}" ]]; then
 fi
 
 # xcode is needed for building most software from source
-checkDep 'xcode' '/usr/bin/xcode-select' 'installXcode'
+checkDep 'xcode-cli-tools' '/usr/bin/xcode-select' 'installXcodeCommandLineTools'
 
 # rosetta is needed for running x86_64 applications
 checkDep 'rosetta' '/usr/bin/pgrep oahd' 'sudo softwareupdate --install-rosetta --agree-to-license'

@@ -42,7 +42,7 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-quick-terminal-position = left
+quick-terminal-position = right
 quick-terminal-screen = mouse
 keybind = global:cmd+grave_accent=toggle_quick_terminal
 window-width = 120

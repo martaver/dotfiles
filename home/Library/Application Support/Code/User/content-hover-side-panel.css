@@ -1,35 +1,18 @@
-/* suggest-widget size */
-
-.monaco-editor .suggest-widget.docs-side {
-  width: 1000px;
+/* .parameter-hints-widget>.phwrapper {
+  max-width: 100% !important;
+  width: 100% !important;
 }
 
-.monaco-editor .suggest-widget.docs-side>.details {
-  width: 60%;
-  max-height: 800px !important;
-  min-height: 800px !important;
-}
-
-.monaco-editor .suggest-widget.docs-side>.tree {
-  width: 30%;
-  float: left;
-}
-
-/* parameter-hints-widget */
-
-.editor-widget.parameter-hints-widget.visible {
-  max-height: 800px !important;
-  min-height: 800px !important;
-}
-
-.monaco-editor .parameter-hints-widget>.wrapper {
-  max-width: 1000px;
-  min-width: 1000px;
-}
-
-/* editor-hover */
-
-.monaco-editor-hover .monaco-editor-hover-content {
-  max-width: 1000px;
-  min-width: 1000px;
-}
+.parameter-hints-widget {
+  position: fixed !important;
+  border-width: 2px !important;
+  border-radius: 12px !important;
+  padding: 10px !important;
+  width: 70% !important;
+  top: unset !important;
+  bottom: 0px !important;
+  margin-bottom: 40px !important;
+  border-color: rgb(144, 104, 176) !important;
+  background-color: rgb(43, 43, 43) !important;
+  left: 15% !important;
+} */
