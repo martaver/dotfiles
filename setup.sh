@@ -207,7 +207,7 @@ installNix() {
 }
 bootstrapNixDarwin() {
 # installNixDarwin() {
-	log 'Building (flakes) nix-darwin installer...'
+	log 'Bootstrapping (flakes) nix-darwin configuration...'
 
 
   	# Initialise flake.nix inside
@@ -227,10 +227,8 @@ bootstrapNixDarwin() {
 	# sed -i '' 's/nixpkgs.hostPlatform = "x86_64-darwin";/nixpkgs.hostPlatform = "aarch64-darwin";/' "$nixDarwinInstallDir/flake.nix" # Replace 'x86_64-darwin' with 'aarch64-darwin'
 
 	# Backup existing /etc files
-	if [ -f /etc/zshenv ] ;
-	then
-		sudo mv /etc/zshenv /etc/zshenv.bak
-	fi
+	[ ! -f /etc/zshenv ]   || sudo mv /etc/zshenv /etc/zshenv.bak
+	[ ! -f /etc/zprofile ] || sudo mv /etc/zprofile /etc/zprofile.bak
 
 	# Set up nix-darwin simple / example / empty flake
 	sudo chown $(id -nu):$(id -ng) "$nixDarwinDir"	
