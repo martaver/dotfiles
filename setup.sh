@@ -157,38 +157,11 @@ installXcodeCommandLineTools() {
 #
 # Downloads and executes the nix installer script
 installNix() {
-	
-	# Using Standard Installer
-	# ------
-	# local nixURL="${nixReleaseBase}/nix/nix-${nixVer}/install"
-	# local checksumURL="${nixReleaseBase}/nix/nix-${nixVer}/install.sha256"
-	# local sha="$(curl "${checksumURL}")"
-
-	# log "Downloading install script from ${nixURL}..."
-	# curl "${nixURL}" -o "${tmpDir}/nix.sh" &>/dev/null
-
-	# log "Validating checksum..."
-	# if ! echo "${sha}  ${tmpDir}/nix.sh" | shasum -a 256 -c; then
-	# 	die "Checksum validation failed; cannot continue"
-	# fi
-
-	# log "Running nix installer..."	
-	# bash "${tmpDir}/nix.sh"
-	# success "Nix installed successfully"
-
-	# # nix shell requires nix-command which is experimental
-	# # we also need to add flakes so we can run our development flakes
-	# log 'Adding experimental features: nix-command flakes'
-	# mkdir -p ~/.config/nix
-	# echo 'experimental-features = nix-command flakes' >>~/.config/nix/nix.conf
-	# -------
-
 
 	# Using Determinate Installer
 	# ------
 	log "Running (determinate) nix installer (distro: Determinate)..."
-	# Use Determinate Nix Installer: https://github.com/DeterminateSystems/nix-installer
-	# This call installs the Determinate Nix build with the --determinate option
+	# Use Determinate Nix Installer: https://github.com/DeterminateSystems/nix-installer	
 	curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm	--determinate
 
 	success "Nix installed successfully"
@@ -207,6 +180,7 @@ installNix() {
  	nix --version
  	log 'Configured nix environment successfully'
 }
+
 bootstrapNixDarwin() {
 # installNixDarwin() {
 	log 'Bootstrapping (flakes) nix-darwin configuration...'
@@ -228,36 +202,48 @@ bootstrapNixDarwin() {
 	# Configure Apple Silicon
 	# sed -i '' 's/nixpkgs.hostPlatform = "x86_64-darwin";/nixpkgs.hostPlatform = "aarch64-darwin";/' "$nixDarwinInstallDir/flake.nix" # Replace 'x86_64-darwin' with 'aarch64-darwin'
 
-	# Backup existing /etc files, they'll get replaced during the first switch
-	[ ! -f /etc/zshenv ]   || sudo mv /etc/zshenv /etc/zshenv.bak
-	[ ! -f /etc/zshrc ]    || sudo mv /etc/zshrc /etc/zshrc.bak
-	[ ! -f /etc/zprofile ] || sudo mv /etc/zprofile /etc/zprofile.bak
+	{
+		sudo chown $(id -nu):$(id -ng) "$nixDarwinDir"
 
-	# Set up nix-darwin simple / example / empty flake
-	sudo chown $(id -nu):$(id -ng) "$nixDarwinDir"	
-	# cd "$nixDarwinInstallDir"	
-	# rm -f flake.nix
-	# nix flake init -t nix-darwin/master
-	# sed -i '' "s/simple/$(scutil --get LocalHostName)/" flake.nix
+		# Backup existing /etc files, they'll get replaced during the first switch
+		[ ! -f /etc/zshenv ]   || sudo mv /etc/zshenv /etc/zshenv.bak
+		[ ! -f /etc/zshrc ]    || sudo mv /etc/zshrc /etc/zshrc.bak
+		[ ! -f /etc/zprofile ] || sudo mv /etc/zprofile /etc/zprofile.bak
 
-	# To use flake.nix stored in chezmoi dotfiles repo:
- 	sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake "$nixDarwinDir#default"
- 
- 	# To use Nixpkgs unstable:
-	# nix run nix-darwin/master#darwin-rebuild -- switch
-	# To use Nixpkgs 24.11:
-	# nix run nix-darwin/nix-darwin-24.11#darwin-rebuild -- switch
+		# Set up nix-darwin simple / example / empty flake
+		
+		# cd "$nixDarwinInstallDir"	
+		# rm -f flake.nix
+		# nix flake init -t nix-darwin/master
+		# sed -i '' "s/simple/$(scutil --get LocalHostName)/" flake.nix
 
-	log "Configuring nix-darwin environment..."
-	set +o errexit
-	set +o nounset
-	set +o pipefail
-	# shellcheck disable=SC1091
-	source /etc/static/bashrc
-	set -o errexit
-	set -o nounset
-	set -o pipefail
- 	log "Configured nix-darwin environment successfully"
+		# To use flake.nix stored in chezmoi dotfiles repo:
+		sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake "$nixDarwinDir#default"
+	
+		# To use Nixpkgs unstable:
+		# nix run nix-darwin/master#darwin-rebuild -- switch
+		# To use Nixpkgs 24.11:
+		# nix run nix-darwin/nix-darwin-24.11#darwin-rebuild -- switch
+
+		log "Configuring nix-darwin environment..."
+		set +o errexit
+		set +o nounset
+		set +o pipefail
+		# shellcheck disable=SC1091
+		source /etc/static/bashrc
+		set -o errexit
+		set -o nounset
+		set -o pipefail
+		log "Configured nix-darwin environment successfully"
+	
+	} || {
+		
+		error "Bootstrapping nix-darwin failed, restoring /etc/* files"
+		
+		[ ! -f /etc/zshenv.bak ]   || sudo mv /etc/zshenv.bak /etc/zshenv
+		[ ! -f /etc/zshrc.bak ]    || sudo mv /etc/zshrc.bak /etc/zshrc
+		[ ! -f /etc/zprofile.bak ] || sudo mv /etc/zprofile.bak /etc/zprofile
+	}
 }
 
 # Usage installBrew
