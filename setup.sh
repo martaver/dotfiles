@@ -224,7 +224,7 @@ installNixDarwin() {
 	# sed -i '' "s/simple/$LocalHostName/" flake.nix # Replace 'simple' with LocalHostName
 
 	# Configure Apple Silicon
-	sed -i '' 's/nixpkgs.hostPlatform = "x86_64-darwin";/nixpkgs.hostPlatform = "aarch64-darwin";/' "$nixDarwinInstallDir/flake.nix" # Replace 'x86_64-darwin' with 'aarch64-darwin'
+	# sed -i '' 's/nixpkgs.hostPlatform = "x86_64-darwin";/nixpkgs.hostPlatform = "aarch64-darwin";/' "$nixDarwinInstallDir/flake.nix" # Replace 'x86_64-darwin' with 'aarch64-darwin'
 
 	# Backup existing /etc files
 	if [ -f /etc/zshenv ] ;
@@ -235,12 +235,12 @@ installNixDarwin() {
 	# Set up nix-darwin simple / example / empty flake
 	sudo chown $(id -nu):$(id -ng) "$nixDarwinDir"	
 	cd "$nixDarwinInstallDir"	
-	rm flake.nix
+	rm -f flake.nix
 	nix flake init -t nix-darwin/master
-	sed -i '' "s/simple/$(scutil --get LocalHostName)/" flake.nix
+	# sed -i '' "s/simple/$(scutil --get LocalHostName)/" flake.nix
 
 	# To use flake.nix stored in chezmoi dotfiles repo:
- 	sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake "$nixDarwinInstallDir#init"
+ 	sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake "$nixDarwinInstallDir#simple"
  
  	# To use Nixpkgs unstable:
 	# nix run nix-darwin/master#darwin-rebuild -- switch
@@ -342,7 +342,7 @@ if [[ ! -d "$cmPath" ]]; then
 	nix shell nixpkgs#chezmoi -c chezmoi init "${dotfiles}"
 else
 	log "Fetching dotfiles..."
-	nix shell nixpkgs#chezmoi -c chezmoi git reset --hard
+	nix shell nixpkgs#chezmoi -c chezmoi git reset
 	nix shell nixpkgs#chezmoi -c chezmoi git pull "${dotfiles}"
 fi
 
