@@ -232,7 +232,12 @@ installNixDarwin() {
 		sudo mv /etc/zshenv /etc/zshenv.bak
 	fi
 
-	# Install nix-darwin
+	# Set up nix-darwin simple / example / empty flake
+	sudo chown $(id -nu):$(id -ng) "$nixDarwinDir"	
+	cd "$nixDarwinInstallDir"	
+	rm flake.nix
+	nix flake init -t nix-darwin/master
+	sed -i '' "s/simple/$(scutil --get LocalHostName)/" flake.nix
 
 	# To use flake.nix stored in chezmoi dotfiles repo:
  	sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake "$nixDarwinInstallDir#init"
