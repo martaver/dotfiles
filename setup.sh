@@ -227,7 +227,10 @@ installNixDarwin() {
 	sed -i '' 's/nixpkgs.hostPlatform = "x86_64-darwin";/nixpkgs.hostPlatform = "aarch64-darwin";/' "$nixDarwinInstallDir/flake.nix" # Replace 'x86_64-darwin' with 'aarch64-darwin'
 
 	# Backup existing /etc files
-	sudo mv /etc/zshenv /etc/zshenv.bak
+	if [ -f /etc/zshenv ] ;
+	then
+		sudo mv /etc/zshenv /etc/zshenv.bak
+	fi
 
 	# Install nix-darwin
 
