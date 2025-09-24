@@ -109,7 +109,7 @@ checkDep() {
 	local name=${1}
 	local condition=${2}
 	local executable=${3}
-	local ifexists=${4}
+	local ifexists=${4:-log "Skipping..."}
 
 	if ! ${condition} -p &>/dev/null; then
 		tryInstall "${name}" "${executable}"
