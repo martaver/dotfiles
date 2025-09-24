@@ -29,6 +29,7 @@ vscode "vue.volar"
 # vscode "WallabyJs.quokka-vscode"
 vscode "andrewbranch.vscode-tsserver-debug"
 vscode "hashicorp.terraform"
+vscode "ms-azuretools.vscode-containers"
 vscode "ms-azuretools.vscode-docker"
 vscode "bierner.markdown-mermaid"
 vscode "christian-kohler.path-intellisense"
@@ -54,6 +55,7 @@ vscode "ms-python.vscode-pylance"
 vscode "ms-vsliveshare.vsliveshare"
 
 # flutter
+vscode "dart-code.dart-code"
 vscode "dart-code.flutter"
 
 vscode "vercel.turbo-vsc"
@@ -61,7 +63,7 @@ vscode "vercel.turbo-vsc"
 vscode "casualjim.gotemplate"
 vscode "redhat.vscode-yaml"
 
-cask "google-cloud-sdk"
+cask "gcloud-cli"
 
 
 #cask "hashicorp/tap/hashicorp-vagrant"

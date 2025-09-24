@@ -205,8 +205,8 @@ installNix() {
  	nix --version
  	log 'Configured nix environment successfully'
 }
-
-installNixDarwin() {
+bootstrapNixDarwin() {
+# installNixDarwin() {
 	log 'Building (flakes) nix-darwin installer...'
 
 
@@ -234,13 +234,13 @@ installNixDarwin() {
 
 	# Set up nix-darwin simple / example / empty flake
 	sudo chown $(id -nu):$(id -ng) "$nixDarwinDir"	
-	cd "$nixDarwinInstallDir"	
-	rm -f flake.nix
-	nix flake init -t nix-darwin/master
+	# cd "$nixDarwinInstallDir"	
+	# rm -f flake.nix
+	# nix flake init -t nix-darwin/master
 	# sed -i '' "s/simple/$(scutil --get LocalHostName)/" flake.nix
 
 	# To use flake.nix stored in chezmoi dotfiles repo:
- 	sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake "$nixDarwinInstallDir#simple"
+ 	sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake "$nixDarwinDir#default"
  
  	# To use Nixpkgs unstable:
 	# nix run nix-darwin/master#darwin-rebuild -- switch
@@ -347,7 +347,7 @@ else
 fi
 
 # nix-darwin is what actually does the configuration
-checkDep 'nix-darwin' 'command -v darwin-rebuild' 'installNixDarwin'
+# checkDep 'nix-darwin' 'command -v darwin-rebuild' 'installNixDarwin'
 
 # bitwarden-cli is needed to pull down secrets with chezmoi
 # checkDep 'bitwarden-cli' 'command -v bw' 'nix-env -i bitwarden-cli'
@@ -358,9 +358,10 @@ checkDep 'nix-darwin' 'command -v darwin-rebuild' 'installNixDarwin'
 
 
 
-log "Bootstrapping nix-darwin flake..."
-cd "${tmpDir}" && nix build "$nixDarwinDir#darwinConfigurations.$LocalHostName.system"
-cd "${tmpDir}" && ./result/sw/bin/darwin-rebuild switch --flake "$nixDarwinDir#$LocalHostName"
+# log "Bootstrapping nix-darwin flake..."
+# cd "${tmpDir}" && nix build "$nixDarwinDir#darwinConfigurations.$LocalHostName.system"
+# cd "${tmpDir}" && ./result/sw/bin/darwin-rebuild switch --flake "$nixDarwinDir#$LocalHostName"
+bootstrapNixDarwin
 
 # implicitely calls `nix-darwin rebuild`` and `brew bundle install``
 log "Applying dotfiles..."
