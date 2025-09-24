@@ -230,7 +230,7 @@ bootstrapNixDarwin() {
 
 	# Backup existing /etc files, they'll get replaced during the first switch
 	[ ! -f /etc/zshenv ]   || sudo mv /etc/zshenv /etc/zshenv.bak
-	[ ! -f /etc/zshrc ]   || sudo mv /etc/zshenv /etc/zshrc.bak
+	[ ! -f /etc/zshrc ]    || sudo mv /etc/zshrc /etc/zshrc.bak
 	[ ! -f /etc/zprofile ] || sudo mv /etc/zprofile /etc/zprofile.bak
 
 	# Set up nix-darwin simple / example / empty flake
