@@ -49,6 +49,7 @@ in
 
     CustomUserPreferences = {
       # Look up SymbolicHotKeyNumbers here: https://github.com/NUIKit/CGSInternal/blob/master/CGSHotKeys.h
+      # Or here: https://gist.github.com/mkhl/455002#file-ctrl-f1-c-L12
       "com.apple.symbolichotkeys" = {
         AppleSymbolicHotKeys = {
           "60" = {
@@ -188,7 +189,7 @@ in
 
   services.yabai = {
     enable = true;
-    enableScriptingAddition = false;
+    enableScriptingAddition = true;
   };
 
   system.activationScripts.postUserActivation.text = ''
@@ -201,5 +202,7 @@ in
   users.users.martaver.home = "/Users/martaver";
   users.users.sebastiannemeth.home = "/Users/sebastiannemeth";
   users.users."sebastian.nemeth".home = "/Users/sebastian.nemeth";
+
+  security.pam.services.sudo_local.touchIdAuth = true;
 
 }

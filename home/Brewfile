@@ -5,7 +5,6 @@ tap "koekeishiya/formulae"
 cask "ghostty"
 cask "raycast"
 
-brew "koekeishiya/formulae/skhd"
 cask "hammerspoon"
 cask "karabiner-elements"
 
