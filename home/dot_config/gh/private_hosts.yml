@@ -2,4 +2,5 @@ github.com:
     git_protocol: ssh
     users:
         martaver:
-    user: martaver
+        holvi-sebastian:
+    user: holvi-sebastian

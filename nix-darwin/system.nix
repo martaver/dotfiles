@@ -85,6 +85,7 @@ in
     LANG = "en_US.UTF-8";
     HOMEBREW_BUNDLE_FILE = "~/Brewfile";
     FOO = "BAR";
+    SSH_AUTH_SOCK = "~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock";
   };
 
   # System packages
@@ -176,21 +177,10 @@ in
   #   ];
   # };
 
-  # services.karabiner-elements = {
+  # services.yabai = {
   #   enable = true;
+  #   enableScriptingAddition = true;
   # };
-
-  # services.skhd = {
-  #   enable = true;
-
-  # };
-
-  # services.skhd.skhdConfig = "cmd + shift - r   :   code";
-
-  services.yabai = {
-    enable = true;
-    enableScriptingAddition = true;
-  };
 
   system.activationScripts.postUserActivation.text = ''
     # Not all darwin settings are activated after nix-darwin configures them until restart

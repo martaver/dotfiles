@@ -5,6 +5,7 @@ tap "koekeishiya/formulae"
 cask "ghostty"
 cask "raycast"
 
+brew "yabai"
 cask "hammerspoon"
 cask "karabiner-elements"
 
@@ -96,3 +97,7 @@ brew "atmos"
 brew "opentofu"
 
 brew "awscli"
+
+
+# Docker
+# cask "docker"

@@ -12,6 +12,6 @@ end)
 
 
 hs.hotkey.bind({ "alt", "shift" }, "R", function()
-  hs.execute('launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"')
+  local result = hs.execute('yabai --restart-service', true)
   hs.alert.show("Yabai config reloaded!")
 end)

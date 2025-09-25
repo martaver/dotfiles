@@ -189,6 +189,24 @@ installBrew() {
 	log "Configured brew environment successfully"
 }
 
+# check Touch ID is configured
+
+# configure sudo with Touch ID
+setupSudoTouchID() {
+	if [ ! -f /etc/pam.d/sudo_local ]; 
+	then
+		sed "s/^#auth/auth/" /etc/pam.d/sudo_local.template | sudo tee /etc/pam.d/sudo_local
+	fi
+}
+
+# install 1password
+
+# install 1password-cli
+
+# check to ensure 1password ssh-agent is set up
+# ssh-agent -l
+# check $SSH_AUTH_SOCK
+
 # xcode is needed for building most software from source
 checkDep 'xcode-cli-tools' '/usr/bin/xcode-select' 'installXcodeCommandLineTools'
 
@@ -197,6 +215,9 @@ checkDep 'rosetta' '/usr/bin/pgrep oahd' 'sudo softwareupdate --install-rosetta 
 
 # brew is needed for installing GUI applications (casks)
 checkDep 'brew' 'command -v brew' 'installBrew'
+
+# install docker
+# ./install-docker.sh
 
 # nix is needed to configure the entire system
 checkDep 'nix' 'command -v nix' 'installNix'
@@ -210,13 +231,6 @@ else
 	nix shell nixpkgs#chezmoi -c chezmoi git -- reset --hard
 	nix shell nixpkgs#chezmoi -c chezmoi git pull "${dotfiles}"
 fi
-
-setupSudoTouchID() {
-	if [ ! -f /etc/pam.d/sudo_local ]; 
-	then
-		sed "s/^#auth/auth/" /etc/pam.d/sudo_local.template | sudo tee /etc/pam.d/sudo_local
-	fi
-}
 
 # nix-darwin is what actually does the configuration
 checkDep 'nix-darwin' 'command -v darwin-rebuild' 'bootstrapNixDarwin' 'applyNixDarwin'

@@ -245,7 +245,9 @@ in
       # Can't find fnm's environment variables
       eval "$(fnm env --use-on-cd --shell zsh)"
 
-
+      # Install docker completions
+      mkdir -p ~/.oh-my-zsh/completions
+      docker completion zsh > ~/.oh-my-zsh/completions/_docker
 
       # WARN: This next compinit doubles up what zsh-autocomplete inits, it's just for debugging performance.
       # When uncommented, zprof will show two calls to compinit
@@ -264,7 +266,7 @@ in
         fi
       } &!
 
-
+      export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
     '';
   };
 }
