@@ -206,6 +206,7 @@ bootstrapNixDarwin() {
 		sudo chown $(id -nu):$(id -ng) "$nixDarwinDir"
 
 		# Backup existing /etc files, they'll get replaced during the first switch
+		log "Backing up /etc/* files..."
 		[ ! -f /etc/zshenv ]   || sudo mv /etc/zshenv /etc/zshenv.bak
 		[ ! -f /etc/zshrc ]    || sudo mv /etc/zshrc /etc/zshrc.bak
 		[ ! -f /etc/zprofile ] || sudo mv /etc/zprofile /etc/zprofile.bak
@@ -218,7 +219,8 @@ bootstrapNixDarwin() {
 		# sed -i '' "s/simple/$(scutil --get LocalHostName)/" flake.nix
 
 		# To use flake.nix stored in chezmoi dotfiles repo:
-		sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake "$nixDarwinDir#default"
+		log "Running darwin-rebuild switch..."
+		sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake "$nixDarwinDir#default"		
 	
 		# To use Nixpkgs unstable:
 		# nix run nix-darwin/master#darwin-rebuild -- switch
@@ -234,7 +236,7 @@ bootstrapNixDarwin() {
 		set -o errexit
 		set -o nounset
 		set -o pipefail
-		log "Configured nix-darwin environment successfully"
+		success "Configured nix-darwin environment successfully"
 	
 	} || {
 		
@@ -332,6 +334,13 @@ else
 	nix shell nixpkgs#chezmoi -c chezmoi git -- reset --hard
 	nix shell nixpkgs#chezmoi -c chezmoi git pull "${dotfiles}"
 fi
+
+setupSudoTouchID() {
+	if [ ! -f /etc/pam.d/sudo_local ]; 
+	then
+		sed "s/^#auth/auth/" /etc/pam.d/sudo_local.template | sudo tee /etc/pam.d/sudo_local
+	fi
+}
 
 applyNixDarwin() {
 	log "Applying (flake) nix-darwin configuration..."
