@@ -204,5 +204,4 @@ in
   users.users."sebastian.nemeth".home = "/Users/sebastian.nemeth";
 
   security.pam.services.sudo_local.touchIdAuth = true;
-
 }

@@ -3,9 +3,15 @@ hs.loadSpoon("EmmyLua")
 hs.loadSpoon("ReloadConfiguration")
 
 spoon.ReloadConfiguration:start()
--- hs.alert.show("Hammerspoon config loaded! Watching ~/.hammerspoon/init.lua")
+hs.alert.show("Hammerspoon config reloaded! Watching ~/.hammerspoon/init.lua")
 
 -- Hello World
-hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "W", function()
+hs.hotkey.bind({ "alt", "shift" }, "W", function()
   hs.alert.show("Hello World!")
+end)
+
+
+hs.hotkey.bind({ "alt", "shift" }, "R", function()
+  hs.execute('launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"')
+  hs.alert.show("Yabai config reloaded!")
 end)
