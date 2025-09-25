@@ -23,7 +23,7 @@
         system = "aarch64-darwin"; # Apple Silicon
         # system = "x86_64-darwin"; # Intel
         modules = [
-          ./configuration.nix
+          ./system.nix
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

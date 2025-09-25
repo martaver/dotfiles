@@ -21,32 +21,63 @@ in
   system.stateVersion = 6;
 
   # Default system configurations
-  system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
-  system.defaults.NSGlobalDomain.InitialKeyRepeat = 15;
-  system.defaults.NSGlobalDomain.KeyRepeat = 1;
-  system.defaults.NSGlobalDomain.NSAutomaticCapitalizationEnabled = false;
-  system.defaults.NSGlobalDomain.NSAutomaticDashSubstitutionEnabled = false;
-  system.defaults.NSGlobalDomain.NSAutomaticPeriodSubstitutionEnabled = false;
-  system.defaults.NSGlobalDomain.NSAutomaticQuoteSubstitutionEnabled = false;
-  system.defaults.NSGlobalDomain.NSAutomaticSpellingCorrectionEnabled = false;
-  system.defaults.NSGlobalDomain.NSDocumentSaveNewDocumentsToCloud = false;
-  system.defaults.NSGlobalDomain.NSNavPanelExpandedStateForSaveMode = true;
-  system.defaults.NSGlobalDomain.NSNavPanelExpandedStateForSaveMode2 = true;
-  system.defaults.SoftwareUpdate.AutomaticallyInstallMacOSUpdates = false;
+  system.defaults = {
 
-  system.defaults.CustomSystemPreferences = {
-    NSGlobalDomain = { };
-    "com.apple.keyboard" = {
-      fnState = true;
+    NSGlobalDomain = {
+      ApplePressAndHoldEnabled = false;
+      InitialKeyRepeat = 15;
+      KeyRepeat = 1;
+      NSAutomaticCapitalizationEnabled = false;
+      NSAutomaticDashSubstitutionEnabled = false;
+      NSAutomaticPeriodSubstitutionEnabled = false;
+      NSAutomaticQuoteSubstitutionEnabled = false;
+      NSAutomaticSpellingCorrectionEnabled = false;
+      NSDocumentSaveNewDocumentsToCloud = false;
+      NSNavPanelExpandedStateForSaveMode = true;
+      NSNavPanelExpandedStateForSaveMode2 = true;
+    };
+
+    SoftwareUpdate = {
+      AutomaticallyInstallMacOSUpdates = false;
+    };
+
+    CustomSystemPreferences = {
+      "com.apple.keyboard" = {
+        fnState = true;
+      };
+    };
+
+    CustomUserPreferences = {
+      # Look up SymbolicHotKeyNumbers here: https://github.com/NUIKit/CGSInternal/blob/master/CGSHotKeys.h
+      "com.apple.symbolichotkeys" = {
+        AppleSymbolicHotKeys = {
+          "60" = {
+            enabled = false;
+          };
+          "61" = {
+            enabled = false;
+          };
+          "64" = {
+            enabled = false;
+          };
+          "65" = {
+            enabled = false;
+          };
+        };
+      };
+    };
+
+    dock = {
+      autohide = true;
+      showhidden = true;
+    };
+
+    finder = {
+      AppleShowAllExtensions = true;
+      FXEnableExtensionChangeWarning = false;
+      QuitMenuItem = true;
     };
   };
-
-  system.defaults.dock.autohide = true;
-  system.defaults.dock.showhidden = true;
-
-  system.defaults.finder.AppleShowAllExtensions = true;
-  system.defaults.finder.FXEnableExtensionChangeWarning = false;
-  system.defaults.finder.QuitMenuItem = true;
 
   # Environment configuration
   environment.variables = {
@@ -170,4 +201,5 @@ in
   users.users.martaver.home = "/Users/martaver";
   users.users.sebastiannemeth.home = "/Users/sebastiannemeth";
   users.users."sebastian.nemeth".home = "/Users/sebastian.nemeth";
+
 }
