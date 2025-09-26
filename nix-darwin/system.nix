@@ -21,6 +21,7 @@ in
   system.stateVersion = 6;
 
   # Default system configurations
+  # Look up defaults settings here: https://macos-defaults.com/
   system.defaults = {
 
     NSGlobalDomain = {
@@ -44,6 +45,11 @@ in
       "com.apple.keyboard.fnState" = true;
     };
 
+    hitoolbox = {
+      # AppleFnUsageType = "Do Nothing";
+      AppleFnUsageType = "Show Emoji & Symbols";
+    };
+
     SoftwareUpdate = {
       AutomaticallyInstallMacOSUpdates = false;
     };
@@ -56,6 +62,7 @@ in
 
       # Look up SymbolicHotKeyNumbers here: https://github.com/NUIKit/CGSInternal/blob/master/CGSHotKeys.h
       # Or here: https://gist.github.com/mkhl/455002#file-ctrl-f1-c-L12
+      # Or here: https://macos-defaults.com/
       "com.apple.symbolichotkeys" = {
         AppleSymbolicHotKeys = {
           "60" = {
@@ -189,6 +196,9 @@ in
   # };
 
   system.activationScripts.activateSettings.text = ''
+    # https://apple.stackexchange.com/questions/127246/mavericks-how-to-add-input-source-via-plists-defaults
+    defaults write com.apple.HIToolbox AppleEnabledInputSources -array '<dict><key>InputSourceKind</key><string>Keyboard Layout</string><key>KeyboardLayout ID</key><integer>-1534512</integer><key>KeyboardLayout Name</key><string>ABC (no option)</string></dict>'
+
     # Not all darwin settings are activated after nix-darwin configures them until restart
     # Following line should allow us to avoid a logout/login cycle
     # Inspired by: https://medium.com/@zmre/nix-darwin-quick-tip-activate-your-preferences-f69942a93236
