@@ -9,3 +9,6 @@ If `darwin-rebuild` is not available in shell, you can run it with:
 ```
 /run/current-system/sw/bin/darwin-rebuild <cmd>
 ```
+
+## To update nix-darwin
+`nix flake update`

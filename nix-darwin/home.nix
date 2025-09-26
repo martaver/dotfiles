@@ -238,7 +238,7 @@ in
       zsh-bench = "~/zsh-bench/zsh-bench";
     };
 
-    initExtra = ''
+    initContent = ''
       # Configures the active shell to use fnm
       # If you get the following error, it's because this wasn't called:
       # error: `fnm env` was not applied in this context.

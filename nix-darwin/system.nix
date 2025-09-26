@@ -24,9 +24,13 @@ in
   system.defaults = {
 
     NSGlobalDomain = {
+      # Disables the accent popup that appears when holding a char down, allowing repeats
       ApplePressAndHoldEnabled = false;
+
+      # Fast key char repeats
       InitialKeyRepeat = 15;
       KeyRepeat = 1;
+
       NSAutomaticCapitalizationEnabled = false;
       NSAutomaticDashSubstitutionEnabled = false;
       NSAutomaticPeriodSubstitutionEnabled = false;
@@ -35,6 +39,9 @@ in
       NSDocumentSaveNewDocumentsToCloud = false;
       NSNavPanelExpandedStateForSaveMode = true;
       NSNavPanelExpandedStateForSaveMode2 = true;
+
+      AppleKeyboardUIMode = 2;
+      "com.apple.keyboard.fnState" = true;
     };
 
     SoftwareUpdate = {
@@ -42,12 +49,11 @@ in
     };
 
     CustomSystemPreferences = {
-      "com.apple.keyboard" = {
-        fnState = true;
-      };
+
     };
 
     CustomUserPreferences = {
+
       # Look up SymbolicHotKeyNumbers here: https://github.com/NUIKit/CGSInternal/blob/master/CGSHotKeys.h
       # Or here: https://gist.github.com/mkhl/455002#file-ctrl-f1-c-L12
       "com.apple.symbolichotkeys" = {
@@ -182,13 +188,14 @@ in
   #   enableScriptingAddition = true;
   # };
 
-  system.activationScripts.postUserActivation.text = ''
+  system.activationScripts.activateSettings.text = ''
     # Not all darwin settings are activated after nix-darwin configures them until restart
     # Following line should allow us to avoid a logout/login cycle
     # Inspired by: https://medium.com/@zmre/nix-darwin-quick-tip-activate-your-preferences-f69942a93236
     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
   '';
 
+  system.primaryUser = "sebastiannemeth";
   users.users.martaver.home = "/Users/martaver";
   users.users.sebastiannemeth.home = "/Users/sebastiannemeth";
   users.users."sebastian.nemeth".home = "/Users/sebastian.nemeth";
