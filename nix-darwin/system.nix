@@ -65,15 +65,19 @@ in
       # Or here: https://macos-defaults.com/
       "com.apple.symbolichotkeys" = {
         AppleSymbolicHotKeys = {
+          # Disable '^ + Space' for selecting the previous input source
           "60" = {
             enabled = false;
           };
+          # Disable '^ + Option + Space' for selecting the next input source
           "61" = {
             enabled = false;
           };
+          # Disable 'Cmd + Space' for Spotlight Search
           "64" = {
             enabled = false;
           };
+          # Disable 'Cmd + Alt + Space' for Finder search window
           "65" = {
             enabled = false;
           };
@@ -81,9 +85,19 @@ in
       };
     };
 
+    spaces = {
+      # Helps Aerospace work better with multiple monitors
+      # https://nikitabobko.github.io/AeroSpace/guide#a-note-on-displays-have-separate-spaces
+      spans-displays = true;
+    };
+
     dock = {
       autohide = true;
       showhidden = true;
+
+      # Helps Aerospace work better with Mission Control
+      # https://nikitabobko.github.io/AeroSpace/guide#a-note-on-mission-control
+      expose-group-apps = true;
     };
 
     finder = {
@@ -129,26 +143,10 @@ in
   # of the .zshrc and only rebuilds .zcompdump when needed.
   programs.zsh.enableGlobalCompInit = false;
 
-  # environment.systemPath = [
-  #   "/Users/martaver/.yabai/bin"
-  # ];
-
   # todo: use this somehow to install yabai's SA?
   # ref: https://github.com/LnL7/nix-darwin/issues/165
 
-  # environment.etc = {
-  # "sudoers.d/yabai".text = let
-  #   commands = [
-  #     "/run/current-system/sw/bin/darwin-rebuild"
-  #     "/run/current-system/sw/bin/nix*"
-  #     "/run/current-system/sw/bin/ln"
-  #     "/nix/store/*/activate"
-  #     "/bin/launchctl"
-  #   ];
-  #   commandsString = builtins.concatStringsSep ", " commands;
-  # in ''
-  #   %admin ALL=(ALL:ALL) NOPASSWD: ${commandsString}
-  # '';
+  # environment.etc = { }
 
   # `environment.extraInit`
   # environment.extraInit = "echo Running extraInit; export EXTRA_INIT_RAN=true;";
@@ -173,31 +171,13 @@ in
   #   onActivation.upgrade = true;
   #   # updates homebrew packages on activation,
   #   # can make darwin-rebuild much slower (otherwise i'd forget to do it ever though)
-
-  #   brews = [
-  #     # {
-  #     #   name = "koekeishiya/formulae/skhd";
-  #     #   restart_service = "changed";
-  #     # }
-  #     # {
-  #     #   name = "koekeishiya/formulae/yabai";
-  #     #   restart_service = "changed";
-  #     # }
-  #   ];
-
-  #   casks = [
-  #     "visual-studio-code"
-  #   ];
-  # };
-
-  # services.yabai = {
-  #   enable = true;
-  #   enableScriptingAddition = true;
+  #   brews = [  ];
+  #   casks = [ ];
   # };
 
   system.activationScripts.activateSettings.text = ''
     # https://apple.stackexchange.com/questions/127246/mavericks-how-to-add-input-source-via-plists-defaults
-    defaults write com.apple.HIToolbox AppleEnabledInputSources -array '<dict><key>InputSourceKind</key><string>Keyboard Layout</string><key>KeyboardLayout ID</key><integer>-1534512</integer><key>KeyboardLayout Name</key><string>ABC (no option)</string></dict>'
+    defaults write com.apple.HIToolbox AppleEnabledInputSources -array "<dict><key>InputSourceKind</key><string>Keyboard Layout</string><key>KeyboardLayout ID</key><integer>-1534512</integer><key>KeyboardLayout Name</key><string>ABC (no option)</string></dict>"
 
     # Not all darwin settings are activated after nix-darwin configures them until restart
     # Following line should allow us to avoid a logout/login cycle
@@ -210,5 +190,6 @@ in
   users.users.sebastiannemeth.home = "/Users/sebastiannemeth";
   users.users."sebastian.nemeth".home = "/Users/sebastian.nemeth";
 
+  # Allows Terminal to call for TouchID when authorising sudo
   security.pam.services.sudo_local.touchIdAuth = true;
 }

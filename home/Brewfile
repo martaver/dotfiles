@@ -1,17 +1,19 @@
-tap "koekeishiya/formulae"
+
+
 # tap "hashicorp/tap"
 # tap "cirruslabs/cli"
+# brew "cirruslabs/cli/tart"
 
 cask "ghostty"
 cask "raycast"
 
-brew "yabai"
-cask "hammerspoon"
-cask "karabiner-elements"
-
-# brew "cirruslabs/cli/tart"
+# tap "koekeishiya/formulae"
 # brew "koekeishiya/formulae/yabai"
 
+tap "nikitabobko/tap"
+cask "nikitabobko/tap/aerospace"
+cask "hammerspoon"
+cask "karabiner-elements"
 
 # 'gettext' commands, e.g. 'msgcat'
 brew "gettext"
@@ -39,6 +41,7 @@ vscode "yoavbls.pretty-ts-errors"
 # https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css
 vscode "be5invis.vscode-custom-css" 
 vscode "bierner.docs-view"
+vscode "eamodio.gitlens"
 
 # vscode extensions
 vscode "ms-vscode.extension-test-runner"
@@ -61,6 +64,8 @@ vscode "vercel.turbo-vsc"
 
 vscode "casualjim.gotemplate"
 vscode "redhat.vscode-yaml"
+
+vscode "tamasfe.even-better-toml"
 
 cask "gcloud-cli"
 
@@ -90,6 +95,8 @@ cask "google-chrome"
 # Postgres
 brew "postgresql"
 cask "pgadmin4"
+
+vscode "ms-ossdata.vscode-pgsql"
 
 brew "pnpm"
 

@@ -172,4 +172,34 @@
   "[github-actions-workflow]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
+  "gitlens.ai.model": "gitkraken",
+  "gitlens.ai.gitkraken.model": "gemini:gemini-2.0-flash",
+  "pgsql.serverGroups": [
+    {
+      "name": "Servers",
+      "id": "C6E50D92-97EE-4543-9A16-55E01FA9ED23",
+      "isDefault": true
+    }
+  ],
+  "pgsql.connections": [
+    {
+      "id": "D6C77C88-D18A-49D2-8EAC-EB42F90A4A2B",
+      "groupId": "C6E50D92-97EE-4543-9A16-55E01FA9ED23",
+      "authenticationType": "SqlLogin",
+      "connectTimeout": 15,
+      "applicationName": "vscode-pgsql",
+      "clientEncoding": "utf8",
+      "sslmode": "prefer",
+      "savePassword": true,
+      "server": "localhost",
+      "user": "development",
+      "password": "",
+      "profileName": "(wb-postgres) @ localhost",
+      "sshPassword": "",
+      "port": "5480",
+      "expiresOn": 0,
+      "profileSource": 0,
+      "displayName": "(wb-postgres) @ localhost"
+    }
+  ],
 }

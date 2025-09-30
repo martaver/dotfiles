@@ -12,6 +12,6 @@ end)
 
 
 hs.hotkey.bind({ "alt", "shift" }, "R", function()
-  local result = hs.execute('yabai --restart-service', true)
-  hs.alert.show("Yabai config reloaded!")
+  local result = hs.execute('aerospace reload-config', true)
+  hs.alert.show("Aerospace config reloaded!")
 end)

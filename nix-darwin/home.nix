@@ -144,8 +144,6 @@ in
 
     # Extra environment variables
     envExtra = ''
-      # Load exports
-      # source $HOME/.yabai/.fns
 
       # This directs oh-my-zsh to look for custom plugins in the dir
       # where we clone plugins that aren't included in their own plugin
@@ -266,7 +264,8 @@ in
         fi
       } &!
 
-      export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+      # TODO: Delete this is 1password ssh-agent still works without it
+      # export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
     '';
   };
 }
