@@ -10,8 +10,14 @@ cask "raycast"
 # tap "koekeishiya/formulae"
 # brew "koekeishiya/formulae/yabai"
 
+# Aerospace
 tap "nikitabobko/tap"
 cask "nikitabobko/tap/aerospace"
+
+# Highlights borders in active window
+tap "FelixKratz/formulae"
+brew "FelixKratz/formulae/borders"
+
 cask "hammerspoon"
 cask "karabiner-elements"
 

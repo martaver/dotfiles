@@ -43,6 +43,6 @@
 # resize-overlay-duration = 4s 200ms
 
 quick-terminal-position = left
-quick-terminal-size = 30%
+quick-terminal-size = 800px
 quick-terminal-screen = mouse
-keybind = global:cmd+grave_accent=toggle_quick_terminal
+keybind = global:alt+grave_accent=toggle_quick_terminal

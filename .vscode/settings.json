@@ -202,4 +202,11 @@
       "displayName": "(wb-postgres) @ localhost"
     }
   ],
+  "evenBetterToml.formatter.allowedBlankLines": 2,
+  "evenBetterToml.formatter.indentEntries": true,
+  "evenBetterToml.formatter.indentTables": true,
+  "evenBetterToml.formatter.columnWidth": 120,
+  "evenBetterToml.formatter.alignEntries": true,
+  "evenBetterToml.formatter.alignComments": true,
+  "evenBetterToml.formatter.crlf": false,
 }
