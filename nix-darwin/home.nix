@@ -157,13 +157,7 @@ in
 
     oh-my-zsh = {
       enable = true;
-      plugins = [
-        # This plugin ensures ssh-agent is enabled when entering a shell.
-        # Ref: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/ssh-agent
-        #
-        # This is what makes ~/.ssh/config take effect and use
-        # 1Password ssh-agent for identities and biometrics for auth
-        "ssh-agent"
+      plugins = [        
 
         # Adds an interactive chooser for 'cd'.
         # Ref: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/zsh-interactive-cd
@@ -215,11 +209,7 @@ in
         "zsh-syntax-highlighting"
       ];
       # theme = "";
-      extraConfig = ''
-        # Configures ssh-agent
-        #   lazy: evaluates identities when requested
-        #   agent-forwarding yes: enable agent-forwarding by default 
-        zstyle :omz:plugins:ssh-agent lazy agent-forwarding yes
+      extraConfig = ''        
 
         # -C sets compinit to skip checking / rebuilding the .zcompdump
         # file if it already exists.
@@ -263,9 +253,6 @@ in
           zcompile "$zcompdump"
         fi
       } &!
-
-      # TODO: Delete this is 1password ssh-agent still works without it
-      # export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
     '';
   };
 }
