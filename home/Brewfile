@@ -114,3 +114,6 @@ brew "awscli"
 
 # Docker
 # cask "docker"
+
+
+cask "claude-code"
