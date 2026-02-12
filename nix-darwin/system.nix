@@ -41,6 +41,8 @@ in
       NSNavPanelExpandedStateForSaveMode = true;
       NSNavPanelExpandedStateForSaveMode2 = true;
 
+      NSAutomaticWindowAnimationsEnabled = false;
+
       AppleKeyboardUIMode = 2;
       "com.apple.keyboard.fnState" = true;
     };
@@ -113,6 +115,7 @@ in
     HOMEBREW_BUNDLE_FILE = "~/Brewfile";
     FOO = "BAR";
     SSH_AUTH_SOCK = "~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock";
+    PATH = "/opt/homebrew/bin:$PATH";
   };
 
   # System packages
@@ -136,6 +139,7 @@ in
     cocoapods
     serverless
     turbo
+    deno
   ];
 
   # Disable the default compinit call that nix adds to each zsh env

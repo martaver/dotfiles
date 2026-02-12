@@ -24,6 +24,9 @@ cask "karabiner-elements"
 # 'gettext' commands, e.g. 'msgcat'
 brew "gettext"
 
+cask "signal"
+cask "whatsapp"
+
 cask "visual-studio-code"
 vscode "jnoortheen.nix-ide"
 vscode "sumneko.lua"

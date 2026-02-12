@@ -214,4 +214,12 @@
   },
   "chat.viewSessions.orientation": "stacked",
   "claudeCode.preferredLocation": "panel",
+  "[markdown]": {
+    "diffEditor.ignoreTrimWhitespace": true
+  },
+  "terminal.integrated.initialHint": false,
+  "[vue]": {
+    "editor.defaultFormatter": "Vue.volar"
+  },
+  "terminal.integrated.stickyScroll.enabled": false
 }
