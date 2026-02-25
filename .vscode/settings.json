@@ -209,4 +209,9 @@
   "evenBetterToml.formatter.alignEntries": true,
   "evenBetterToml.formatter.alignComments": true,
   "evenBetterToml.formatter.crlf": false,
+  "[go]": {
+    "editor.insertSpaces": false
+  },
+  "chat.viewSessions.orientation": "stacked",
+  "claudeCode.preferredLocation": "panel",
 }

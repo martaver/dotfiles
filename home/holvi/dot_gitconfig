@@ -14,4 +14,4 @@
   gpgsign = true
 
 [core]
-    sshCommand = "ssh -i ~/.ssh/id_holvi.pub -o IdentitiesOnly=yes"
+  sshCommand = "ssh -i ~/.ssh/id_holvi.pub -o IdentitiesOnly=yes"

@@ -75,6 +75,8 @@ vscode "tamasfe.even-better-toml"
 
 cask "gcloud-cli"
 
+brew "go"
+
 
 #cask "hashicorp/tap/hashicorp-vagrant"
 #cask "parallels-virtualization-sdk"
