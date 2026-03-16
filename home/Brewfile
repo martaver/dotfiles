@@ -26,6 +26,7 @@ brew "gettext"
 
 cask "signal"
 cask "whatsapp"
+cask "slack"
 
 cask "visual-studio-code"
 vscode "jnoortheen.nix-ide"
@@ -76,6 +77,10 @@ vscode "redhat.vscode-yaml"
 
 vscode "tamasfe.even-better-toml"
 
+vscode "github.vscode-pull-request-github"
+vscode "github.copilot-chat"
+vscode "anthropic.claude-code"
+
 cask "gcloud-cli"
 
 brew "go"
@@ -122,3 +127,5 @@ brew "awscli"
 
 
 cask "claude-code"
+
+brew "git-filter-repo"
