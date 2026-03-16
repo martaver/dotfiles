@@ -1,4 +1,5 @@
 {
+  "editor.hover.enabled": "off",
   "terminal.integrated.scrollback": 10000,
   "vscode_custom_css.imports": [
     "file://${userHome}/Library/Application Support/Code/User/pretty-ts-errors.css",
@@ -221,5 +222,6 @@
   "[vue]": {
     "editor.defaultFormatter": "Vue.volar"
   },
-  "terminal.integrated.stickyScroll.enabled": false
+  "terminal.integrated.stickyScroll.enabled": false,
+  "githubPullRequests.terminalLinksHandler": "github",
 }
