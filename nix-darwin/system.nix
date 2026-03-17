@@ -32,6 +32,7 @@ in
       InitialKeyRepeat = 15;
       KeyRepeat = 1;
 
+      NSAutomaticWindowAnimationsEnabled = false;
       NSAutomaticCapitalizationEnabled = false;
       NSAutomaticDashSubstitutionEnabled = false;
       NSAutomaticPeriodSubstitutionEnabled = false;
@@ -48,8 +49,8 @@ in
     };
 
     hitoolbox = {
-      # AppleFnUsageType = "Do Nothing";
-      AppleFnUsageType = "Show Emoji & Symbols";
+      AppleFnUsageType = "Do Nothing";
+      # AppleFnUsageType = "Show Emoji & Symbols";
     };
 
     SoftwareUpdate = {
@@ -88,15 +89,19 @@ in
     };
 
     spaces = {
-      # Helps Aerospace work better with multiple monitors
+      # "Displays have separate Spaces"
+      # Enabled: spans-displays = false (dock and toolbar on both monitors, can fullscreen on one monitor)
+      # Disabled: spans-displays = true (helps Aerospace work better with multiple monitors)
+      #
       # https://nikitabobko.github.io/AeroSpace/guide#a-note-on-displays-have-separate-spaces
-      spans-displays = true;
+      spans-displays = false;
     };
 
     dock = {
       autohide = true;
       showhidden = true;
 
+      # "Group windows by application"
       # Helps Aerospace work better with Mission Control
       # https://nikitabobko.github.io/AeroSpace/guide#a-note-on-mission-control
       expose-group-apps = true;
@@ -137,7 +142,6 @@ in
     flutter
     ruby
     cocoapods
-    serverless
     turbo
     deno
   ];
@@ -146,9 +150,6 @@ in
   # We will be customising our call, to ensure it's at the end
   # of the .zshrc and only rebuilds .zcompdump when needed.
   programs.zsh.enableGlobalCompInit = false;
-
-  # todo: use this somehow to install yabai's SA?
-  # ref: https://github.com/LnL7/nix-darwin/issues/165
 
   # environment.etc = { }
 

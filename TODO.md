@@ -4,7 +4,6 @@ Search github for repos called `dotfiles` for examples of setups.
 
 Search /r/UnixPorn for pro setups.
 
-[*] Split keymaps project out
 [*] Rename repo to dotfiles, or ~ to dotfiles or something.
 
 [ ] neovim + vscode?
@@ -14,9 +13,6 @@ Search /r/UnixPorn for pro setups.
 [*] chezmoi - https://fedoramagazine.org/take-back-your-dotfiles-with-chezmoi/
 
 MacOS:
-[*] try kitty for terminal (suposed to be faster than iterm)
-[*] yabai
-[*] skhdc
 [ ] direnv and asdf - https://blog.mikecordell.com/2021/12/18/better-project-environment-management-with-direnv-and-asdf/
 [ ] hammerspoon for automation of MacOS (lua is also used to script neovim)
 
@@ -28,10 +24,10 @@ telescope
 harpoon
 nvchad
 nv kickstart.nvim
+https://www.homerow.app/
 
 # Problems
 
-- [ ] `skhd` commands for `yabai` commands for swapping / changing focus of windows are broken
 - [ ] `starship` prompt is slow and sometimes errors when opening prompt (possibly because of `nvm` - drop `nvm` and use `nix-env`?)
 - [ ] sometimes hover breaks... not specific to any particular app, but it can happen in any app... and it can happen to some apps and not others at any point in time
 

@@ -82,6 +82,7 @@ vscode "github.copilot-chat"
 vscode "anthropic.claude-code"
 
 cask "gcloud-cli"
+cask "google-drive"
 
 brew "go"
 
@@ -129,3 +130,5 @@ brew "awscli"
 cask "claude-code"
 
 brew "git-filter-repo"
+brew "oven-sh/bun/bun"
+
