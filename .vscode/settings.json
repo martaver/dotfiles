@@ -57,7 +57,7 @@
   "workbench.editor.revealIfOpen": true,
   "explorer.fileNesting.enabled": false,
   "explorer.fileNesting.expand": false,
-  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.ignoreTrimWhitespace": true,
   // "editor.suggest.showKeywords": false,
   "editor.wordBasedSuggestions": "off",
   //
@@ -224,4 +224,5 @@
   "terminal.integrated.stickyScroll.enabled": false,
   "githubPullRequests.terminalLinksHandler": "github",
   "terminal.integrated.initialHint": false,
+  "claudeCode.selectedModel": "claude-opus-4-6",
 }

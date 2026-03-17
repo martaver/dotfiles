@@ -80,6 +80,7 @@ vscode "tamasfe.even-better-toml"
 vscode "github.vscode-pull-request-github"
 vscode "github.copilot-chat"
 vscode "anthropic.claude-code"
+vscode "unifiedjs.vscode-mdx"
 
 cask "gcloud-cli"
 cask "google-drive"
