@@ -151,6 +151,8 @@
   "security.promptForLocalFileProtocolHandling": false,
   "github.copilot.enable": {
     "*": false,
+    "typescript": true,
+    "javascript": true,
     "plaintext": false,
     "markdown": false,
     "scminput": false
