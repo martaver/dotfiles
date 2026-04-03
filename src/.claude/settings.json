@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "additionalDirectories": [
+      "/Users/sebastiannemeth/kickets/next/kickets-ignite/project-plan"
+    ],
+    "allow": [
+      "Read(//Users/sebastiannemeth/cleric-sh/ai-hero-dev/cohort-003-project/app/routes/**)"
+    ]
+  },
+  "effortLevel": "medium",
+  "statusLine": {
+    "type": "command",
+    "command": "npx ccstatusline@latest"
+  }
+}
