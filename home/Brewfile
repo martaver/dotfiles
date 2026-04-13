@@ -81,6 +81,7 @@ vscode "github.vscode-pull-request-github"
 vscode "github.copilot-chat"
 vscode "anthropic.claude-code"
 vscode "unifiedjs.vscode-mdx"
+vscode "statelyai.stately-vscode"
 
 cask "gcloud-cli"
 cask "google-drive"
@@ -133,3 +134,5 @@ cask "claude-code"
 brew "git-filter-repo"
 brew "oven-sh/bun/bun"
 
+# gitql - Git 'SQL'
+brew "gql"

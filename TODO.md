@@ -33,6 +33,14 @@ https://www.homerow.app/
 
 # Terminal
 
+## zsh-autocomplete → fzf-tab
+
+- [ ] Replace `zsh-autocomplete` plugin with `fzf-tab`
+- `zsh-autocomplete` redirects stderr internally and sometimes fails to restore it, causing stderr to silently disappear in interactive shells (affects both VSCode terminal and Ghostty)
+- Has a history of causing other issues too
+- `fzf-tab` provides a similar enhanced tab-completion experience (fuzzy finder menu) without the aggressive I/O hooks
+- Already have `zsh-autosuggestions` for ghost-text history suggestions, so nothing else is lost
+
 ## Debugging slow Terminal startup
 
 Use `zprof` - instructions in `.zshrc`.

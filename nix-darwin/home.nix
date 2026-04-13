@@ -157,7 +157,7 @@ in
 
     oh-my-zsh = {
       enable = true;
-      plugins = [        
+      plugins = [
 
         # Adds an interactive chooser for 'cd'.
         # Ref: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/zsh-interactive-cd
@@ -201,7 +201,7 @@ in
 
         # Adds real-time lookahead command and history autocompletion.
         # Ref: https://github.com/marlonrichert/zsh-autocomplete
-        "zsh-autocomplete"
+        # "zsh-autocomplete"
 
         # Adds basic syntax highlighting when viewing scripts in zsh.
         # Ref: https://github.com/zsh-users/zsh-syntax-highlighting.git
@@ -209,7 +209,7 @@ in
         "zsh-syntax-highlighting"
       ];
       # theme = "";
-      extraConfig = ''        
+      extraConfig = ''
 
         # -C sets compinit to skip checking / rebuilding the .zcompdump
         # file if it already exists.
@@ -235,7 +235,7 @@ in
 
       # Install docker completions
       mkdir -p ~/.oh-my-zsh/completions
-      docker completion zsh > ~/.oh-my-zsh/completions/_docker
+      # docker completion zsh > ~/.oh-my-zsh/completions/_docker
 
       # WARN: This next compinit doubles up what zsh-autocomplete inits, it's just for debugging performance.
       # When uncommented, zprof will show two calls to compinit

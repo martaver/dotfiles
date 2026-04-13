@@ -42,8 +42,6 @@ in
       NSNavPanelExpandedStateForSaveMode = true;
       NSNavPanelExpandedStateForSaveMode2 = true;
 
-      NSAutomaticWindowAnimationsEnabled = false;
-
       AppleKeyboardUIMode = 2;
       "com.apple.keyboard.fnState" = true;
     };
