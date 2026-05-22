@@ -1,5 +1,4 @@
-# Note that to use this config, ssh-agent needs to be running.
-
+# Note that to use this config, ssh-agent (1password) needs to be running.
 # This line directs ssh-agent to use 1password to provide identities
 Host *
   IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"

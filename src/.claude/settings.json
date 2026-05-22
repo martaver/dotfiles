@@ -1,15 +1,43 @@
 {
   "permissions": {
-    "additionalDirectories": [
-      "/Users/sebastiannemeth/kickets/next/kickets-ignite/project-plan"
-    ],
     "allow": [
-      "Read(//Users/sebastiannemeth/cleric-sh/ai-hero-dev/cohort-003-project/app/routes/**)"
+      "Bash(for file in *)",
+      "Bash(pnpm i:*)",
+      "Bash(pnpm vue-tsc:*)",
+      "Bash(pnpm test:*)",
+      "Bash(pnpm config:*)",
+      "Bash(pnpm ls:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:www.npmjs.com)",
+      "Read(//tmp/**)",
+      "Bash(pnpm jest:*)",
+      "Bash(npx jest:*)",
+      "Bash(gh search:*)",
+      "Bash(git add:*)",
+      "Bash(git mv:*)",
+      "Bash(git commit:*)",
+      "Bash(git worktree *)",
+      "Bash(git branch *)",
+      "Bash(git rev-parse *)",
+      "Bash(git stash *)",
+      "Bash(git fetch *)",
+      "Bash(git status *)",
+      "Bash(git log *)",
+      "Bash(gitql -q *)",
+      "Bash(gh pr:*)",
+      "Bash(docker run:*)",
+      "Bash(docker compose:*)",
+      "Bash(imdone *)"
+    ],
+    "additionalDirectories": [
+      "/Users/sebastiannemeth/.local/share/chezmoi",
+      "/Users/sebastiannemeth/holvi/ci-pipelines/vars",
+      "/Users/sebastiannemeth/holvi/dev-env/tools",
+      "/Users/sebastiannemeth/holvi/dev-env/tools/ci"
     ]
   },
+  "model": "opus[1m]",
   "effortLevel": "medium",
-  "statusLine": {
-    "type": "command",
-    "command": "npx ccstatusline@latest"
-  }
+  "theme": "dark-ansi"
 }
