@@ -226,4 +226,5 @@
     "editor.inlayHints.maximumLength": 0
   },
   "claudeCode.useCtrlEnterToSend": true,
+  "claudeCode.useTerminal": false
 }

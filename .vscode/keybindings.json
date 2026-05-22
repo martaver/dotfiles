@@ -81,5 +81,23 @@
         "key": "ctrl+enter",
         "command": "-github.copilot.generate",
         "when": "editorTextFocus && github.copilot.activated && !commentEditorFocused"
+    },
+    {
+        "key": "shift+enter",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u001b\r"
+        },
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+escape",
+        "command": "claude-vscode.focus",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+escape",
+        "command": "claude-vscode.blur",
+        "when": "!editorTextFocus"
     }
 ]
