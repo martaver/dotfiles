@@ -55,18 +55,19 @@
       "Bash(git check-ignore:*)",
       "Bash(bash scripts/gas:push.sh staging)",
       "Bash(chmod +x /Users/sebastiannemeth/cleric-sh/core/@spacent/invoicing/scripts/gas:run.sh)",
-      "WebFetch(domain:stackoverflow.com)"
+      "WebFetch(domain:stackoverflow.com)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ],
     "additionalDirectories": [
       "/Users/sebastiannemeth/kickets/next/kickets-ignite/project-plan",
       "/tmp"
     ]
   },
+  "model": "opus[1m]",
   "statusLine": {
     "type": "command",
     "command": "npx ccstatusline@latest"
   },
-  "model": "opus[1m]",
   "effortLevel": "medium",
   "theme": "dark-ansi"
 }
