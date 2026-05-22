@@ -150,12 +150,7 @@
   ],
   "security.promptForLocalFileProtocolHandling": false,
   "github.copilot.enable": {
-    "*": false,
-    "typescript": true,
-    "javascript": true,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false
+    "*": true
   },
   "github.copilot.nextEditSuggestions.enabled": true,
   "diffEditor.maxComputationTime": 0,
@@ -227,4 +222,8 @@
   "githubPullRequests.terminalLinksHandler": "github",
   "terminal.integrated.initialHint": false,
   "claudeCode.selectedModel": "claude-opus-4-6",
+  "[csv]": {
+    "editor.inlayHints.maximumLength": 0
+  },
+  "claudeCode.useCtrlEnterToSend": true,
 }
