@@ -27,6 +27,7 @@ brew "gettext"
 cask "signal"
 cask "whatsapp"
 cask "slack"
+cask "discord"
 
 cask "visual-studio-code"
 vscode "jnoortheen.nix-ide"
