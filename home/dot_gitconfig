@@ -7,6 +7,9 @@
 	editor = code --wait
   ignorecase = false
 
+[rebase]
+  autoStash = true
+
 [push]
   autoSetupRemote = true
 
