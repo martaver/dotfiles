@@ -1,9 +1,11 @@
 import { describe, expect, test } from 'bun:test';
 import { mkdtemp, mkdir, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 import { extractInlineItems, loadTree } from '../../src/model/tree.ts';
 import type { Item } from '../../src/model/types.ts';
+
+const FIXTURE_ROOT = resolve(import.meta.dirname, '../../root');
 
 function findByTitle(items: Item[], title: string, form?: Item['form']): Item | undefined {
   for (const it of items) {
@@ -43,7 +45,7 @@ describe('extractInlineItems', () => {
 
 describe('loadTree against the root/ fixture', () => {
   test('parses every Item in the fixture tree without error', async () => {
-    const items = await loadTree('root');
+    const items = await loadTree(FIXTURE_ROOT);
 
     // From [x] XX-123 My Issue.md
     const myIssue = findByTitle(items, 'My Issue', 'file');
