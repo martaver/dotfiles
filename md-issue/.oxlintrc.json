@@ -9,6 +9,7 @@
   },
   "rules": {
     "no-console": "off",
+    "no-await-in-loop": "off",
     "typescript/no-explicit-any": "error"
   },
   "ignorePatterns": ["dist/**", "node_modules/**", "root/**"]
