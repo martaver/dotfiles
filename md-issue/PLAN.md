@@ -12,7 +12,7 @@ Build order, module structure, and milestones for delivering [SPEC.md](./SPEC.md
 - **Interactive prompts**: `@clack/prompts` — used by `init`.
 - **TOML**: `smol-toml` — small, fast, spec-compliant, types-friendly.
 - **Glob matching**: `picomatch` — fast, correct, no deps.
-- **Schema validation**: `typebox` — JSON-Schema-compatible runtime + static types, fast validation via compiled checkers.
+- **Schema validation**: `typebox` (v1, unscoped — successor to `@sinclair/typebox`) — JSON-Schema-compatible runtime + static types, fast validation via compiled checkers. Subpath exports: `typebox/type`, `typebox/compile`, `typebox/value`, etc.
 - **Git**: shell out via bun's `$` API rather than pulling in `simple-git`. Keeps the dep count low; we only need diff, add, commit, branch, stash, rebase — all of which are stable plumbing.
 - **Markdown / frontmatter / inline parsing**: hand-rolled. The grammar is small and bespoke (filename grammar, HTML-comment frontmatter, list-line parsing). Pulling in `unified`/`remark` would be over-engineering — but use `mdast-util-from-markdown` opportunistically if list-line edge cases get hairy.
 - **HTTP**: built-in `fetch` (bun provides it).
