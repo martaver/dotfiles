@@ -12,7 +12,7 @@ Build order, module structure, and milestones for delivering [SPEC.md](./SPEC.md
 - **Interactive prompts**: `@clack/prompts` — used by `init`.
 - **TOML**: `smol-toml` — small, fast, spec-compliant, types-friendly.
 - **Glob matching**: `picomatch` — fast, correct, no deps.
-- **Schema validation**: `zod` — for config validation with good error messages.
+- **Schema validation**: `typebox` — JSON-Schema-compatible runtime + static types, fast validation via compiled checkers.
 - **Git**: shell out via bun's `$` API rather than pulling in `simple-git`. Keeps the dep count low; we only need diff, add, commit, branch, stash, rebase — all of which are stable plumbing.
 - **Markdown / frontmatter / inline parsing**: hand-rolled. The grammar is small and bespoke (filename grammar, HTML-comment frontmatter, list-line parsing). Pulling in `unified`/`remark` would be over-engineering — but use `mdast-util-from-markdown` opportunistically if list-line edge cases get hairy.
 - **HTTP**: built-in `fetch` (bun provides it).
@@ -39,7 +39,7 @@ src/
 │   └── identity.ts                given an Item, list every mirror location
 ├── config/
 │   ├── load.ts                    read .md-issue/config.toml
-│   ├── schema.ts                  zod schema for validation
+│   ├── schema.ts                  typebox schema for validation
 │   └── mappings.ts                glob → provider resolution
 ├── git/
 │   ├── exec.ts                    shell-out wrapper around git
@@ -86,7 +86,7 @@ Test files mirror the structure under `test/`. Fixtures (sample trees, sample gi
 
 ### Milestone 0 — Project scaffold
 
-- `bun init`, `tsconfig.json` (strict), Biome for formatting/linting, `bun:test` smoke test.
+- `bun init`, `tsconfig.json` (strict), `oxlint` for linting, `bun:test` smoke test.
 - Set up `commander` skeleton with no-op `init`/`lint`/`push`/`pull` subcommands.
 - Single-file build target via `bun build --compile`.
 
@@ -98,7 +98,7 @@ Everything in `src/model/` plus `src/config/`.
 - **Frontmatter** parser (HTML-comment) and writer. Preserve unknown keys (for opaque round-trip of custom fields).
 - **Inline list-line** parser. Recognize status, index, key, title, directive on a list line; handle indented continuation as description.
 - **Tree loader** — walks a directory, yields `Item`s with their **Form** and full set of mirror locations. Handles `index.md` ⇄ dir, recognises archive dir, ignores `.md-issue/`.
-- **Config loader** — TOML + zod schema validation. Helpful error messages on schema violations.
+- **Config loader** — TOML + typebox schema validation. Helpful error messages on schema violations.
 - **Glob mapping** — given a path, return its **Provider**.
 
 Tests:
