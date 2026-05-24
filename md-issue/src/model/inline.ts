@@ -92,6 +92,55 @@ export function parseInlineLine(
 }
 
 /**
+ * Compute the half-open range `[start, end)` of lines (0-based) in `lines`
+ * that belong to the inline item starting at `startLine` with `indent` leading
+ * spaces. The range covers the task line plus every subsequent line that is
+ * either blank or indented more deeply than the item.
+ */
+export function inlineItemRange(
+  lines: string[],
+  startLine: number,
+  indent: number,
+): { start: number; end: number } {
+  const start = startLine - 1;
+  let end = start + 1;
+  const cutoff = indent + 1;
+  while (end < lines.length) {
+    const line = lines[end] ?? '';
+    if (line === '') {
+      end++;
+      continue;
+    }
+    const leading = countLeadingSpaces(line);
+    if (leading < cutoff) break;
+    end++;
+  }
+  while (end > start + 1 && (lines[end - 1] ?? '') === '') end--;
+  return { start, end };
+}
+
+function countLeadingSpaces(line: string): number {
+  let i = 0;
+  while (i < line.length && line[i] === ' ') i++;
+  return i;
+}
+
+/**
+ * Strip `dedent` leading spaces from each line (lines shorter than `dedent`
+ * become empty). Used to extract an inline item's continuation lines as
+ * standalone markdown.
+ */
+export function dedentLines(lines: string[], dedent: number): string[] {
+  return lines.map((line) => {
+    if (line.length === 0) return '';
+    if (line.length <= dedent) return '';
+    const head = line.slice(0, dedent);
+    if (head.trim() !== '') return line;
+    return line.slice(dedent);
+  });
+}
+
+/**
  * Serialize an inline item back to a markdown task line. `indent` is the number
  * of leading spaces.
  */

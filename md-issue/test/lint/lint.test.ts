@@ -179,6 +179,113 @@ describe('runLint — validation point', () => {
     expect(status.stdout.trim()).toBe('');
   });
 
+  test('cross-file propagation: editing a File item updates inline references by IssueKey', async () => {
+    // index.md references the file both bare and as a markdown link.
+    await writeFile(
+      join(repo, 'index.md'),
+      [
+        '# Workspace',
+        '',
+        '- [ ] FE-50 The original title',
+        '- [ ] [FE-50 The original title](./[%20]%20FE-50%20The%20original%20title.md)',
+        '',
+      ].join('\n'),
+    );
+    await writeFile(
+      join(repo, '[ ] FE-50 The original title.md'),
+      '<!--\nissue-key = FE-50\n-->\n\n# The original title\n',
+    );
+    await addPaths(repo, ['index.md', '[ ] FE-50 The original title.md']);
+    await git(['commit', '-q', '-m', 'init'], { cwd: repo });
+
+    // User edits the H1 of the file (title change).
+    await writeFile(
+      join(repo, '[ ] FE-50 The original title.md'),
+      '<!--\nissue-key = FE-50\n-->\n\n# A snappier title\n',
+    );
+
+    await runLint({ workspaceRoot: repo, statusTable: STATUS_TABLE });
+
+    // File got renamed to canonical form.
+    const renamedExists = await Bun.file(
+      join(repo, '[ ] FE-50 A snappier title.md'),
+    ).exists();
+    expect(renamedExists).toBe(true);
+
+    // index.md inline references reflect the new title (and link href).
+    const index = await readFile(join(repo, 'index.md'), 'utf8');
+    expect(index).toContain('- [ ] FE-50 A snappier title');
+    expect(index).toContain('[FE-50 A snappier title]');
+    expect(index).toContain('./%5B%20%5D%20FE-50%20A%20snappier%20title.md');
+  });
+
+  test('>> FILE directive promotes an inline task to its own file', async () => {
+    await writeFile(
+      join(repo, 'index.md'),
+      [
+        '# Parent',
+        '',
+        '- [ ] FE-7 First task',
+        '- [ ] FE-8 Promote me >> FILE',
+        '  Some description for the promoted item.',
+        '',
+        '  - [ ] FE-9 Nested child',
+        '- [ ] FE-10 Last task',
+        '',
+      ].join('\n'),
+    );
+    await addPaths(repo, ['index.md']);
+    await git(['commit', '-q', '-m', 'init'], { cwd: repo });
+
+    const result = await runLint({ workspaceRoot: repo, statusTable: STATUS_TABLE });
+    expect(result.applied.some((a) => a.newPath === '[ ] FE-8 Promote me.md')).toBe(true);
+
+    // The new file exists with the inline content as body.
+    const newFile = await readFile(join(repo, '[ ] FE-8 Promote me.md'), 'utf8');
+    expect(newFile).toContain('# Promote me');
+    expect(newFile).toContain('issue-key = FE-8');
+    expect(newFile).toContain('Some description for the promoted item.');
+    expect(newFile).toContain('- [ ] FE-9 Nested child');
+
+    // The parent file no longer carries the promoted line.
+    const parent = await readFile(join(repo, 'index.md'), 'utf8');
+    expect(parent).not.toContain('Promote me');
+    expect(parent).toContain('- [ ] FE-7 First task');
+    expect(parent).toContain('- [ ] FE-10 Last task');
+  });
+
+  test('>> DIR directive (inline) creates a directory with index.md', async () => {
+    await writeFile(
+      join(repo, 'index.md'),
+      ['# Parent', '', '- [ ] FE-11 Make a dir >> DIR', '  Body content.', ''].join('\n'),
+    );
+    await addPaths(repo, ['index.md']);
+    await git(['commit', '-q', '-m', 'init'], { cwd: repo });
+
+    const result = await runLint({ workspaceRoot: repo, statusTable: STATUS_TABLE });
+    expect(result.applied.some((a) => a.newPath === '[ ] FE-11 Make a dir')).toBe(true);
+
+    const idx = await readFile(join(repo, '[ ] FE-11 Make a dir', 'index.md'), 'utf8');
+    expect(idx).toContain('# Make a dir');
+    expect(idx).toContain('Body content.');
+  });
+
+  test('>> DIR directive on a File item converts it into a dir', async () => {
+    await writeFile(
+      join(repo, '[ ] FE-12 Plain >> DIR.md'),
+      '<!--\nissue-key = FE-12\n-->\n\n# Plain\n\nBody.\n',
+    );
+    await addPaths(repo, ['[ ] FE-12 Plain >> DIR.md']);
+    await git(['commit', '-q', '-m', 'init'], { cwd: repo });
+
+    const result = await runLint({ workspaceRoot: repo, statusTable: STATUS_TABLE });
+    expect(result.applied.some((a) => a.newPath === '[ ] FE-12 Plain')).toBe(true);
+
+    const idx = await readFile(join(repo, '[ ] FE-12 Plain', 'index.md'), 'utf8');
+    expect(idx).toContain('# Plain');
+    expect(idx).toContain('Body.');
+  });
+
   test('>> ARCHIVE directive moves the item into the archive dir', async () => {
     const src = join(repo, '[x] XX-8 Old Done >> ARCHIVE.md');
     await writeFile(src, '<!--\nissue-key = XX-8\nstatus = Done\n-->\n\n# Old Done\n');

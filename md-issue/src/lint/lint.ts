@@ -8,7 +8,13 @@ import { loadTree } from '../model/tree.ts';
 import type { FileBody, Item } from '../model/types.ts';
 import { applyPlanToItem, stagePaths, type AppliedItem, type ApplyContext } from './apply.ts';
 import { hasConflictMarkers } from './conflict.ts';
-import { applyArchiveDirective } from './directives.ts';
+import {
+  applyArchiveDirective,
+  applyFileToDirDirective,
+  applyInlineToDirDirective,
+  applyInlineToFileDirective,
+} from './directives.ts';
+import { propagateCrossFile } from './propagate.ts';
 import { buildStatusMap, extractMirrors, reconcileItem, type StatusMap } from './reconcile.ts';
 import { readFile } from 'node:fs/promises';
 
@@ -45,12 +51,36 @@ export async function runLint(opts: LintOptions): Promise<LintResult> {
 
   const statusMap = buildStatusMap(statusTable);
   const ctx: ApplyContext = { workspaceRoot, repoRoot, statusMap };
-  const { fileRenames, dirRenames } = await resolveRenames(repoRoot);
-  const items = await loadTree(workspaceRoot);
-
   const applied: AppliedItem[] = [];
   const conflicts: AppliedItem[] = [];
   const allStagePaths: string[] = [];
+
+  // Pass 1: handle directives on inline items (FILE / DIR) and File-form DIR.
+  // These are wholesale transformations of the tree; reload the tree after so
+  // pass 2 sees the new file/dir layout.
+  {
+    const firstLoad = await loadTree(workspaceRoot);
+    for (const item of walkAllItems(firstLoad)) {
+      if (item.form === 'inline' && item.fields.directive === 'FILE') {
+        const result = await applyInlineToFileDirective(ctx, item);
+        applied.push(result);
+        allStagePaths.push(...result.stagePaths);
+      } else if (item.form === 'inline' && item.fields.directive === 'DIR') {
+        const result = await applyInlineToDirDirective(ctx, item);
+        applied.push(result);
+        allStagePaths.push(...result.stagePaths);
+      } else if (item.form === 'file' && item.fields.directive === 'DIR') {
+        const result = await applyFileToDirDirective(ctx, item);
+        applied.push(result);
+        allStagePaths.push(...result.stagePaths);
+      }
+    }
+  }
+
+  // Re-load after the structural transformations so reconciliation sees the
+  // current state.
+  const { fileRenames, dirRenames } = await resolveRenames(repoRoot);
+  const items = await loadTree(workspaceRoot);
 
   for (const item of flattenFileItems(items)) {
     // Lint-owned directives are applied as wholesale transformations and skip
@@ -71,6 +101,12 @@ export async function runLint(opts: LintOptions): Promise<LintResult> {
     allStagePaths.push(...result.stagePaths);
   }
 
+  // Pass 3: cross-file propagation. Inline references by IssueKey to a File
+  // or Dir item are rewritten to mirror the (now canonical) target.
+  const treeForPropagation = await loadTree(workspaceRoot);
+  const propagation = await propagateCrossFile(ctx, treeForPropagation);
+  allStagePaths.push(...propagation.stagePaths);
+
   await stagePaths(ctx, allStagePaths);
   return { applied, conflicts };
 }
@@ -80,6 +116,18 @@ function flattenFileItems(items: Item[]): Item[] {
   const walk = (xs: Item[]): void => {
     for (const x of xs) {
       if (x.form === 'file' || x.form === 'dir') out.push(x);
+      walk(x.children);
+    }
+  };
+  walk(items);
+  return out;
+}
+
+function walkAllItems(items: Item[]): Item[] {
+  const out: Item[] = [];
+  const walk = (xs: Item[]): void => {
+    for (const x of xs) {
+      out.push(x);
       walk(x.children);
     }
   };
