@@ -11,14 +11,17 @@ export function registerLint(program: Command): void {
     .action(async (opts: { workspace?: string }) => {
       const workspaceRoot = resolve(opts.workspace ?? process.cwd());
       let statusTable: Record<string, string> | undefined;
+      let archiveDir: string | undefined;
       try {
         const config = await loadConfig(`${workspaceRoot}/.md-issue/config.toml`);
         statusTable = config.status;
+        archiveDir = config.archive?.dir;
       } catch {
         // Config is optional for lint; missing config means no status mapping.
       }
       const lintOptions: Parameters<typeof runLint>[0] = { workspaceRoot };
       if (statusTable) lintOptions.statusTable = statusTable;
+      if (archiveDir) lintOptions.archiveDir = archiveDir;
       const result = await runLint(lintOptions);
 
       const touched = result.applied.filter((a) => a.touched);

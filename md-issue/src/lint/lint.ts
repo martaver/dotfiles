@@ -6,8 +6,11 @@ import { parseFilename } from '../model/filename.ts';
 import { extractFrontmatter, parseFrontmatter } from '../model/frontmatter.ts';
 import { loadTree } from '../model/tree.ts';
 import type { FileBody, Item } from '../model/types.ts';
-import { applyPlanToFile, stagePaths, type AppliedItem, type ApplyContext } from './apply.ts';
+import { applyPlanToItem, stagePaths, type AppliedItem, type ApplyContext } from './apply.ts';
+import { hasConflictMarkers } from './conflict.ts';
+import { applyArchiveDirective } from './directives.ts';
 import { buildStatusMap, extractMirrors, reconcileItem, type StatusMap } from './reconcile.ts';
+import { readFile } from 'node:fs/promises';
 
 export type LintResult = {
   applied: AppliedItem[];
@@ -22,6 +25,8 @@ export type LintOptions = {
    * accepted.
    */
   statusTable?: Record<string, string>;
+  /** Archive destination dir (workspace-relative) for the `>> ARCHIVE` directive. */
+  archiveDir?: string;
 };
 
 /**
@@ -40,7 +45,7 @@ export async function runLint(opts: LintOptions): Promise<LintResult> {
 
   const statusMap = buildStatusMap(statusTable);
   const ctx: ApplyContext = { workspaceRoot, repoRoot, statusMap };
-  const renames = await resolveRenames(repoRoot);
+  const { fileRenames, dirRenames } = await resolveRenames(repoRoot);
   const items = await loadTree(workspaceRoot);
 
   const applied: AppliedItem[] = [];
@@ -48,6 +53,17 @@ export async function runLint(opts: LintOptions): Promise<LintResult> {
   const allStagePaths: string[] = [];
 
   for (const item of flattenFileItems(items)) {
+    // Lint-owned directives are applied as wholesale transformations and skip
+    // the reconcile path.
+    if (item.fields.directive === 'ARCHIVE') {
+      const archiveDir = opts.archiveDir ?? 'archive';
+      const result = await applyArchiveDirective(ctx, item, archiveDir);
+      applied.push(result);
+      allStagePaths.push(...result.stagePaths);
+      continue;
+    }
+
+    const renames = item.form === 'dir' ? dirRenames : fileRenames;
     const result = await reconcileAndApply(ctx, statusMap, item, renames, workspaceRoot, repoRoot);
     if (!result) continue;
     applied.push(result);
@@ -89,9 +105,27 @@ async function reconcileAndApply(
 ): Promise<AppliedItem | null> {
   if (!item.body) return null; // dir without index.md — nothing to reconcile yet
   const currentDiskPath = join(workspaceRoot, item.path);
+  const bodyDiskPath = item.form === 'dir' ? join(currentDiskPath, 'index.md') : currentDiskPath;
+  // If the file already has unresolved conflict markers, refuse to touch it.
+  const currentBodyText = await readFile(bodyDiskPath, 'utf8');
+  if (hasConflictMarkers(currentBodyText)) {
+    return {
+      newPath: relative(workspaceRoot, currentDiskPath),
+      baselinePath: null,
+      stagePaths: [],
+      conflicts: {
+        status: { kind: 'noop', value: null },
+        issueKey: { kind: 'noop', value: null },
+        title: { kind: 'noop', value: null },
+      },
+      touched: false,
+      skippedReason: 'has-conflict-markers',
+    };
+  }
   const relForRepo = relative(repoRoot, currentDiskPath);
   const baselineRel = renames.get(relForRepo) ?? relForRepo;
-  const baselineRaw = await readIndexFile(repoRoot, baselineRel);
+  const baselineBodyRel = item.form === 'dir' ? `${baselineRel}/index.md` : baselineRel;
+  const baselineRaw = await readIndexFile(repoRoot, baselineBodyRel);
 
   const baselineMirrors = baselineRaw === null
     ? null
@@ -115,7 +149,8 @@ async function reconcileAndApply(
   const plan = reconcileItem(baselineMirrors, currentMirrors);
 
   const baselinePath = baselineRaw === null ? null : baselineRel;
-  return applyPlanToFile(ctx, {
+  return applyPlanToItem(ctx, {
+    form: item.form,
     currentDiskPath,
     baselinePath,
     fields: item.fields,

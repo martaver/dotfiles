@@ -70,10 +70,15 @@ export async function readIndexFile(cwd: string, path: string): Promise<string |
   return blob.stdout;
 }
 
-/** Stage one or more paths. Uses `--literal-pathspecs` so `[` / `*` in filenames are not interpreted as glob characters. */
+/**
+ * Stage one or more paths. Uses `--literal-pathspecs` so `[` / `*` in filenames
+ * are not interpreted as glob characters, and `-A` so that a missing tracked
+ * path is staged as a deletion (and directory prefixes recursively pick up all
+ * changes inside).
+ */
 export async function addPaths(cwd: string, paths: string[]): Promise<void> {
   if (paths.length === 0) return;
-  await git(['--literal-pathspecs', 'add', '--', ...paths], { cwd });
+  await git(['--literal-pathspecs', 'add', '-A', '--', ...paths], { cwd });
 }
 
 /**
