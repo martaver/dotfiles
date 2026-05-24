@@ -58,22 +58,40 @@ export async function runLint(opts: LintOptions): Promise<LintResult> {
   // Pass 1: handle directives on inline items (FILE / DIR) and File-form DIR.
   // These are wholesale transformations of the tree; reload the tree after so
   // pass 2 sees the new file/dir layout.
+  //
+  // Inline directives sharing a parent file MUST be processed from highest
+  // line to lowest — each splice shortens the parent, and stale higher line
+  // numbers would otherwise refer to the wrong rows after an earlier splice.
   {
     const firstLoad = await loadTree(workspaceRoot);
+    const inlineDirectives: Array<{ item: Item; kind: 'FILE' | 'DIR' }> = [];
+    const fileToDirItems: Item[] = [];
     for (const item of walkAllItems(firstLoad)) {
       if (item.form === 'inline' && item.fields.directive === 'FILE') {
-        const result = await applyInlineToFileDirective(ctx, item);
-        applied.push(result);
-        allStagePaths.push(...result.stagePaths);
+        inlineDirectives.push({ item, kind: 'FILE' });
       } else if (item.form === 'inline' && item.fields.directive === 'DIR') {
-        const result = await applyInlineToDirDirective(ctx, item);
-        applied.push(result);
-        allStagePaths.push(...result.stagePaths);
+        inlineDirectives.push({ item, kind: 'DIR' });
       } else if (item.form === 'file' && item.fields.directive === 'DIR') {
-        const result = await applyFileToDirDirective(ctx, item);
-        applied.push(result);
-        allStagePaths.push(...result.stagePaths);
+        fileToDirItems.push(item);
       }
+    }
+    inlineDirectives.sort((a, b) => {
+      const byParent = a.item.path.localeCompare(b.item.path);
+      if (byParent !== 0) return byParent;
+      return (b.item.inline?.line ?? 0) - (a.item.inline?.line ?? 0);
+    });
+    for (const { item, kind } of inlineDirectives) {
+      const result =
+        kind === 'FILE'
+          ? await applyInlineToFileDirective(ctx, item)
+          : await applyInlineToDirDirective(ctx, item);
+      applied.push(result);
+      allStagePaths.push(...result.stagePaths);
+    }
+    for (const item of fileToDirItems) {
+      const result = await applyFileToDirDirective(ctx, item);
+      applied.push(result);
+      allStagePaths.push(...result.stagePaths);
     }
   }
 
@@ -189,6 +207,7 @@ async function reconcileAndApply(
           frontmatter: fm,
           h1: h1Match ? (h1Match[1] ?? '').trim() : null,
           description: '',
+          descriptionStartLine: 1,
         };
         return extractMirrors(parsed.fields, baselineBody, statusMap);
       })();

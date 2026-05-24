@@ -80,6 +80,7 @@ describe('writeFileItemBody', () => {
       frontmatter: { 'issue-key': 'X-1' },
       h1: 'Hi',
       description: 'Hello.\n',
+      descriptionStartLine: 1,
     });
     expect(await readFile(f, 'utf8')).toBe('<!--\nissue-key = X-1\n-->\n\n# Hi\n\nHello.\n');
   });

@@ -52,6 +52,8 @@ export type FileBody = {
   h1: string | null;
   /** Everything after the H1 line, trimmed. Empty string if no body. */
   description: string;
+  /** 1-based line number in the original file where `description` begins. */
+  descriptionStartLine: number;
 };
 
 export type InlineLocation = {

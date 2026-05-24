@@ -24,6 +24,7 @@ function mkBody(overrides: Partial<FileBody> = {}): FileBody {
     frontmatter: {},
     h1: null,
     description: '',
+    descriptionStartLine: 1,
     ...overrides,
   };
 }

@@ -35,7 +35,7 @@ async function loadContainer(
     const inlineItems = extractInlineItems(
       body.description,
       relative(workspaceRoot, indexPath),
-      indexLineOffset(body),
+      body.descriptionStartLine,
     );
     items.push(...inlineItems);
   }
@@ -77,7 +77,7 @@ async function loadContainer(
       const inlineChildren = extractInlineItems(
         body.description,
         relative(workspaceRoot, fullPath),
-        indexLineOffset(body),
+        body.descriptionStartLine,
       );
       items.push({
         form: 'file',
@@ -106,14 +106,25 @@ async function loadFileBody(path: string): Promise<FileBody> {
   const { raw, rest } = extractFrontmatter(text);
   const frontmatter = raw === null ? {} : parseFrontmatter(raw);
 
-  // Strip blank lines at the top of `rest`, then peel off the H1 if present.
+  // Track how many lines of the original file we've consumed so we can report
+  // an accurate `descriptionStartLine` for downstream tooling (lint splicing
+  // inline items needs precise line numbers).
+  const beforeRestLen = text.length - rest.length;
+  let consumed = countLines(text.slice(0, beforeRestLen));
+
+  // Strip blank lines at the top of `rest`.
   const trimmedLeading = rest.replace(/^(?:\r?\n)+/, '');
+  consumed += countLines(rest.slice(0, rest.length - trimmedLeading.length));
+
   const h1Match = trimmedLeading.match(/^# (.+?)\r?\n/);
   let h1: string | null = null;
   let description = trimmedLeading;
   if (h1Match) {
     h1 = (h1Match[1] ?? '').trim();
-    description = trimmedLeading.slice(h1Match[0].length).replace(/^(?:\r?\n)+/, '');
+    consumed += countLines(h1Match[0]);
+    const afterH1 = trimmedLeading.slice(h1Match[0].length);
+    description = afterH1.replace(/^(?:\r?\n)+/, '');
+    consumed += countLines(afterH1.slice(0, afterH1.length - description.length));
   }
 
   return {
@@ -121,21 +132,17 @@ async function loadFileBody(path: string): Promise<FileBody> {
     frontmatter,
     h1,
     description,
+    descriptionStartLine: consumed + 1,
   };
 }
 
-/**
- * Return the 1-based line number on which `body.description` starts within the
- * original file. Approximate — used so inline items can report a line.
- */
-function indexLineOffset(body: FileBody): number {
-  let offset = 1;
-  if (body.rawFrontmatter !== null) {
-    offset += body.rawFrontmatter.split(/\r?\n/).length + 2; // `<!--`, inner, `-->`
-  }
-  if (body.h1 !== null) offset += 2; // `# Title\n` and a blank line after
-  return offset;
+function countLines(s: string): number {
+  if (s.length === 0) return 0;
+  let n = 0;
+  for (const ch of s) if (ch === '\n') n += 1;
+  return n;
 }
+
 
 /**
  * Pull inline Items out of a markdown body. Indent determines nesting: deeper

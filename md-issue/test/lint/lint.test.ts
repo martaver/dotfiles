@@ -219,6 +219,55 @@ describe('runLint — validation point', () => {
     expect(index).toContain('./%5B%20%5D%20FE-50%20A%20snappier%20title.md');
   });
 
+  test('>> FILE on multiple inline tasks in one parent: all are extracted, surrounding lines preserved', async () => {
+    await writeFile(
+      join(repo, 'index.md'),
+      ['- [ ] foo >> FILE', '- [ ] bar >> FILE', '- [ ] keep me', ''].join('\n'),
+    );
+    await addPaths(repo, ['index.md']);
+    await git(['commit', '-q', '-m', 'init'], { cwd: repo });
+
+    await runLint({ workspaceRoot: repo, statusTable: STATUS_TABLE });
+
+    const parent = await readFile(join(repo, 'index.md'), 'utf8');
+    expect(parent).not.toContain('foo >> FILE');
+    expect(parent).not.toContain('bar >> FILE');
+    expect(parent).toContain('- [ ] keep me');
+
+    expect(await Bun.file(join(repo, '[ ] foo.md')).exists()).toBe(true);
+    expect(await Bun.file(join(repo, '[ ] bar.md')).exists()).toBe(true);
+  });
+
+  test('>> FILE with frontmatter + H1 in parent: correct line is spliced', async () => {
+    await writeFile(
+      join(repo, 'index.md'),
+      [
+        '<!--',
+        'issue-key = ROOT',
+        '-->',
+        '',
+        '# Workspace',
+        '',
+        '- [ ] foo >> FILE',
+        '- [ ] keep me',
+        '',
+      ].join('\n'),
+    );
+    await addPaths(repo, ['index.md']);
+    await git(['commit', '-q', '-m', 'init'], { cwd: repo });
+
+    await runLint({ workspaceRoot: repo, statusTable: STATUS_TABLE });
+
+    const parent = await readFile(join(repo, 'index.md'), 'utf8');
+    expect(parent).not.toContain('foo >> FILE');
+    expect(parent).toContain('# Workspace');
+    expect(parent).toContain('- [ ] keep me');
+    // The blank line between H1 and the list should still be there.
+    expect(parent).toMatch(/# Workspace\n\n- \[ \] keep me/);
+
+    expect(await Bun.file(join(repo, '[ ] foo.md')).exists()).toBe(true);
+  });
+
   test('>> FILE directive promotes an inline task to its own file', async () => {
     await writeFile(
       join(repo, 'index.md'),
