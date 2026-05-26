@@ -68,6 +68,6 @@
     "type": "command",
     "command": "npx ccstatusline@latest"
   },
-  "effortLevel": "medium",
+  "effortLevel": "xhigh",
   "theme": "dark-ansi"
 }
