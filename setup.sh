@@ -235,6 +235,21 @@ fi
 # install base tools required to work with env locally
 brew bundle --file="$cmPath/Brewfile"
 
+cd "$cmPath"
+
+# if transcrypt has not yet been initialised for the repo, do it now.
+if ! git config --local --get transcrypt.version &>/dev/null; then
+	log "Transcrypt not initialised. Enter passphrase to decrypt encrypted files."
+	read -rs -p "Passphrase: " transcryptPassphrase
+	echo
+	transcrypt -c aes-256-cbc -p "$transcryptPassphrase" -y
+	unset transcryptPassphrase
+	success "Transcrypt initialised"
+else
+	log "Transcrypt already initialised. Skipping..."
+fi
+
+
 code "$cmPath"
 
 # # nix-darwin is what actually does the configuration
