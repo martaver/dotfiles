@@ -1,0 +1,1 @@
+contexts/*/account.sh filter=crypt diff=crypt merge=crypt
