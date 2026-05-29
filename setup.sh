@@ -210,11 +210,11 @@ setupSudoTouchID() {
 # xcode is needed for building most software from source
 checkDep 'xcode-cli-tools' '/usr/bin/xcode-select' 'installXcodeCommandLineTools'
 
-# rosetta is needed for running x86_64 applications
-checkDep 'rosetta' '/usr/bin/pgrep oahd' 'sudo softwareupdate --install-rosetta --agree-to-license'
-
 # brew is needed for installing GUI applications (casks)
 checkDep 'brew' 'command -v brew' 'installBrew'
+
+# rosetta is needed for running x86_64 applications
+checkDep 'rosetta' '/usr/bin/pgrep oahd' 'sudo softwareupdate --install-rosetta --agree-to-license'
 
 # install docker
 # ./install-docker.sh
@@ -232,10 +232,15 @@ else
 	nix shell nixpkgs#chezmoi -c chezmoi git pull "${dotfiles}"
 fi
 
-# nix-darwin is what actually does the configuration
-checkDep 'nix-darwin' 'command -v darwin-rebuild' 'bootstrapNixDarwin' 'applyNixDarwin'
+# install base tools required to work with env locally
+brew bundle --file="$cmPath/Brewfile"
 
-log "Applying dotfiles..."
-nix shell nixpkgs#chezmoi -c chezmoi update
+code "$cmPath"
 
-success 'Done!'
+# # nix-darwin is what actually does the configuration
+# checkDep 'nix-darwin' 'command -v darwin-rebuild' 'bootstrapNixDarwin' 'applyNixDarwin'
+
+# log "Applying dotfiles..."
+# nix shell nixpkgs#chezmoi -c chezmoi update
+
+# success 'Done!'
