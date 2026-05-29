@@ -158,7 +158,7 @@ bootstrapNixDarwin() {
 }
 
 applyNixDarwin() {	
-	log "Applying (flake) nix-darwin configuration..."
+	log "Applying (flake) nix-darwin configuration for user ($USER)..."
 	sudo USER="$USER" darwin-rebuild switch --impure --flake "$nixDarwinDir#default"
 }
 
