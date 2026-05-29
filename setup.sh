@@ -159,7 +159,7 @@ bootstrapNixDarwin() {
 
 applyNixDarwin() {	
 	log "Applying (flake) nix-darwin configuration..."
-	sudo darwin-rebuild switch --flake "$nixDarwinDir#default"
+	sudo USER="$USER" darwin-rebuild switch --impure --flake "$nixDarwinDir#default"
 }
 
 installBrew() {
