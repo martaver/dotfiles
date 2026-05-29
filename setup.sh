@@ -193,10 +193,46 @@ installBrew() {
 
 # configure sudo with Touch ID
 setupSudoTouchID() {
-	if [ ! -f /etc/pam.d/sudo_local ]; 
+	if [ ! -f /etc/pam.d/sudo_local ];
 	then
 		sed "s/^#auth/auth/" /etc/pam.d/sudo_local.template | sudo tee /etc/pam.d/sudo_local
 	fi
+}
+
+# Verify every account described in contexts/*/account.json is configured in
+# the 1Password CLI. Lists missing accounts and opens the 1Password app so the
+# user can add them, then halts so they can re-run setup.sh.
+check1PasswordAccounts() {
+	log "Checking 1Password accounts..."
+
+	local configured
+	configured=$(op account list --format=json 2>/dev/null || echo '[]')
+
+	local missing=()
+	for accountFile in "$cmPath"/contexts/*/account.json; do
+		[[ -f "$accountFile" ]] || continue
+
+		local address email host
+		address=$(jq -r '.address' "$accountFile")
+		email=$(jq -r '.email' "$accountFile")
+		host="${address#https://}"
+		host="${host%/}"
+
+		if ! echo "$configured" | jq -e --arg url "$host" --arg email "$email" \
+			'any(.[]; .url == $url and .email == $email)' >/dev/null; then
+			missing+=("$host ($email)")
+		fi
+	done
+
+	if (( ${#missing[@]} > 0 )); then
+		error "The following 1Password accounts still need to be added:"
+		printf '   - %s\n' "${missing[@]}" 1>&2
+		log "Launching 1Password — add the listed accounts, then re-run setup.sh"
+		open -a 1Password
+		exit 1
+	fi
+
+	success "All 1Password accounts configured"
 }
 
 # install 1password
@@ -249,6 +285,8 @@ else
 	log "Transcrypt already initialised. Skipping..."
 fi
 
+# check 1password accounts are set up
+check1PasswordAccounts
 
 code "$cmPath"
 

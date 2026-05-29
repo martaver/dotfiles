@@ -6,3 +6,5 @@ cask "1password-cli"
 # coreutils is required by transcrypt
 brew "coreutils"
 brew "transcrypt"
+
+brew "jq"
