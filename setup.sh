@@ -227,7 +227,10 @@ check1PasswordAccounts() {
 	if (( ${#missing[@]} > 0 )); then
 		error "The following 1Password accounts still need to be added:"
 		printf '   - %s\n' "${missing[@]}" 1>&2
-		log "Launching 1Password — add the listed accounts, then re-run setup.sh"
+		log "In 1Password, also configure Settings > Developer:"
+		log "   - Integrate with 1Password CLI"
+		log "   - Set up the SSH Agent"
+		log "Launching 1Password — complete the steps above, then re-run setup.sh"
 		open -a 1Password
 		exit 1
 	fi
