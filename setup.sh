@@ -134,7 +134,7 @@ bootstrapNixDarwin() {
 
 		# To use flake.nix and default configuration stored in chezmoi dotfiles repo:
 		log "Running darwin-rebuild switch..."
-		sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake "$nixDarwinDir#default"
+		sudo DEFAULT_USER="$USER" nix run nix-darwin/master#darwin-rebuild -- switch --impure --flake "$nixDarwinDir#default"
 
 		log "Configuring nix-darwin environment..."
 		set +o errexit
@@ -159,7 +159,7 @@ bootstrapNixDarwin() {
 
 applyNixDarwin() {	
 	log "Applying (flake) nix-darwin configuration for user ($USER)..."
-	sudo USER="$USER" darwin-rebuild switch --impure --flake "$nixDarwinDir#default"
+	sudo DEFAULT_USER="$USER" darwin-rebuild switch --impure --flake "$nixDarwinDir#default"
 }
 
 installBrew() {
