@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
-
-sudo /run/current-system/sw/bin/darwin-rebuild switch --flake "./nix-darwin#default"
+sudo USER="$USER" /run/current-system/sw/bin/darwin-rebuild switch --impure --flake "./nix-darwin#default" "$@"

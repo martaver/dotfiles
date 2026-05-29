@@ -28,7 +28,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.sebastiannemeth = import ./home.nix;
+            home-manager.users.${builtins.getEnv "USER"} = import ./home.nix;
           }
         ];
       };
